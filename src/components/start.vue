@@ -1,6 +1,6 @@
 <template>
-    <div class="start-bg animated" v-bind:class="{zoomOut:show}">
-        <img class="img-responsive" src="../assets/images/start-bg.png" alt="">
+    <div id="start-bg" class="animated" v-bind:class="{zoomOut:show}">
+        <img class="img-responsive" src="/public/app/images/start-bg.png" alt="">
         <div class="name animated" v-bind:class="{fadeInDown:start, fadeOutLeftBig:end}">
             <h2>S</h2>
             <h2>A</h2>
@@ -16,30 +16,37 @@
         height: 100%;
         font-family: "Adobe 宋体 Std L",'Arial';
     }
-    .start-bg{
+    img{
         width: 100%;
         height: 100%;
     }
-    .name{
+    #start-bg{
+        width: 100%;
+        height: 100%;
+        animate-duration: 1s;
+    }
+    #start-bg .name{
         width: 40px;
         position: absolute;
         top: 10%;
         left: 50%;
         margin-left: -20px;
+        animate-duration: 3s;
     }
-    .name h2{
+    #start-bg .name h2{
         text-align: center;
         font-size: 35px;
     }
-    .title{
+    #start-bg .title{
         width: 100%;
         position: absolute;
         top: 60%;
         text-align: center;
         font-size: 20px;
         color: #fff;
+        animate-duration: 3s;
     }
-    .breathe-btn{ position:absolute; bottom:20px; left: 50%; margin-left: -50px; width:100px; height:40px; line-height:40px; border:1px solid #2b92d4; border-radius:5px; color:#fff; font-size:20px; text-align:center; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.3); overflow:hidden;
+    #start-bg .breathe-btn{ position:absolute; bottom:20px; left: 50%; margin-left: -50px; width:100px; height:40px; line-height:40px; border:1px solid #2b92d4; border-radius:5px; color:#fff; font-size:20px; text-align:center; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.3); overflow:hidden;
         background-image: -webkit-gradient(linear, left top, left bottom, from(#6cc3fe), to(#21a1d0));
         background-image: -moz-linear-gradient(#6cc3fe,#21a1d0);
         -webkit-animation-timing-function: ease-in-out;
@@ -59,8 +66,8 @@
     }
 </style>
 <script>
-    export default{
-        data(){
+    module.exports = {
+        data: function(){
             return {
                 start: true,
                 end: false,
@@ -68,18 +75,11 @@
             }
         },
         methods: {
-            open () {
+            open: function() {
                 this.start = false;
                 this.end = true;
                 setTimeout(()=>{this.show = true},1000)
-            }
-        },
-        watch: {
-            show(){
-                /*
-                * 动画完成后，start-bg   block: none;
-                * */
-                $('.start-bg').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', ()=>{$('.start-bg').hide()});
+                setTimeout(()=>{this.$emit('open')},2000)
             }
         }
     }

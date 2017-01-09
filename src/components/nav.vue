@@ -1,26 +1,19 @@
 <template>
-    <div>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class=" navbar-toggle collapsed navbar-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-            </div>
-        </nav>
+    <div class="page-group">
+        <header class="bar bar-nav">
+            <span class="pull-left icon icon-menu open-panel" data-panel="#panel-left-demo"></span>
+            <span class="pull-right icon icon-me"></span>
+            <h1 class="title">SAM-BLOG</h1>
+        </header>
     </div>
 </template>
 <style>
 
 </style>
 <script>
-    export default{
-        data(){
+
+    module.exports = {
+        data: function(){
             return{
                 msg:'hello vue'
             }

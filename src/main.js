@@ -1,16 +1,11 @@
-import Vue from 'vue';
-import App from './App.vue';
-import nav from './components/nav.vue';
-import VueRouter from 'vue-router';
+var Vue = require('vue');
+var App = require('./App.vue');
+// var nav = require('./components/nav.vue');
 
-Vue.use(VueRouter);
-
-const index = {};
 var vm = new Vue({
 	el: '#app',
 	// render: h => h(App)
 	components: {
-		app: App,
-		headers: nav
+		app: App
 	}
 })
