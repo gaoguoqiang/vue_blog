@@ -16,11 +16,9 @@ var Cookies = require('cookies');
 var User = require('./models/User');
 //创建app应用 ==> NodeJS  Http.createServer();
 var app = express();
-
 //设置静态文件托管
 //当用户访问的url以/public开始，那么直接返回对应__dirname + './public'下的文件
 app.use('/public', express.static(__dirname + '/public'));
-
 //配置应用模板
 //定义当前应用所使用的模板引擎
 //第一个参数：模板引擎的名称，同时也是模板文件的后缀，第二个参数：表示用于解析处理模板内容的方法
