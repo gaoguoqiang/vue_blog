@@ -29,6 +29,6 @@ gulp.task('browserSync', function () {
     })
 });
 gulp.task('default', ['browserSync', 'bundle'], function () {
-    gulp.watch(['./view/main/index.html', './src/components/*', './src/App.vue', './src/main.js'],['bundle']);
+    gulp.watch(['./view/main/index.html', './src/components/*', './src/*'],['bundle']);
     gulp.watch('./public/app/dist/main.js',browserSync.reload);
 })

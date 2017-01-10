@@ -273,6 +273,5 @@ router.post('/main/discussSave', function (req, res) {
     }).then(function (content) {
         res.json(content.discuss);
     })
-
 })
 module.exports = router;

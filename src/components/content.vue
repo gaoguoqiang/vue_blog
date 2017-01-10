@@ -1,6 +1,6 @@
 <template>
     <div id="content" class="content">
-        <div class="content-padded grid-demo">
+        <div class="content-padded grid-demo" v-scroll>
             <div v-for="data in datas" class="card">
                 <div class="card-content">
                     <div class="list-block media-list">
@@ -40,6 +40,7 @@
 </style>
 <script>
     var filter = require('../filter.js');
+    var directive = require('../directives.js');
     module.exports = {
         data: function(){
             return{
@@ -54,7 +55,6 @@
                     url: 'api/main/contents',
                     success:function (data) {
                         _this.datas = data.contents;
-                        console.log(_this.datas)
                     }
                 })
             }
@@ -62,8 +62,13 @@
         filters:{
             time: filter.time
         },
+        directives:{
+            scroll: directive.scroll
+        },
         created: function () {
+            //数据初始化
             this.getData();
         }
     }
+
 </script>
