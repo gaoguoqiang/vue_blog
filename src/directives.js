@@ -6,12 +6,14 @@ var directive = {
     scroll: {
         bind: function (el, binding) {
             document.addEventListener('touchmove', function () {
+                //浏览器可视区高度
                 var windowH = document.documentElement.clientHeight;
-                var elH = el.offsetHeight;
-                var windowSH = document.body.scrollTop;
-                console.log(el.offsetTop)
-                if(windowSH + windowH > elH){
-                    console.log(windowSH + windowH)
+                //内容区高度
+                var elH = el.offsetHeight+el.offsetTop;
+                //滚动距离
+                var scrollH = el.parentNode.scrollTop;
+                if(scrollH + windowH - el.parentNode.offsetTop > elH){
+                    console.log(1)
                 }
             })
         }
