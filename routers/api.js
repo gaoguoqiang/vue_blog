@@ -219,12 +219,12 @@ router.post('/content/contentList', function (req, res) {
 router.post('/main/contents', function (req, res) {
     var page = Number(req.query.page || 1);
     var categoryId = {};
-    if(req.query.id){
-        categoryId.category = req.query.id;
+    if(req.body.id){
+        categoryId.category = req.body.id;
         // console.log(req.query.id)
         // console.log(categoryId)
     }
-    var limit = 5;
+    var limit = 3;
     var pages = 0;
 
     Content.count(categoryId).then(function (count) {
@@ -257,7 +257,6 @@ router.post('/main/particular', function (req, res) {
         })
     });
 });
-
 //评论提交
 router.post('/main/discussSave', function (req, res) {
     //内容id

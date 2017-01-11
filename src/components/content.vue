@@ -1,6 +1,6 @@
 <template>
     <div id="content" class="content">
-        <div class="content-padded grid-demo" v-scroll>
+        <div class="content-padded grid-demo" v-scroll="scrollLoad">
             <div v-for="data in datas" class="card">
                 <div class="card-content">
                     <div class="list-block media-list">
@@ -25,6 +25,8 @@
                 </div>
             </div>
         </div>
+        <loading v-show="show"></loading>
+        <p class="endInfo">歇息一会儿吧！后边什么都没有了！</p>
     </div>
 </template>
 <style>
@@ -37,32 +39,82 @@
     .row div{
         border: 1px solid #000;
     }
+    .endInfo{
+        color: #ccc;
+        text-align: center;
+    }
 </style>
 <script>
     var filter = require('../filter.js');
     var directive = require('../directives.js');
+    var loading = require('./loading.vue');
     module.exports = {
         data: function(){
             return{
-                datas:{}
+                datas:{},
+                pages:null,
+                page: 1,
+                show: false,
+                endShow: false
             }
         },
+        components: {
+          loading
+        },
         methods: {
-            getData: function () {
+            getData: function (value) {
+                var id = {};
+                if(value){
+                    id.id = value;
+                }
                 var _this = this;
                 $.ajax({
                     type: 'post',
                     url: 'api/main/contents',
+                    data: id,
                     success:function (data) {
                         _this.datas = data.contents;
+                        _this.pages = data.pages;
                     }
                 })
+            },
+            scrollLoad: function (value, fn) {
+                var _this = this;
+                //显示loading界面
+                _this.show = true;
+                _this.page++;
+                //当前页等于总页数时，停止执行ajax
+                if(_this.page <= _this.pages){
+                    $.ajax({
+                        type: 'post',
+                        url: 'api/main/contents?page='+_this.page,
+                        success: function (data) {
+                            //把新获取到的数据插入到之前的数组中
+                            for(var i = 0; i < data.contents.length; i++){
+                                _this.datas.push(data.contents[i])
+                            }
+                            //关闭loading界面
+                            _this.show = false;
+                            //回调函数
+                            fn();
+                        }
+                    })
+                }else{
+                   //关闭loading界面
+                    _this.show = false;
+                    //显示没有数据的提示语
+                    _this.endShow = true;
+                    fn();
+                }
+
             }
         },
         filters:{
+            //时间格式过滤器
             time: filter.time
         },
         directives:{
+            //无限加载指令
             scroll: directive.scroll
         },
         created: function () {
