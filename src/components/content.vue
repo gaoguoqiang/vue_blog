@@ -26,7 +26,7 @@
             </div>
         </div>
         <loading v-show="show"></loading>
-        <p class="endInfo">歇息一会儿吧！后边什么都没有了！</p>
+        <p v-show="endShow" class="endInfo">歇息一会儿吧！后边什么都没有了！</p>
     </div>
 </template>
 <style>
@@ -48,6 +48,7 @@
     var filter = require('../filter.js');
     var directive = require('../directives.js');
     var loading = require('./loading.vue');
+    var Bus = require('../bus.js');
     module.exports = {
         data: function(){
             return{
@@ -55,7 +56,8 @@
                 pages:null,
                 page: 1,
                 show: false,
-                endShow: false
+                endShow: false,
+                id: ''
             }
         },
         components: {
@@ -80,6 +82,10 @@
             },
             scrollLoad: function (value, fn) {
                 var _this = this;
+                var id = {};
+                if(_this.id != ''){
+                    id.id = _this.id;
+                }
                 //显示loading界面
                 _this.show = true;
                 _this.page++;
@@ -88,6 +94,7 @@
                     $.ajax({
                         type: 'post',
                         url: 'api/main/contents?page='+_this.page,
+                        data: id,
                         success: function (data) {
                             //把新获取到的数据插入到之前的数组中
                             for(var i = 0; i < data.contents.length; i++){
@@ -120,6 +127,22 @@
         created: function () {
             //数据初始化
             this.getData();
+        },
+        beforeUpdate: function () {
+            var _this = this;
+            //点击分类后视图更新
+            Bus.$on('contentTab',function (val) {
+                //console.log(val);
+                _this.id = val;
+                //初始化数据
+                _this.getData(val);
+                //重置当前页
+                _this.page = 1;
+                //关闭没有数据的提示语
+                _this.endShow = false;
+                //设置内容界面滚动条回到顶点
+                $('#content').scrollTop(0);
+            })
         }
     }
 
