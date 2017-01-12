@@ -75,8 +75,13 @@ module.exports = {
                     repassword: _this.repassword
                 },
                 success: function (data) {
+                    //隐藏loading界面
                     $.hidePreloader();
                     $.toast(data.message);
+                    //2秒后触发事件，显示登录页面
+                    setTimeout(function () {
+                        _this.$emit('regSuccess');
+                    },2000);
                 }
             })
         }

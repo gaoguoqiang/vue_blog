@@ -20,6 +20,12 @@ router.use(function (req, res, next) {
     next();
 });
 /*
+* 查询登录状态
+* */
+router.post('/user/status', function (req, res) {
+    res.json(req.userInfo)
+})
+/*
 * 用户注册
 *   注册逻辑
 * */

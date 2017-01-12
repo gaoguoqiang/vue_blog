@@ -11,6 +11,4 @@ router.get('/', function (req, res, next) {
     // });
     res.render('main/index')
 });
-//SUI页面初始化
-$.init();
 module.exports = router;
