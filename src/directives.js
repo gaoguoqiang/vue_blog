@@ -27,6 +27,11 @@ var directive = {
                 }
             })
         }
+    },
+    alert: {
+        bind: function (el, binding) {
+
+        }
     }
 };
 

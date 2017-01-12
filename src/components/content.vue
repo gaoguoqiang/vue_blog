@@ -30,9 +30,6 @@
     </div>
 </template>
 <style>
-    #content{
-        margin-top: 2.3rem;
-    }
     #content img{
         width: 4rem;
     }
@@ -45,9 +42,13 @@
     }
 </style>
 <script>
+    //加载过滤器
     var filter = require('../filter.js');
+    //加载指令
     var directive = require('../directives.js');
+    //加载等待组件
     var loading = require('./loading.vue');
+    //加载Bus实例
     var Bus = require('../bus.js');
     module.exports = {
         data: function(){
@@ -61,6 +62,7 @@
             }
         },
         components: {
+            //注册loading组件
           loading
         },
         methods: {

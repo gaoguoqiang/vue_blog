@@ -42,7 +42,7 @@ router.post('/user/register', function (req, res, next) {
         return;
     }
 
-    if(repassword == ''){
+    if(repassword == ''|| repassword != password){
         responseData.code = 3;
         responseData.message = '两次输入的密码不一致';
         res.json(responseData);
@@ -82,7 +82,7 @@ router.post('/user/login', function (req, res, next) {
         res.json(responseData);
         return;
     }
-    
+
     User.findOne({
         username:username,
         password:password
