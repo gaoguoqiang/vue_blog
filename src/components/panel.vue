@@ -1,7 +1,7 @@
 <template>
     <div class="panel panel-left panel-cover theme-dark" id='panel-left-demo'>
         <div class="content-block">
-            <p><a @click="tab()" href="#" class="close-panel">首页</a></p>
+            <p><a href="#" class="close-panel" v-link="{name:'content'}">首页</a></p>
             <p v-for="data in list"><a @click="tab(data._id)" href="#" class="close-panel">{{data.name}}</a></p>
             <p><a href="#" class="close-panel">{{close}}</a></p>
         </div>

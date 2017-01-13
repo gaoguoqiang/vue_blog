@@ -14,13 +14,15 @@
     "vue-template-compiler": "^2.1.8"
   },
   "dependencies": {
-    "vue": "^2.1.8",
     "body-parser": "^1.15.2",
     "cookies": "^0.6.1",
     "express": "^4.14.0",
+    "iconv-lite": "^0.4.15",
     "markdown": "^0.5.0",
     "marked": "^0.3.6",
     "mongoose": "^4.6.3",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "vue": "^2.1.8",
+    "vue-router": "^2.1.1"
   }
 }

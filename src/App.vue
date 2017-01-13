@@ -1,9 +1,13 @@
 <template>
     <div>
-        <start v-if="show" v-on:open="change"></start>
-        <myNav v-else></myNav>
-        <div class="panel-overlay"></div>
-        <panel></panel>
+        <!--<start v-if="show" v-on:open="change"></start>-->
+        <!--<myNav v-else></myNav>-->
+        <router-link to="/content">123</router-link>
+        <router-link to="/index">index</router-link>
+        <router-view></router-view>
+        <!--<div class="panel-overlay"></div>-->
+        <!--<panel></panel>-->
+
     </div>
 </template>
 <script>

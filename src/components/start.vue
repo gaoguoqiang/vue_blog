@@ -7,7 +7,7 @@
             <h2>M</h2>
         </div>
         <p class="title animated" v-bind:class="{fadeInDown:start, fadeOutRight:end}">身体和灵魂，总有一个在路上</p>
-        <div @click="open" class="breathe-btn">start...</div>
+        <div @click="open" class="breathe-btn"><a v-link="{name:'content'}"></a>start...</div>
     </div>
 </template>
 <style>

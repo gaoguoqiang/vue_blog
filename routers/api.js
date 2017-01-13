@@ -8,6 +8,7 @@ var User = require('../models/User');
 var Category = require('../models/Category');
 var Content = require('../models/Content');
 var Markdown = require('markdown').markdown;
+var iconv = require('iconv-lite');
 
 //统一返回数据的格式
 var responseData;
@@ -23,7 +24,16 @@ router.use(function (req, res, next) {
 * 查询登录状态
 * */
 router.post('/user/status', function (req, res) {
-    res.json(req.userInfo)
+    //把编码转换为字符串
+    if(req.userInfo.username){
+        var username = iconv.decode(new Buffer(req.userInfo.username.data), 'utf8');
+    }else{
+        var username = null;
+    }
+    res.json({
+        isAdmin: req.userInfo.isAdmin,
+        username: username
+    });
 })
 /*
 * 用户注册
@@ -58,7 +68,7 @@ router.post('/user/register', function (req, res, next) {
     User.findOne({
         username:username
     }).then(function (userInfo) {
-        console.log(userInfo)
+        // console.log(userInfo)
        if(userInfo){
            //表示数据库中已有记录
            responseData.code = 4;
@@ -104,9 +114,11 @@ router.post('/user/login', function (req, res, next) {
             id:userInfo._id,
             username:userInfo.username
         };
+        //cookies中不能储存中文，需要转为编码格式
+        var newUsername = iconv.encode(userInfo.username, 'utf8');
         req.cookies.set('userInfo', JSON.stringify({
             id:userInfo._id,
-            username:userInfo.username
+            username:newUsername
         }));
         res.json(responseData);
         return;
