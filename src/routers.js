@@ -2,19 +2,20 @@
  * Created by Administrator on 2017/1/13 0013.
  */
 
-var routers = [
+var routes = [
     {
         path: '/content',
         name: 'content',
         component: require('./components/content.vue')
     },
     {
-        path: '/',
-        redirect: '/content'
+        path: '/index',
+        name: 'index',
+        component: require('./components/nav.vue')
     }
 ]
 
 
-module.exports = routers;
+module.exports = routes;
 
 

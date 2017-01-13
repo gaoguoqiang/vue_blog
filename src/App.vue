@@ -1,19 +1,13 @@
 <template>
     <div>
-        <!--<start v-if="show" v-on:open="change"></start>-->
-        <!--<myNav v-else></myNav>-->
-        <router-link to="/content">123</router-link>
-        <router-link to="/index">index</router-link>
-        <router-view></router-view>
-        <!--<div class="panel-overlay"></div>-->
-        <!--<panel></panel>-->
-
+        <start v-if="show" v-on:open="change"></start>
+        <transition name="show">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 <script>
     var start = require( './components/start.vue');
-    var myNav = require( './components/nav.vue');
-    var panel = require('./components/panel.vue');
     module.exports =  {
         data: function () {
             return {
@@ -21,9 +15,7 @@
             }
         },
         components:{
-            start,
-            myNav,
-            panel
+            start
         },
         methods:{
             change: function () {
@@ -34,5 +26,11 @@
 </script>
 
 <style>
-
+    .show-enter, .show-leave-active{
+        opacity: 0;
+    }
+    .show-enter-active, .show-leave{
+        transition: opacity .5s;
+        transition-delay: 1.5s;
+    }
 </style>

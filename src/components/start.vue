@@ -7,7 +7,9 @@
             <h2>M</h2>
         </div>
         <p class="title animated" v-bind:class="{fadeInDown:start, fadeOutRight:end}">身体和灵魂，总有一个在路上</p>
-        <div @click="open" class="breathe-btn"><a v-link="{name:'content'}"></a>start...</div>
+        <div @click="open" class="breathe-btn">
+            <router-link to="/index">start...</router-link>
+        </div>
     </div>
 </template>
 <style>
@@ -46,6 +48,11 @@
         color: #fff;
         animate-duration: 3s;
     }
+    #start-bg .breathe-btn a{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
     #start-bg .breathe-btn{ position:absolute; bottom:20px; left: 50%; margin-left: -50px; width:100px; height:40px; line-height:40px; border:1px solid #2b92d4; border-radius:5px; color:#fff; font-size:20px; text-align:center; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.3); overflow:hidden;
         background-image: -webkit-gradient(linear, left top, left bottom, from(#6cc3fe), to(#21a1d0));
         background-image: -moz-linear-gradient(#6cc3fe,#21a1d0);
@@ -78,8 +85,9 @@
             open: function() {
                 this.start = false;
                 this.end = true;
-                setTimeout(()=>{this.show = true},1000)
-                setTimeout(()=>{this.$emit('open')},2000)
+                setTimeout(function () {
+                    this.show = false;
+                },1000)
             }
         }
     }

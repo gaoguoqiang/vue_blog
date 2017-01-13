@@ -1,9 +1,9 @@
 <template>
     <div class="panel panel-left panel-cover theme-dark" id='panel-left-demo'>
         <div class="content-block">
-            <p><a href="#" class="close-panel" v-link="{name:'content'}">首页</a></p>
-            <p v-for="data in list"><a @click="tab(data._id)" href="#" class="close-panel">{{data.name}}</a></p>
-            <p><a href="#" class="close-panel">{{close}}</a></p>
+            <p><router-link to="/index" class="close-panel">首页</router-link></p>
+            <p v-for="data in list"><a @click="tab(data._id)" href="javascript:;" class="close-panel">{{data.name}}</a></p>
+            <p><a href="javascript:;" class="close-panel">{{close}}</a></p>
         </div>
         <div class="list-block">
         </div>
@@ -45,7 +45,7 @@
             },
             tab: function (val) {
                 //触发视图切换
-                Bus.$emit('contentTab',val)
+                //Bus.$emit('contentTab',val)
             }
         },
         created: function () {
