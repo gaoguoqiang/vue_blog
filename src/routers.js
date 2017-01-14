@@ -4,18 +4,33 @@
 
 var routes = [
     {
-        path: '/content',
-        name: 'content',
-        component: require('./components/content.vue')
-    },
-    {
         path: '/index',
         name: 'index',
-        component: require('./components/nav.vue')
+        components: {
+            default: require('./components/nav.vue'),
+            content: require('./components/content.vue')
+        }
+    },
+    {
+        path: '/index/:id',
+        components:{
+            default: require('./components/nav.vue'),
+            content: require('./components/content.vue')
+        }
+    },
+    {
+        path: '/user',
+        components:{
+            default: require('./components/nav.vue'),
+            content: require('./components/user.vue'),
+        }
+    },
+    {
+        path: '/concrete/:id',
+        components:{
+            default: require('./components/nav.vue'),
+            content: require('./components/concrete.vue')
+        }
     }
 ]
-
-
 module.exports = routes;
-
-

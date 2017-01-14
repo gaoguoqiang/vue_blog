@@ -1,26 +1,34 @@
 <template>
     <div>
-        <start v-if="show" v-on:open="change"></start>
-        <transition name="show">
-            <router-view></router-view>
-        </transition>
+        <start v-show="show"></start>
+            <transition name="show">
+                <router-view></router-view>
+            </transition>
+            <transition name="show">
+                <router-view name="content"></router-view>
+            </transition>
+            <panel></panel>
     </div>
 </template>
 <script>
     var start = require( './components/start.vue');
+    var panel = require('./components/panel.vue');
     module.exports =  {
         data: function () {
             return {
-                show: true
+                show: false
             }
         },
         components:{
-            start
+            start,
+            panel
         },
-        methods:{
-            change: function () {
-                this.show = false;
+        created: function () {
+            //检测是否在app内部进行刷新操作
+            if(this.$route.path === '/'){
+                this.show = true;
             }
+
         }
     }
 </script>
@@ -32,5 +40,9 @@
     .show-enter-active, .show-leave{
         transition: opacity .5s;
         transition-delay: 1.5s;
+    }
+    .g_bg{
+        background: #fff;
+        height: 100%;
     }
 </style>

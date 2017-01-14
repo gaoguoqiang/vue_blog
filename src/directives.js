@@ -20,7 +20,7 @@ var directive = {
                     if(onOff){
                         onOff = false;
                         //数据更新完毕后，通过回调函数，打开触发器，保证下一次的成功触发
-                        fn(onOff,function () {
+                        fn(function () {
                             onOff = true
                         });
                     }

@@ -28,7 +28,7 @@
             </ul>
         </div>
         <div class="content-block">
-            <div id="logBtn"><a @click="login" href="#" class="button button-big button-fill button-success">登录</a></div>
+            <div id="logBtn"><a @click="login" href="javascript:;" class="button button-big button-fill button-success">登录</a></div>
             <slot></slot>
         </div>
     </div>

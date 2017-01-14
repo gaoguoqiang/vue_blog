@@ -1,31 +1,31 @@
 <template>
-    <div class="page-group">
+    <div>
         <header class="bar bar-nav">
             <span class="pull-left icon icon-menu open-panel" data-panel="#panel-left-demo"></span>
-            <span class="pull-right icon icon-me" @click="log"></span>
+            <router-link class="pull-right icon icon-me" to="/user" tag="span"></router-link>
             <h1 class="title">{{msg}}</h1>
         </header>
-        <myContent v-show="showLogin==false"></myContent>
-        <router-view></router-view>
-        <div v-if="showLogin">
-            <userinfo v-if="showUserinfo" :name="username" v-on:out="logout">
-                <p v-if="isAdmin"><a href="#">进入后台管理页面</a></p>
-                <p v-else>欢迎进入我的个人博客！！！</p>
-            </userinfo>
-            <div v-else>
-                <reg v-if="showReg" v-on:regSuccess="tab()">
-                    <div class="go">
-                        <a @click="tab" href="javascript:;">已有账号？赶快去登录吧！</a>
-                    </div>
-                </reg>
-                <login v-else v-on:showUserinfo="login">
-                    <div class="go">
-                        <a @click="tab" href="javascript:;">还没有账号？赶快去注册吧！</a>
-                    </div>
-                </login>
-            </div>
-        </div>
-        <panel></panel>
+        <!--<myContent v-show="showLogin==false"></myContent>-->
+        <!--<router-view></router-view>-->
+        <!--<div v-if="showLogin">-->
+            <!--<userinfo v-if="showUserinfo" :name="username" v-on:out="logout">-->
+                <!--<p v-if="isAdmin"><a href="#">进入后台管理页面</a></p>-->
+                <!--<p v-else>欢迎进入我的个人博客！！！</p>-->
+            <!--</userinfo>-->
+            <!--<div v-else>-->
+                <!--<reg v-if="showReg" v-on:regSuccess="tab()">-->
+                    <!--<div class="go">-->
+                        <!--<a @click="tab" href="javascript:;">已有账号？赶快去登录吧！</a>-->
+                    <!--</div>-->
+                <!--</reg>-->
+                <!--<login v-else v-on:showUserinfo="login">-->
+                    <!--<div class="go">-->
+                        <!--<a @click="tab" href="javascript:;">还没有账号？赶快去注册吧！</a>-->
+                    <!--</div>-->
+                <!--</login>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<panel></panel>-->
     </div>
 </template>
 <style>

@@ -39,7 +39,7 @@
             </ul>
         </div>
         <div class="content-block">
-            <div id="regBtn"><a @click="reg" href="#" class="button button-big button-fill button-success">注册</a></div>
+            <div id="regBtn"><a @click="reg" href="javascript:;" class="button button-big button-fill button-success">注册</a></div>
             <slot></slot>
         </div>
     </div>

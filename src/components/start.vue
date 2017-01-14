@@ -1,5 +1,5 @@
 <template>
-    <div id="start-bg" class="animated" v-bind:class="{zoomOut:show}">
+    <div v-show="hide==false" id="start-bg" class="animated" v-bind:class="{zoomOut:show}">
         <img class="img-responsive" src="/public/app/images/start-bg.png" alt="">
         <div class="name animated" v-bind:class="{fadeInDown:start, fadeOutLeftBig:end}">
             <h2>S</h2>
@@ -8,7 +8,7 @@
         </div>
         <p class="title animated" v-bind:class="{fadeInDown:start, fadeOutRight:end}">身体和灵魂，总有一个在路上</p>
         <div @click="open" class="breathe-btn">
-            <router-link to="/index">start...</router-link>
+            <router-link to="/index" events>start...</router-link>
         </div>
     </div>
 </template>
@@ -78,16 +78,21 @@
             return {
                 start: true,
                 end: false,
-                show: false
+                show: false,
+                hide: false
             }
         },
         methods: {
             open: function() {
                 this.start = false;
                 this.end = true;
+                var _this = this;
                 setTimeout(function () {
-                    this.show = false;
-                },1000)
+                    _this.show = true;
+                },1000);
+                setTimeout(function () {
+                    _this.hide = true;
+                },2000)
             }
         }
     }

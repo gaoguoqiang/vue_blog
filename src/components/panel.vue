@@ -2,7 +2,7 @@
     <div class="panel panel-left panel-cover theme-dark" id='panel-left-demo'>
         <div class="content-block">
             <p><router-link to="/index" class="close-panel">首页</router-link></p>
-            <p v-for="data in list"><a @click="tab(data._id)" href="javascript:;" class="close-panel">{{data.name}}</a></p>
+            <p v-for="data in list"><router-link :to="'/index/'+data._id" class="close-panel">{{data.name}}</router-link></p>
             <p><a href="javascript:;" class="close-panel">{{close}}</a></p>
         </div>
         <div class="list-block">
@@ -22,7 +22,6 @@
 }
 </style>
 <script>
-    var Bus = require('../bus.js')
     module.exports = {
         data: function () {
             return{
@@ -42,10 +41,6 @@
                         _this.id = data.id;
                     }
                 })
-            },
-            tab: function (val) {
-                //触发视图切换
-                //Bus.$emit('contentTab',val)
             }
         },
         created: function () {
