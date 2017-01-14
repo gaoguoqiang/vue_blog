@@ -1,32 +1,45 @@
 <template>
     <div id="concrete" class="content">
-        <div class="content-padded grid-demo">
-            <div class="concrete">
-                <h1>{{info.title}}</h1>
-                <div v-html="content"></div>
+        <div>
+            <div class="card">
+                <div class="card-header">{{info.title}}</div>
+                <div class="card-content">
+                    <div class="card-content-inner" v-html="content"></div>
+                </div>
+                <div class=card-footer>
+                    <span class="">作者：{{user.username}}</span>
+                    <span class="icon icon-share"></span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <discuss :discuss="info.discuss"></discuss>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <style>
     #concrete{
-        background: #fff;
-    }
-    #concrete .concrete{
         margin-top: 2.3rem;
     }
-    #concrete .concrete h1{
-        text-align: center;
+    #concrete .discuss{
+        margin-top: 8rem;
     }
 </style>
 <script>
+    var discuss = require('./discuss.vue');
    module.exports = {
        data: function () {
            return {
                info: {},
                content:'',
-               id:''
+               id:'',
+               user: {}
            }
+       },
+       components:{
+           discuss
        },
        methods:{
            getData: function () {
@@ -38,8 +51,10 @@
                    success: function (data) {
                        _this.info = data.content;
                        _this.content = data.markdownContent;
+                       _this.user = data.content.user;
+                       console.log(data.content)
                    }
-               })
+               });
            }
        },
        created: function () {

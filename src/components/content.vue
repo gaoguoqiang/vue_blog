@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-footer">
                     <span>{{data.addTime | time}}</span>
-                    <span>{{data.views}} 评论</span>
+                    <span class="icon icon-message">  {{data.views}}</span>
                 </div>
             </router-link>
         </div>
