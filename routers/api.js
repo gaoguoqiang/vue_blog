@@ -280,7 +280,7 @@ router.post('/main/discussSave', function (req, res) {
     //内容id
     var id = req.body.id;
     var discuss = {
-        username: req.userInfo.username,
+        username: iconv.decode(new Buffer(req.userInfo.username.data), 'utf8'),
         date: new Date(),
         content: req.body.value
     };

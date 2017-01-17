@@ -13,7 +13,7 @@
             </div>
             <div class="card">
                 <div class="card-content">
-                    <discuss :discuss="info.discuss"></discuss>
+                    <discuss></discuss>
                 </div>
             </div>
         </div>
@@ -52,7 +52,6 @@
                        _this.info = data.content;
                        _this.content = data.markdownContent;
                        _this.user = data.content.user;
-                       console.log(data.content)
                    }
                });
            }
