@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-footer">
                     <span>{{data.addTime | time}}</span>
-                    <span class="icon icon-message">  {{data.views}}</span>
+                    <span>阅读  {{data.views}}</span>
                 </div>
             </router-link>
         </div>
