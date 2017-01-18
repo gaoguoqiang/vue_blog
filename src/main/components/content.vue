@@ -7,7 +7,7 @@
                         <ul>
                             <li class="item-content">
                                 <div class="item-media">
-                                    <img src="/public/app/images/start-bg.png">
+                                    <img src="/public/main/images/start-bg.png">
                                 </div>
                                 <div class="item-inner">
                                     <div class="item-title-row">

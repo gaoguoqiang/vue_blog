@@ -3,17 +3,15 @@
  */
 var gulp = require('gulp');
 var webpack = require('gulp-webpack');
-var uglify = require('gulp-uglify');
 var named = require('vinyl-named');
 var browserSync = require('browser-sync');
-var vinyl = require('vinyl');
 
 gulp.task('bundle', function () {
-    gulp.src('./src/app/main.js')
+    gulp.src('./src/main/main.js')
         .pipe(named())
         .pipe(webpack({
             entry: {
-                main: './src/app/main.js',
+                main: './src/main/main.js',
                 admin: './src/admin/main.js'
             },
             output: {
@@ -32,14 +30,16 @@ gulp.task('bundle', function () {
             }
         }))
         .pipe(gulp.dest(function (data) {
-            console.log(data)
+            /*
+            * data是一个vinyl对象，有属性path，值为文件的路径
+            * 获取到文件名
+            * 将其作为路径的一部分
+            * */
+            var name = /[a-z]+.js$/.exec(data.path)[0];
+            var path = './public/'+name.split('.')[0]+'/js';
+            return path
         }))
 });
-// gulp.task('uglify', function () {
-//     gulp.src('./public/app/js/main.js')
-//         .pipe(uglify())
-//         .pipe(gulp.dest('./public/app/js/dest/'))
-// })
 gulp.task('browserSync', function () {
     browserSync.init({
         proxy: "127.0.0.1:8080"
@@ -47,5 +47,5 @@ gulp.task('browserSync', function () {
 });
 gulp.task('default', ['browserSync', 'bundle'], function () {
     gulp.watch(['./view/main/index.html', './src/components/*', './src/*'],['bundle']);
-    gulp.watch('./public/app/js/main.js',browserSync.reload);
+    gulp.watch('./public/main/js/main.js',browserSync.reload);
 })
