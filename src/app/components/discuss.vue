@@ -9,22 +9,24 @@
         <save v-on:update="getData"></save>
     </div>
 </template>
-<style>
-    ul{
+<style lang="less">
+    ul {
         margin: 0;
         padding: 0;
         list-style: none;
     }
-    #discuss li{
-        border-bottom: 1px solid #ccc;
-        padding: .5rem .3rem 0;
-    }
-    #discuss div{
-        color: #2b92d4;
-    }
-    #discuss p{
-        margin: 0;
-        padding: .2rem 1rem;
+    #discuss{
+        li{
+            border-bottom: 1px solid #ccc;
+            padding: .5rem .3rem 0;
+        }
+        div{
+            color: #2b92d4;
+        }
+        p{
+            margin: 0;
+            padding: .2rem 1rem;
+        }
     }
 </style>
 <script>
