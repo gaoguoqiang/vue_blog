@@ -46,6 +46,6 @@ gulp.task('browserSync', function () {
     })
 });
 gulp.task('default', ['browserSync', 'bundle'], function () {
-    gulp.watch(['./view/main/index.html', './src/components/*', './src/*'],['bundle']);
-    gulp.watch('./public/main/js/main.js',browserSync.reload);
+    gulp.watch(['./view/**/*', './src/**/*'],['bundle']);
+    gulp.watch('./public/**/*',browserSync.reload);
 })

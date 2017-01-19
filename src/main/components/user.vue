@@ -1,7 +1,7 @@
 <template>
     <div>
             <userinfo v-if="showUserinfo" :name="username" v-on:out="logout">
-                <p v-if="isAdmin"><a href="#">进入后台管理页面</a></p>
+                <p v-if="isAdmin"><a href="/admin">进入后台管理页面</a></p>
                 <p v-else>欢迎进入我的个人博客！！！</p>
             </userinfo>
             <div v-else>

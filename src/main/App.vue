@@ -34,6 +34,9 @@
 </script>
 
 <style>
+    body{
+        font-family: '微软雅黑',Arial;
+    }
     .show-enter, .show-leave-active{
         opacity: 0;
     }
