@@ -75,7 +75,7 @@ app.use('/', require('./routers/main'));
 });*/
 //
 // 监听http请求
-mongoose.connect('mongodb://localhost:27017/blog', function (err) {
+mongoose.connect('mongodb://admin:admin@ds139869.mlab.com:39869/sam_blog', function (err) {
     if(err){
         console.log('数据库连接失败');
         console.log(err);
