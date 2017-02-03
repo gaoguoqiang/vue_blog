@@ -81,7 +81,7 @@ mongoose.connect('mongodb://admin:admin@ds139869.mlab.com:39869/sam_blog', funct
         console.log(err);
     }else{
         console.log('数据库连接成功');
-        app.listen(8080);
+        app.listen(process.env.PORT || config.port);
     }
 });
 
