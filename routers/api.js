@@ -4,8 +4,8 @@
 
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
-var Category = require('../models/Category');
+var User = require('../models/user');
+var Category = require('../models/category');
 var Content = require('../models/Content');
 var Markdown = require('markdown').markdown;
 var iconv = require('iconv-lite');

@@ -1,6 +1,6 @@
 /**
  * Created by hasee-pc on 2016/10/15.
- * 应用程序的启动（入口）文件
+ * 应用程序的启动（入口）文件--高国强
  */
 //加载express模块
 var express = require('express');
@@ -13,7 +13,7 @@ var bodyParser = require('body-parser');
 //加载cookies模块
 var Cookies = require('cookies');
 //加载用户表
-var User = require('./models/User');
+var User = require('./models/user');
 //创建app应用 ==> NodeJS  Http.createServer();
 var app = express();
 //设置静态文件托管
@@ -81,7 +81,7 @@ mongoose.connect('mongodb://admin:admin@ds139869.mlab.com:39869/sam_blog', funct
         console.log(err);
     }else{
         console.log('数据库连接成功');
-        app.listen(process.env.PORT || config.port);
+        app.listen(process.env.PORT || 5000);
     }
 });
 

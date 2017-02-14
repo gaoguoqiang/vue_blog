@@ -6,11 +6,11 @@ Vue.use(VueRouter);
 var App = require('./App.vue');
 var routes = require('./routers.js');
 var router = new VueRouter({
-    routes
+    routes: routes
 });
 var app = new Vue({
     components: {
-        App
+        App: App
     },
-	router
+	router: router
 }).$mount('#app');

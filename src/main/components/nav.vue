@@ -53,11 +53,11 @@
             }
         },
         components:{
-            login,
-            reg,
-            userinfo,
-            panel,
-            myContent
+            login:login,
+            reg:reg,
+            userinfo:userinfo,
+            panel:panel,
+            myContent:myContent
         },
         methods: {
             //显示登录组件

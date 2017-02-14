@@ -1,28 +1,28 @@
 <template>
     <div>
-            <userinfo v-if="showUserinfo" :name="username" v-on:out="logout">
-                <p v-if="isAdmin"><a href="/admin">进入后台管理页面</a></p>
-                <p v-else>欢迎进入我的个人博客！！！</p>
-            </userinfo>
-            <div v-else>
-                <reg v-if="showReg" v-on:regSuccess="tab()">
-                    <div class="go">
-                        <a @click="tab" href="javascript:;">已有账号？赶快去登录吧！</a>
-                    </div>
-                </reg>
-                <login v-else v-on:showUserinfo="login">
-                    <div class="go">
-                        <a @click="tab" href="javascript:;">还没有账号？赶快去注册吧！</a>
-                    </div>
-                </login>
-            </div>
+        <userinfo v-if="showUserinfo" :name="username" v-on:out="logout">
+            <p v-if="isAdmin"><a href="/admin">进入后台管理页面</a></p>
+            <p v-else>欢迎进入我的个人博客！！！</p>
+        </userinfo>
+        <div v-else>
+            <reg v-if="showReg" v-on:regSuccess="tab()">
+                <div class="go">
+                    <a @click="tab" href="javascript:;">已有账号？赶快去登录吧！</a>
+                </div>
+            </reg>
+            <login v-else v-on:showUserinfo="login">
+                <div class="go">
+                    <a @click="tab" href="javascript:;">还没有账号？赶快去注册吧！</a>
+                </div>
+            </login>
+        </div>
     </div>
 </template>
 <style>
-    .go a{
-        margin-top: 1rem;
-        color: #666 !important;
-    }
+    /*.go a{*/
+        /*margin-top: 1rem;*/
+        /*color: #666 !important;*/
+    /*}*/
 </style>
 <script>
     var login = require('./login.vue');
@@ -40,9 +40,9 @@
             }
         },
         components:{
-            login,
-            reg,
-            userinfo
+            login:login,
+            reg:reg,
+            userinfo:userinfo
         },
         methods: {
             //切换登录与注册组件

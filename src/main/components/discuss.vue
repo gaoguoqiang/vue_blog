@@ -39,7 +39,7 @@ module.exports = {
         }
     },
     components: {
-        save
+        save:save
     },
     methods: {
         getData: function () {

@@ -20,8 +20,8 @@
             }
         },
         components:{
-            start,
-            panel
+            start: start,
+            panel: panel
         },
         created: function () {
             //检测是否在app内部进行刷新操作

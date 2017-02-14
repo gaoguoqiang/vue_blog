@@ -1,6 +1,6 @@
 <template>
     <div v-show="hide==false" id="start-bg" class="animated" v-bind:class="{zoomOut:show}">
-        <img class="img-responsive" src="/public/main/images/start-bg.png" alt="">
+        <img class="img-responsive" src="http://okwps3vs4.bkt.clouddn.com/start-bg.png" alt="">
         <div class="name animated" v-bind:class="{fadeInDown:start, fadeOutLeftBig:end}">
             <h2>S</h2>
             <h2>A</h2>

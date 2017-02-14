@@ -7,7 +7,7 @@
                         <ul>
                             <li class="item-content">
                                 <div class="item-media">
-                                    <img src="/public/main/images/start-bg.png">
+                                    <img src="http://okwps3vs4.bkt.clouddn.com/start-bg.png">
                                 </div>
                                 <div class="item-inner">
                                     <div class="item-title-row">
@@ -66,7 +66,7 @@
         },
         components: {
             //注册loading组件
-          loading
+          loading:loading
         },
         methods: {
             getData: function () {

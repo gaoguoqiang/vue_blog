@@ -39,7 +39,7 @@
            }
        },
        components:{
-           discuss
+           discuss:discuss
        },
        methods:{
            getData: function () {

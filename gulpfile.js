@@ -42,7 +42,7 @@ gulp.task('bundle', function () {
 });
 gulp.task('browserSync', function () {
     browserSync.init({
-        proxy: "127.0.0.1:8080"
+        proxy: "127.0.0.1:5000"
     })
 });
 gulp.task('default', ['browserSync', 'bundle'], function () {
