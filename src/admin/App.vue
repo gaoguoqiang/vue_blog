@@ -10,9 +10,9 @@
     }
 </style>
 <script>
-    var myNav = require('./components/nav.vue');
-    var panel = require('./components/panel.vue');
-    module.exports = {
+    import myNav from './components/nav.vue';
+    import panel from './components/panel.vue';
+    export default {
         data: function () {
             return {
                 message: 'hello vue'

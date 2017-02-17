@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2017/1/18 0018.
  */
-var Vue = require('vue');
-var VueRouter = require('vue-router');
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-var App = require('./App.vue');
-var routers = require('./routers.js');
+import App from './App.vue';
+import routers from './routers.js';
 //注册VueRouter
 Vue.use(VueRouter);
 var router = new VueRouter({

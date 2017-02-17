@@ -6,39 +6,65 @@ var webpack = require('gulp-webpack');
 var named = require('vinyl-named');
 var browserSync = require('browser-sync');
 
+// gulp.task('bundle', function () {
+//     gulp.src('./src/main/main.js')
+//         .pipe(named())
+//         .pipe(webpack({
+//             entry: {
+//                 main: './src/main/main.js',
+//                 admin: './src/admin/main.js'
+//             },
+//             output: {
+//                 filename: '[name].js'
+//             },
+//             module: {
+//                 loaders:[
+//                     {test:/\.vue$/, loader:'vue-loader'},
+//                     {test: /\.less$/, loader: 'less-loader'}
+//                 ]
+//             },
+//             resolve: {
+//                 alias: {
+//                     'vue$': 'vue/dist/vue.common.js'
+//                 }
+//             }
+//         }))
+//         .pipe(gulp.dest(function (data) {
+//             /*
+//             * data是一个vinyl对象，有属性path，值为文件的路径
+//             * 获取到文件名
+//             * 将其作为路径的一部分
+//             * */
+//             var name = /[a-z]+.js$/.exec(data.path)[0];
+//             var path = './public/'+name.split('.')[0]+'/js';
+//             return path
+//         }))
+// });
 gulp.task('bundle', function () {
-    gulp.src('./src/main/main.js')
+    gulp.src('./src/admin/main.js')
         .pipe(named())
         .pipe(webpack({
-            entry: {
-                main: './src/main/main.js',
-                admin: './src/admin/main.js'
-            },
-            output: {
-                filename: '[name].js'
-            },
             module: {
                 loaders:[
                     {test:/\.vue$/, loader:'vue-loader'},
-                    {test: /\.less$/, loader: 'less-loader'}
+                    {test: /\.less$/, loader: 'less-loader'},
+                    {test: /\.js$/, loader: 'babel', query: {presets: ['es2015']},exclude: /node_modules/}
                 ]
+            },
+            //babel需要单独配置
+            babel: {
+                presets: ['es2015'],
+                plugins: ['transform-runtime']
             },
             resolve: {
                 alias: {
                     'vue$': 'vue/dist/vue.common.js'
                 }
-            }
+            },
+            devtool: 'source-map',
+            watch: true
         }))
-        .pipe(gulp.dest(function (data) {
-            /*
-            * data是一个vinyl对象，有属性path，值为文件的路径
-            * 获取到文件名
-            * 将其作为路径的一部分
-            * */
-            var name = /[a-z]+.js$/.exec(data.path)[0];
-            var path = './public/'+name.split('.')[0]+'/js';
-            return path
-        }))
+        .pipe(gulp.dest('./public/admin/js'))
 });
 gulp.task('browserSync', function () {
     browserSync.init({

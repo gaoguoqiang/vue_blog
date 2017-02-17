@@ -2,7 +2,7 @@
     <div>
         <header class="bar bar-nav">
             <span class="pull-left icon icon-menu open-panel" data-panel="#panel-left-demo"></span>
-            <router-link class="pull-right icon icon-me" to="/user" tag="span"></router-link>
+            <a class="pull-right icon icon-home" href="/#/index"></a>
             <h1 class="title">{{msg}}</h1>
         </header>
         <!--<myContent v-show="showLogin==false"></myContent>-->
@@ -41,17 +41,18 @@
 //    var panel = require('./panel.vue');
 //    var Bus = require('../bus.js');
 //    var myContent = require('./content.vue');
-    module.exports = {
-//        data: function(){
-//            return{
-//                msg:'SAM-BLOG',
-//                showLogin: false,
-//                showReg: false,
-//                showUserinfo: false,
-//                isAdmin: false,
-//                username:''
-//            }
-//        },
+    export default {
+
+        data: function(){
+            return{
+                msg:'SAM-BLOG',
+                showLogin: false,
+                showReg: false,
+                showUserinfo: false,
+                isAdmin: false,
+                username:''
+            }
+        }
 //        components:{
 //            login,
 //            reg,

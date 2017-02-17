@@ -22,7 +22,7 @@
 }
 </style>
 <script>
-    module.exports = {
+    export default {
         data: function () {
             return{
                 close:'返回',
@@ -39,6 +39,7 @@
                     success: function (data) {
                         _this.list = data.categoryName;
                         _this.id = data.id;
+                        console.log(data)
                     }
                 })
             }
