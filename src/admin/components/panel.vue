@@ -2,7 +2,7 @@
     <div class="panel panel-left panel-cover theme-dark" id='panel-left-demo'>
         <div class="content-block">
             <p><router-link to="/index" class="close-panel">首页</router-link></p>
-            <p v-for="data in list"><router-link :to="'/index/'+data._id" class="close-panel">{{data.name}}</router-link></p>
+            <p v-for="data in list"><a class="close-panel">{{data.name}}</a></p>
             <p><a href="javascript:;" class="close-panel">{{close}}</a></p>
         </div>
         <div class="list-block">
@@ -23,30 +23,15 @@
 </style>
 <script>
     export default {
-        data: function () {
+        data () {
             return{
                 close:'返回',
-                list: {},
-                id: ''
+                list: [
+                    {name:'用户管理'},
+                    {name:'分类管理'},
+                    {name:'内容管理'},
+                ]
             }
-        },
-        methods: {
-            listInfo: function () {
-                var _this = this;
-                $.ajax({
-                    type: 'post',
-                    url: '/api/category/categories',
-                    success: function (data) {
-                        _this.list = data.categoryName;
-                        _this.id = data.id;
-                        console.log(data)
-                    }
-                })
-            }
-        },
-        created: function () {
-            //数据初始化
-            this.listInfo();
         }
     }
 </script>

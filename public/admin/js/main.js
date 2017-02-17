@@ -65,7 +65,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _routers = __webpack_require__(24);
+	var _routers = __webpack_require__(34);
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
@@ -11144,13 +11144,13 @@
 	  /* script */
 	  __webpack_require__(12),
 	  /* template */
-	  __webpack_require__(23),
+	  __webpack_require__(33),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\App.vue"
+	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\App.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -11606,19 +11606,11 @@
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _content = __webpack_require__(23);
 	
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+	var _content2 = _interopRequireDefault(_content);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
 	    data: function data() {
@@ -11628,9 +11620,21 @@
 	    },
 	    components: {
 	        myNav: _nav2.default,
+	        myContent: _content2.default,
 	        panel: _panel2.default
 	    }
-	};
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 /***/ },
 /* 13 */
@@ -11650,7 +11654,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\nav.vue"
+	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\nav.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] nav.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -11705,7 +11709,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.go a{\n    margin-top: 1rem;\n    color: #666 !important;\n}\n", "", {"version":3,"sources":["/./src/admin/components/nav.vue?1a8c582e"],"names":[],"mappings":";AA+BA;IACA,iBAAA;IACA,uBAAA;CACA","file":"nav.vue","sourcesContent":["<template>\r\n    <div>\r\n        <header class=\"bar bar-nav\">\r\n            <span class=\"pull-left icon icon-menu open-panel\" data-panel=\"#panel-left-demo\"></span>\r\n            <a class=\"pull-right icon icon-home\" href=\"/#/index\"></a>\r\n            <h1 class=\"title\">{{msg}}</h1>\r\n        </header>\r\n        <!--<myContent v-show=\"showLogin==false\"></myContent>-->\r\n        <!--<router-view></router-view>-->\r\n        <!--<div v-if=\"showLogin\">-->\r\n            <!--<userinfo v-if=\"showUserinfo\" :name=\"username\" v-on:out=\"logout\">-->\r\n                <!--<p v-if=\"isAdmin\"><a href=\"#\">进入后台管理页面</a></p>-->\r\n                <!--<p v-else>欢迎进入我的个人博客！！！</p>-->\r\n            <!--</userinfo>-->\r\n            <!--<div v-else>-->\r\n                <!--<reg v-if=\"showReg\" v-on:regSuccess=\"tab()\">-->\r\n                    <!--<div class=\"go\">-->\r\n                        <!--<a @click=\"tab\" href=\"javascript:;\">已有账号？赶快去登录吧！</a>-->\r\n                    <!--</div>-->\r\n                <!--</reg>-->\r\n                <!--<login v-else v-on:showUserinfo=\"login\">-->\r\n                    <!--<div class=\"go\">-->\r\n                        <!--<a @click=\"tab\" href=\"javascript:;\">还没有账号？赶快去注册吧！</a>-->\r\n                    <!--</div>-->\r\n                <!--</login>-->\r\n            <!--</div>-->\r\n        <!--</div>-->\r\n        <!--<panel></panel>-->\r\n    </div>\r\n</template>\r\n<style>\r\n    .go a{\r\n        margin-top: 1rem;\r\n        color: #666 !important;\r\n    }\r\n</style>\r\n<script>\r\n//    var login = require('./login.vue');\r\n//    var reg = require('./reg.vue');\r\n//    var userinfo = require('./userinfo.vue');\r\n//    var panel = require('./panel.vue');\r\n//    var Bus = require('../bus.js');\r\n//    var myContent = require('./content.vue');\r\n    export default {\r\n\r\n        data: function(){\r\n            return{\r\n                msg:'SAM-BLOG',\r\n                showLogin: false,\r\n                showReg: false,\r\n                showUserinfo: false,\r\n                isAdmin: false,\r\n                username:''\r\n            }\r\n        }\r\n//        components:{\r\n//            login,\r\n//            reg,\r\n//            userinfo,\r\n//            panel,\r\n//            myContent\r\n//        },\r\n//        methods: {\r\n//            //显示登录组件\r\n//            log: function () {\r\n//                this.showLogin = true;\r\n//            },\r\n//            //切换登录于注册组件\r\n//            tab: function () {\r\n//                this.showReg = !this.showReg;\r\n//            },\r\n//            //退出后，显示登录组件\r\n//            logout: function () {\r\n//                this.showUserinfo = false;\r\n//            },\r\n//            //获取个人信息\r\n//            userinfo: function () {\r\n//                var _this = this;\r\n//                $.ajax({\r\n//                    type: 'post',\r\n//                    url: '/api/user/status',\r\n//                    success: function (data) {\r\n//                        if(data.username){\r\n//                            _this.showUserinfo = true;\r\n//                            _this.isAdmin = data.isAdmin;\r\n//                            _this.username = data.username;\r\n//                        }\r\n//                    }\r\n//                })\r\n//            },\r\n//            //登录后显示个人信息组件，并更新个人信息\r\n//            login: function () {\r\n//                this.userinfo();\r\n//            }\r\n//        },\r\n//        created: function () {\r\n//            var _this = this;\r\n//            //判断初始登录状态\r\n//            _this.userinfo();\r\n//            //点击分类，显示内容组件\r\n//            Bus.$on('contentTab', function (val) {\r\n//                _this.showLogin = false;\r\n//            })\r\n//\r\n//        }\r\n    }\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.go a{\n    margin-top: 1rem;\n    color: #666 !important;\n}\n", "", {"version":3,"sources":["/./src/admin/components/nav.vue?051e7bd7"],"names":[],"mappings":";AAUA;IACA,iBAAA;IACA,uBAAA;CACA","file":"nav.vue","sourcesContent":["<template>\r\n    <div>\r\n        <header class=\"bar bar-nav\">\r\n            <span class=\"pull-left icon icon-menu open-panel\" data-panel=\"#panel-left-demo\"></span>\r\n            <router-link class=\"pull-right icon icon-home\" to=\"/#/index\" tag=\"span\"></router-link>\r\n            <h1 class=\"title\">{{msg}}</h1>\r\n        </header>\r\n    </div>\r\n</template>\r\n<style>\r\n    .go a{\r\n        margin-top: 1rem;\r\n        color: #666 !important;\r\n    }\r\n</style>\r\n<script>\r\n    export default {\r\n        data: function(){\r\n            return{\r\n                msg:'SAM-BLOG'\r\n            }\r\n        }\r\n    }\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -11734,96 +11738,13 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	
-	//    var login = require('./login.vue');
-	//    var reg = require('./reg.vue');
-	//    var userinfo = require('./userinfo.vue');
-	//    var panel = require('./panel.vue');
-	//    var Bus = require('../bus.js');
-	//    var myContent = require('./content.vue');
 	exports.default = {
-	
 	    data: function data() {
 	        return {
-	            msg: 'SAM-BLOG',
-	            showLogin: false,
-	            showReg: false,
-	            showUserinfo: false,
-	            isAdmin: false,
-	            username: ''
+	            msg: 'SAM-BLOG'
 	        };
 	    }
-	    //        components:{
-	    //            login,
-	    //            reg,
-	    //            userinfo,
-	    //            panel,
-	    //            myContent
-	    //        },
-	    //        methods: {
-	    //            //显示登录组件
-	    //            log: function () {
-	    //                this.showLogin = true;
-	    //            },
-	    //            //切换登录于注册组件
-	    //            tab: function () {
-	    //                this.showReg = !this.showReg;
-	    //            },
-	    //            //退出后，显示登录组件
-	    //            logout: function () {
-	    //                this.showUserinfo = false;
-	    //            },
-	    //            //获取个人信息
-	    //            userinfo: function () {
-	    //                var _this = this;
-	    //                $.ajax({
-	    //                    type: 'post',
-	    //                    url: '/api/user/status',
-	    //                    success: function (data) {
-	    //                        if(data.username){
-	    //                            _this.showUserinfo = true;
-	    //                            _this.isAdmin = data.isAdmin;
-	    //                            _this.username = data.username;
-	    //                        }
-	    //                    }
-	    //                })
-	    //            },
-	    //            //登录后显示个人信息组件，并更新个人信息
-	    //            login: function () {
-	    //                this.userinfo();
-	    //            }
-	    //        },
-	    //        created: function () {
-	    //            var _this = this;
-	    //            //判断初始登录状态
-	    //            _this.userinfo();
-	    //            //点击分类，显示内容组件
-	    //            Bus.$on('contentTab', function (val) {
-	    //                _this.showLogin = false;
-	    //            })
-	    //
-	    //        }
 	};
 
 /***/ },
@@ -11838,14 +11759,15 @@
 	    attrs: {
 	      "data-panel": "#panel-left-demo"
 	    }
-	  }), _vm._v(" "), _c('a', {
+	  }), _vm._v(" "), _c('router-link', {
 	    staticClass: "pull-right icon icon-home",
 	    attrs: {
-	      "href": "/#/index"
+	      "to": "/#/index",
+	      "tag": "span"
 	    }
 	  }), _vm._v(" "), _c('h1', {
 	    staticClass: "title"
-	  }, [_vm._v(_vm._s(_vm.msg))])])])
+	  }, [_vm._v(_vm._s(_vm.msg))])], 1)])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -11873,7 +11795,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\panel.vue"
+	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\panel.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] panel.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -11928,7 +11850,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.content-block p{\r\n    border-bottom: 1px solid #333;\n}\n.content-block a{\r\n    display: block;\r\n    width: 100%;\r\n    height: 100%;\r\n    color: #fff;\r\n    text-align: center;\n}\r\n", "", {"version":3,"sources":["/./src/admin/components/panel.vue?7777a92a"],"names":[],"mappings":";AAYA;IACA,8BAAA;CACA;AACA;IACA,eAAA;IACA,YAAA;IACA,aAAA;IACA,YAAA;IACA,mBAAA;CACA","file":"panel.vue","sourcesContent":["<template>\r\n    <div class=\"panel panel-left panel-cover theme-dark\" id='panel-left-demo'>\r\n        <div class=\"content-block\">\r\n            <p><router-link to=\"/index\" class=\"close-panel\">首页</router-link></p>\r\n            <p v-for=\"data in list\"><router-link :to=\"'/index/'+data._id\" class=\"close-panel\">{{data.name}}</router-link></p>\r\n            <p><a href=\"javascript:;\" class=\"close-panel\">{{close}}</a></p>\r\n        </div>\r\n        <div class=\"list-block\">\r\n        </div>\r\n    </div>\r\n</template>\r\n<style>\r\n.content-block p{\r\n    border-bottom: 1px solid #333;\r\n}\r\n.content-block a{\r\n    display: block;\r\n    width: 100%;\r\n    height: 100%;\r\n    color: #fff;\r\n    text-align: center;\r\n}\r\n</style>\r\n<script>\r\n    export default {\r\n        data: function () {\r\n            return{\r\n                close:'返回',\r\n                list: {},\r\n                id: ''\r\n            }\r\n        },\r\n        methods: {\r\n            listInfo: function () {\r\n                var _this = this;\r\n                $.ajax({\r\n                    type: 'post',\r\n                    url: '/api/category/categories',\r\n                    success: function (data) {\r\n                        _this.list = data.categoryName;\r\n                        _this.id = data.id;\r\n                        console.log(data)\r\n                    }\r\n                })\r\n            }\r\n        },\r\n        created: function () {\r\n            //数据初始化\r\n            this.listInfo();\r\n        }\r\n    }\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.content-block p{\r\n    border-bottom: 1px solid #333;\n}\n.content-block a{\r\n    display: block;\r\n    width: 100%;\r\n    height: 100%;\r\n    color: #fff;\r\n    text-align: center;\n}\r\n", "", {"version":3,"sources":["/./src/admin/components/panel.vue?6e0a91a7"],"names":[],"mappings":";AAYA;IACA,8BAAA;CACA;AACA;IACA,eAAA;IACA,YAAA;IACA,aAAA;IACA,YAAA;IACA,mBAAA;CACA","file":"panel.vue","sourcesContent":["<template>\r\n    <div class=\"panel panel-left panel-cover theme-dark\" id='panel-left-demo'>\r\n        <div class=\"content-block\">\r\n            <p><router-link to=\"/index\" class=\"close-panel\">首页</router-link></p>\r\n            <p v-for=\"data in list\"><a class=\"close-panel\">{{data.name}}</a></p>\r\n            <p><a href=\"javascript:;\" class=\"close-panel\">{{close}}</a></p>\r\n        </div>\r\n        <div class=\"list-block\">\r\n        </div>\r\n    </div>\r\n</template>\r\n<style>\r\n.content-block p{\r\n    border-bottom: 1px solid #333;\r\n}\r\n.content-block a{\r\n    display: block;\r\n    width: 100%;\r\n    height: 100%;\r\n    color: #fff;\r\n    text-align: center;\r\n}\r\n</style>\r\n<script>\r\n    export default {\r\n        data () {\r\n            return{\r\n                close:'返回',\r\n                list: [\r\n                    {name:'用户管理'},\r\n                    {name:'分类管理'},\r\n                    {name:'内容管理'},\r\n                ]\r\n            }\r\n        }\r\n    }\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -11970,27 +11892,8 @@
 	    data: function data() {
 	        return {
 	            close: '返回',
-	            list: {},
-	            id: ''
+	            list: [{ name: '用户管理' }, { name: '分类管理' }, { name: '内容管理' }]
 	        };
-	    },
-	    methods: {
-	        listInfo: function listInfo() {
-	            var _this = this;
-	            $.ajax({
-	                type: 'post',
-	                url: '/api/category/categories',
-	                success: function success(data) {
-	                    _this.list = data.categoryName;
-	                    _this.id = data.id;
-	                    console.log(data);
-	                }
-	            });
-	        }
-	    },
-	    created: function created() {
-	        //数据初始化
-	        this.listInfo();
 	    }
 	};
 
@@ -12012,12 +11915,9 @@
 	      "to": "/index"
 	    }
 	  }, [_vm._v("首页")])], 1), _vm._v(" "), _vm._l((_vm.list), function(data) {
-	    return _c('p', [_c('router-link', {
-	      staticClass: "close-panel",
-	      attrs: {
-	        "to": '/index/' + data._id
-	      }
-	    }, [_vm._v(_vm._s(data.name))])], 1)
+	    return _c('p', [_c('a', {
+	      staticClass: "close-panel"
+	    }, [_vm._v(_vm._s(data.name))])])
 	  }), _vm._v(" "), _c('p', [_c('a', {
 	    staticClass: "close-panel",
 	    attrs: {
@@ -12039,8 +11939,347 @@
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	/* styles */
+	__webpack_require__(24)
+	
+	var Component = __webpack_require__(11)(
+	  /* script */
+	  __webpack_require__(26),
+	  /* template */
+	  __webpack_require__(32),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\content.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] content.vue: functional components are not supported with templates, they should use render functions.")}
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-5611bdc1", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-5611bdc1", Component.options)
+	  }
+	})()}
+	
+	module.exports = Component.exports
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(25);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	if(content.locals) module.exports = content.locals;
+	// add the styles to the DOM
+	var update = __webpack_require__(9)("1b28a26d", content, false);
+	// Hot Module Replacement
+	if(false) {
+	 // When the styles change, update the <style> tags
+	 if(!content.locals) {
+	   module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5611bdc1!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./content.vue", function() {
+	     var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5611bdc1!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./content.vue");
+	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	     update(newContent);
+	   });
+	 }
+	 // When the module is disposed, remove the <style> tags
+	 module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/content.vue?ce3fb974"],"names":[],"mappings":";AAMA;IACA,mBAAA;CACA","file":"content.vue","sourcesContent":["<template>\r\n    <div id=\"content\" class=\"content\">\r\n        <router-view></router-view>\r\n    </div>\r\n</template>\r\n<style>\r\n    #content{\r\n        margin-top: 2.3rem;\r\n    }\r\n</style>\r\n<script>\r\n    import welcome from './welcome.vue';\r\n    module.exports = {\r\n        data: function(){\r\n            return{\r\n                datas:{},\r\n                pages:null,\r\n                page: 1,\r\n                show: false,\r\n                endShow: false,\r\n                id: this.$route.params.id\r\n            }\r\n        },\r\n        components: {\r\n            //注册loading组件\r\n            welcome\r\n        }\r\n//        methods: {\r\n//            getData: function () {\r\n//                var _this = this;\r\n//                $.ajax({\r\n//                    type: 'post',\r\n//                    url: 'api/main/contents',\r\n//                    data: {id: _this.id},\r\n//                    success:function (data) {\r\n//                        _this.datas = data.contents;\r\n//                        _this.pages = data.pages;\r\n//                    }\r\n//                })\r\n//            },\r\n//            scrollLoad: function (fn) {\r\n//                var _this = this;\r\n//                //显示loading界面\r\n//                _this.show = true;\r\n//                _this.page++;\r\n//                //当前页等于总页数时，停止执行ajax\r\n//                if(_this.page <= _this.pages){\r\n//                    $.ajax({\r\n//                        type: 'post',\r\n//                        url: 'api/main/contents?page='+_this.page,\r\n//                        data: {id: _this.id},\r\n//                        success: function (data) {\r\n//                            //把新获取到的数据插入到之前的数组中\r\n//                            for(var i = 0; i < data.contents.length; i++){\r\n//                                _this.datas.push(data.contents[i])\r\n//                            }\r\n//                            //关闭loading界面\r\n//                            _this.show = false;\r\n//                            //回调函数\r\n//                            fn();\r\n//                        }\r\n//                    })\r\n//                }else{\r\n//                   //关闭loading界面\r\n//                    _this.show = false;\r\n//                    //显示没有数据的提示语\r\n//                    _this.endShow = true;\r\n//                    fn();\r\n//                }\r\n//            }\r\n//        },\r\n//        filters:{\r\n//            //时间格式过滤器\r\n//            time: filter.time\r\n//        },\r\n//        directives:{\r\n//            //无限加载指令\r\n//            scroll: directive.scroll\r\n//        },\r\n//        created: function () {\r\n//            //数据初始化\r\n//            this.getData();\r\n//        },\r\n//        watch: {\r\n//            //监听路由变化，刷新组件数据\r\n//            '$route': function () {\r\n//                this.id = this.$route.params.id;\r\n//                this.getData();\r\n//                //重置当前页\r\n//                this.page = 1;\r\n//                //关闭没有数据的提示语\r\n//                this.endShow = false;\r\n//                //重置内容滚动条位置\r\n//                $('#content').scrollTop(0);\r\n//            }\r\n//        }\r\n    }\r\n\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _welcome = __webpack_require__(27);
+	
+	var _welcome2 = _interopRequireDefault(_welcome);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	module.exports = {
+	    data: function data() {
+	        return {
+	            datas: {},
+	            pages: null,
+	            page: 1,
+	            show: false,
+	            endShow: false,
+	            id: this.$route.params.id
+	        };
+	    },
+	    components: {
+	        //注册loading组件
+	        welcome: _welcome2.default
+	    }
+	    //        methods: {
+	    //            getData: function () {
+	    //                var _this = this;
+	    //                $.ajax({
+	    //                    type: 'post',
+	    //                    url: 'api/main/contents',
+	    //                    data: {id: _this.id},
+	    //                    success:function (data) {
+	    //                        _this.datas = data.contents;
+	    //                        _this.pages = data.pages;
+	    //                    }
+	    //                })
+	    //            },
+	    //            scrollLoad: function (fn) {
+	    //                var _this = this;
+	    //                //显示loading界面
+	    //                _this.show = true;
+	    //                _this.page++;
+	    //                //当前页等于总页数时，停止执行ajax
+	    //                if(_this.page <= _this.pages){
+	    //                    $.ajax({
+	    //                        type: 'post',
+	    //                        url: 'api/main/contents?page='+_this.page,
+	    //                        data: {id: _this.id},
+	    //                        success: function (data) {
+	    //                            //把新获取到的数据插入到之前的数组中
+	    //                            for(var i = 0; i < data.contents.length; i++){
+	    //                                _this.datas.push(data.contents[i])
+	    //                            }
+	    //                            //关闭loading界面
+	    //                            _this.show = false;
+	    //                            //回调函数
+	    //                            fn();
+	    //                        }
+	    //                    })
+	    //                }else{
+	    //                   //关闭loading界面
+	    //                    _this.show = false;
+	    //                    //显示没有数据的提示语
+	    //                    _this.endShow = true;
+	    //                    fn();
+	    //                }
+	    //            }
+	    //        },
+	    //        filters:{
+	    //            //时间格式过滤器
+	    //            time: filter.time
+	    //        },
+	    //        directives:{
+	    //            //无限加载指令
+	    //            scroll: directive.scroll
+	    //        },
+	    //        created: function () {
+	    //            //数据初始化
+	    //            this.getData();
+	    //        },
+	    //        watch: {
+	    //            //监听路由变化，刷新组件数据
+	    //            '$route': function () {
+	    //                this.id = this.$route.params.id;
+	    //                this.getData();
+	    //                //重置当前页
+	    //                this.page = 1;
+	    //                //关闭没有数据的提示语
+	    //                this.endShow = false;
+	    //                //重置内容滚动条位置
+	    //                $('#content').scrollTop(0);
+	    //            }
+	    //        }
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(28)
+	
+	var Component = __webpack_require__(11)(
+	  /* script */
+	  __webpack_require__(30),
+	  /* template */
+	  __webpack_require__(31),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\welcome.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] welcome.vue: functional components are not supported with templates, they should use render functions.")}
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-6d0a882a", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-6d0a882a", Component.options)
+	  }
+	})()}
+	
+	module.exports = Component.exports
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(29);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	if(content.locals) module.exports = content.locals;
+	// add the styles to the DOM
+	var update = __webpack_require__(9)("0ea12fe8", content, false);
+	// Hot Module Replacement
+	if(false) {
+	 // When the styles change, update the <style> tags
+	 if(!content.locals) {
+	   module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6d0a882a!./../../../node_modules/less-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./welcome.vue", function() {
+	     var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6d0a882a!./../../../node_modules/less-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./welcome.vue");
+	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	     update(newContent);
+	   });
+	 }
+	 // When the module is disposed, remove the <style> tags
+	 module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\nh1,\nh3 {\n  color: #21a1d0;\n}\n", "", {"version":3,"sources":["/./src/admin/components/welcome.vue"],"names":[],"mappings":";AAAA;;EAEE,eAAe;CAChB","file":"welcome.vue","sourcesContent":["h1,\nh3 {\n  color: #21a1d0;\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	
+	exports.default = {
+	    data: function data() {
+	        return {
+	            msg: 'SAM-BLOG'
+	        };
+	    }
+	};
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('myNav'), _vm._v(" "), _c('panel')], 1)
+	  return _vm._m(0)
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "card"
+	  }, [_c('div', {
+	    staticClass: "card-content"
+	  }, [_c('div', {
+	    staticClass: "card-content-inner"
+	  }, [_c('h1', [_vm._v("Hello admin")]), _vm._v(" "), _c('h3', [_vm._v("欢迎进入博客后台管理页面！！！")])])])])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-6d0a882a", module.exports)
+	  }
+	}
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "content",
+	    attrs: {
+	      "id": "content"
+	    }
+	  }, [_c('router-view')], 1)
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-5611bdc1", module.exports)
+	  }
+	}
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', [_c('myNav'), _vm._v(" "), _c('myContent'), _vm._v(" "), _c('panel')], 1)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -12051,49 +12290,28 @@
 	}
 
 /***/ },
-/* 24 */
-/***/ function(module, exports) {
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	/**
-	 * Created by Administrator on 2017/1/13 0013.
-	 */
 	
-	var routes = [
-	    // {
-	    //     path: '/index',
-	    //     name: 'index',
-	    //     components: {
-	    //         default: require('./components/nav.vue'),
-	    //         content: require('./components/content.vue')
-	    //     }
-	    // },
-	    // {
-	    //     path: '/index/:id',
-	    //     components:{
-	    //         default: require('./components/nav.vue'),
-	    //         content: require('./components/content.vue')
-	    //     }
-	    // },
-	    // {
-	    //     path: '/user',
-	    //     components:{
-	    //         default: require('./components/nav.vue'),
-	    //         content: require('./components/user.vue'),
-	    //     }
-	    // },
-	    // {
-	    //     path: '/concrete/:id',
-	    //     components:{
-	    //         default: require('./components/nav.vue'),
-	    //         content: require('./components/concrete.vue')
-	    //     }
-	    // }
-	];
+	var _welcome = __webpack_require__(27);
+	
+	var _welcome2 = _interopRequireDefault(_welcome);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var routes = [{
+	    path: '/',
+	    name: 'index',
+	    components: _welcome2.default
+	}]; /**
+	     * Created by Administrator on 2017/1/13 0013.
+	     */
 	exports.default = routes;
 
 /***/ }

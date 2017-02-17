@@ -1,6 +1,7 @@
 <template>
     <div>
         <myNav></myNav>
+        <myContent></myContent>
         <panel></panel>
     </div>
 </template>
@@ -12,6 +13,7 @@
 <script>
     import myNav from './components/nav.vue';
     import panel from './components/panel.vue';
+    import myContent from './components/content.vue';
     export default {
         data: function () {
             return {
@@ -20,6 +22,7 @@
         },
         components: {
             myNav,
+            myContent,
             panel
         }
     }

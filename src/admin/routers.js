@@ -1,36 +1,12 @@
 /**
  * Created by Administrator on 2017/1/13 0013.
  */
-
+import welcome from './components/welcome.vue';
 var routes = [
-    // {
-    //     path: '/index',
-    //     name: 'index',
-    //     components: {
-    //         default: require('./components/nav.vue'),
-    //         content: require('./components/content.vue')
-    //     }
-    // },
-    // {
-    //     path: '/index/:id',
-    //     components:{
-    //         default: require('./components/nav.vue'),
-    //         content: require('./components/content.vue')
-    //     }
-    // },
-    // {
-    //     path: '/user',
-    //     components:{
-    //         default: require('./components/nav.vue'),
-    //         content: require('./components/user.vue'),
-    //     }
-    // },
-    // {
-    //     path: '/concrete/:id',
-    //     components:{
-    //         default: require('./components/nav.vue'),
-    //         content: require('./components/concrete.vue')
-    //     }
-    // }
+    {
+        path: '/',
+        name: 'index',
+        components: welcome
+    }
 ]
-    export default routes;
+export default routes;
