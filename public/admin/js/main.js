@@ -65,7 +65,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _routers = __webpack_require__(34);
+	var _routers = __webpack_require__(24);
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
@@ -11144,13 +11144,13 @@
 	  /* script */
 	  __webpack_require__(12),
 	  /* template */
-	  __webpack_require__(33),
+	  __webpack_require__(23),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\App.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\App.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -11606,11 +11606,20 @@
 	
 	var _panel2 = _interopRequireDefault(_panel);
 	
-	var _content = __webpack_require__(23);
-	
-	var _content2 = _interopRequireDefault(_content);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	
 	exports.default = {
 	    data: function data() {
@@ -11620,21 +11629,9 @@
 	    },
 	    components: {
 	        myNav: _nav2.default,
-	        myContent: _content2.default,
 	        panel: _panel2.default
 	    }
-	}; //
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+	};
 
 /***/ },
 /* 13 */
@@ -11654,7 +11651,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\nav.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\nav.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] nav.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -11709,7 +11706,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.go a{\n    margin-top: 1rem;\n    color: #666 !important;\n}\n", "", {"version":3,"sources":["/./src/admin/components/nav.vue?051e7bd7"],"names":[],"mappings":";AAUA;IACA,iBAAA;IACA,uBAAA;CACA","file":"nav.vue","sourcesContent":["<template>\r\n    <div>\r\n        <header class=\"bar bar-nav\">\r\n            <span class=\"pull-left icon icon-menu open-panel\" data-panel=\"#panel-left-demo\"></span>\r\n            <router-link class=\"pull-right icon icon-home\" to=\"/#/index\" tag=\"span\"></router-link>\r\n            <h1 class=\"title\">{{msg}}</h1>\r\n        </header>\r\n    </div>\r\n</template>\r\n<style>\r\n    .go a{\r\n        margin-top: 1rem;\r\n        color: #666 !important;\r\n    }\r\n</style>\r\n<script>\r\n    export default {\r\n        data: function(){\r\n            return{\r\n                msg:'SAM-BLOG'\r\n            }\r\n        }\r\n    }\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\na{\n    color: rgb(61, 65, 69);\n}\n", "", {"version":3,"sources":["/./src/admin/components/nav.vue?702473c0"],"names":[],"mappings":";AAUA;IACA,uBAAA;CACA","file":"nav.vue","sourcesContent":["<template>\r\n    <div>\r\n        <header class=\"bar bar-nav\">\r\n            <span class=\"pull-left icon icon-menu open-panel\" data-panel=\"#panel-left-demo\"></span>\r\n            <a href=\"/#index\"><span class=\"pull-right icon icon-home\"></span></a>\r\n            <h1 class=\"title\">{{msg}}</h1>\r\n        </header>\r\n    </div>\r\n</template>\r\n<style>\r\n    a{\r\n        color: rgb(61, 65, 69);\r\n    }\r\n</style>\r\n<script>\r\n    export default {\r\n        data: function(){\r\n            return{\r\n                msg:'SAM-BLOG'\r\n            }\r\n        }\r\n    }\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -11723,7 +11720,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	//
 	//
 	//
 	//
@@ -11759,16 +11755,18 @@
 	    attrs: {
 	      "data-panel": "#panel-left-demo"
 	    }
-	  }), _vm._v(" "), _c('router-link', {
-	    staticClass: "pull-right icon icon-home",
-	    attrs: {
-	      "to": "/#/index",
-	      "tag": "span"
-	    }
-	  }), _vm._v(" "), _c('h1', {
+	  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('h1', {
 	    staticClass: "title"
-	  }, [_vm._v(_vm._s(_vm.msg))])], 1)])
-	},staticRenderFns: []}
+	  }, [_vm._v(_vm._s(_vm.msg))])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('a', {
+	    attrs: {
+	      "href": "/#index"
+	    }
+	  }, [_c('span', {
+	    staticClass: "pull-right icon icon-home"
+	  })])
+	}]}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
@@ -11795,7 +11793,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\panel.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\panel.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] panel.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -11939,206 +11937,61 @@
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/* styles */
-	__webpack_require__(24)
-	
-	var Component = __webpack_require__(11)(
-	  /* script */
-	  __webpack_require__(26),
-	  /* template */
-	  __webpack_require__(32),
-	  /* scopeId */
-	  null,
-	  /* cssModules */
-	  null
-	)
-	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\content.vue"
-	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-	if (Component.options.functional) {console.error("[vue-loader] content.vue: functional components are not supported with templates, they should use render functions.")}
-	
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', [_c('myNav'), _vm._v(" "), _c('router-view'), _vm._v(" "), _c('panel')], 1)
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
 	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-5611bdc1", Component.options)
-	  } else {
-	    hotAPI.reload("data-v-5611bdc1", Component.options)
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-19976290", module.exports)
 	  }
-	})()}
-	
-	module.exports = Component.exports
-
+	}
 
 /***/ },
 /* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(25);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	if(content.locals) module.exports = content.locals;
-	// add the styles to the DOM
-	var update = __webpack_require__(9)("1b28a26d", content, false);
-	// Hot Module Replacement
-	if(false) {
-	 // When the styles change, update the <style> tags
-	 if(!content.locals) {
-	   module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5611bdc1!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./content.vue", function() {
-	     var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5611bdc1!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./content.vue");
-	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	     update(newContent);
-	   });
-	 }
-	 // When the module is disposed, remove the <style> tags
-	 module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(8)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/content.vue?ce3fb974"],"names":[],"mappings":";AAMA;IACA,mBAAA;CACA","file":"content.vue","sourcesContent":["<template>\r\n    <div id=\"content\" class=\"content\">\r\n        <router-view></router-view>\r\n    </div>\r\n</template>\r\n<style>\r\n    #content{\r\n        margin-top: 2.3rem;\r\n    }\r\n</style>\r\n<script>\r\n    import welcome from './welcome.vue';\r\n    module.exports = {\r\n        data: function(){\r\n            return{\r\n                datas:{},\r\n                pages:null,\r\n                page: 1,\r\n                show: false,\r\n                endShow: false,\r\n                id: this.$route.params.id\r\n            }\r\n        },\r\n        components: {\r\n            //注册loading组件\r\n            welcome\r\n        }\r\n//        methods: {\r\n//            getData: function () {\r\n//                var _this = this;\r\n//                $.ajax({\r\n//                    type: 'post',\r\n//                    url: 'api/main/contents',\r\n//                    data: {id: _this.id},\r\n//                    success:function (data) {\r\n//                        _this.datas = data.contents;\r\n//                        _this.pages = data.pages;\r\n//                    }\r\n//                })\r\n//            },\r\n//            scrollLoad: function (fn) {\r\n//                var _this = this;\r\n//                //显示loading界面\r\n//                _this.show = true;\r\n//                _this.page++;\r\n//                //当前页等于总页数时，停止执行ajax\r\n//                if(_this.page <= _this.pages){\r\n//                    $.ajax({\r\n//                        type: 'post',\r\n//                        url: 'api/main/contents?page='+_this.page,\r\n//                        data: {id: _this.id},\r\n//                        success: function (data) {\r\n//                            //把新获取到的数据插入到之前的数组中\r\n//                            for(var i = 0; i < data.contents.length; i++){\r\n//                                _this.datas.push(data.contents[i])\r\n//                            }\r\n//                            //关闭loading界面\r\n//                            _this.show = false;\r\n//                            //回调函数\r\n//                            fn();\r\n//                        }\r\n//                    })\r\n//                }else{\r\n//                   //关闭loading界面\r\n//                    _this.show = false;\r\n//                    //显示没有数据的提示语\r\n//                    _this.endShow = true;\r\n//                    fn();\r\n//                }\r\n//            }\r\n//        },\r\n//        filters:{\r\n//            //时间格式过滤器\r\n//            time: filter.time\r\n//        },\r\n//        directives:{\r\n//            //无限加载指令\r\n//            scroll: directive.scroll\r\n//        },\r\n//        created: function () {\r\n//            //数据初始化\r\n//            this.getData();\r\n//        },\r\n//        watch: {\r\n//            //监听路由变化，刷新组件数据\r\n//            '$route': function () {\r\n//                this.id = this.$route.params.id;\r\n//                this.getData();\r\n//                //重置当前页\r\n//                this.page = 1;\r\n//                //关闭没有数据的提示语\r\n//                this.endShow = false;\r\n//                //重置内容滚动条位置\r\n//                $('#content').scrollTop(0);\r\n//            }\r\n//        }\r\n    }\r\n\r\n</script>\r\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	
-	var _welcome = __webpack_require__(27);
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _welcome = __webpack_require__(25);
 	
 	var _welcome2 = _interopRequireDefault(_welcome);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	module.exports = {
-	    data: function data() {
-	        return {
-	            datas: {},
-	            pages: null,
-	            page: 1,
-	            show: false,
-	            endShow: false,
-	            id: this.$route.params.id
-	        };
-	    },
-	    components: {
-	        //注册loading组件
-	        welcome: _welcome2.default
-	    }
-	    //        methods: {
-	    //            getData: function () {
-	    //                var _this = this;
-	    //                $.ajax({
-	    //                    type: 'post',
-	    //                    url: 'api/main/contents',
-	    //                    data: {id: _this.id},
-	    //                    success:function (data) {
-	    //                        _this.datas = data.contents;
-	    //                        _this.pages = data.pages;
-	    //                    }
-	    //                })
-	    //            },
-	    //            scrollLoad: function (fn) {
-	    //                var _this = this;
-	    //                //显示loading界面
-	    //                _this.show = true;
-	    //                _this.page++;
-	    //                //当前页等于总页数时，停止执行ajax
-	    //                if(_this.page <= _this.pages){
-	    //                    $.ajax({
-	    //                        type: 'post',
-	    //                        url: 'api/main/contents?page='+_this.page,
-	    //                        data: {id: _this.id},
-	    //                        success: function (data) {
-	    //                            //把新获取到的数据插入到之前的数组中
-	    //                            for(var i = 0; i < data.contents.length; i++){
-	    //                                _this.datas.push(data.contents[i])
-	    //                            }
-	    //                            //关闭loading界面
-	    //                            _this.show = false;
-	    //                            //回调函数
-	    //                            fn();
-	    //                        }
-	    //                    })
-	    //                }else{
-	    //                   //关闭loading界面
-	    //                    _this.show = false;
-	    //                    //显示没有数据的提示语
-	    //                    _this.endShow = true;
-	    //                    fn();
-	    //                }
-	    //            }
-	    //        },
-	    //        filters:{
-	    //            //时间格式过滤器
-	    //            time: filter.time
-	    //        },
-	    //        directives:{
-	    //            //无限加载指令
-	    //            scroll: directive.scroll
-	    //        },
-	    //        created: function () {
-	    //            //数据初始化
-	    //            this.getData();
-	    //        },
-	    //        watch: {
-	    //            //监听路由变化，刷新组件数据
-	    //            '$route': function () {
-	    //                this.id = this.$route.params.id;
-	    //                this.getData();
-	    //                //重置当前页
-	    //                this.page = 1;
-	    //                //关闭没有数据的提示语
-	    //                this.endShow = false;
-	    //                //重置内容滚动条位置
-	    //                $('#content').scrollTop(0);
-	    //            }
-	    //        }
-	}; //
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+	var routes = [{
+	    path: '',
+	    name: 'index',
+	    components: _welcome2.default
+	}]; /**
+	     * Created by Administrator on 2017/1/13 0013.
+	     */
+	exports.default = routes;
 
 /***/ },
-/* 27 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(28)
+	__webpack_require__(26)
 	
 	var Component = __webpack_require__(11)(
 	  /* script */
-	  __webpack_require__(30),
+	  __webpack_require__(28),
 	  /* template */
-	  __webpack_require__(31),
+	  __webpack_require__(29),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "F:\\project\\vue_blog\\src\\admin\\components\\welcome.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\welcome.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] welcome.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -12159,13 +12012,13 @@
 
 
 /***/ },
-/* 28 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(29);
+	var content = __webpack_require__(27);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	if(content.locals) module.exports = content.locals;
 	// add the styles to the DOM
@@ -12185,7 +12038,7 @@
 	}
 
 /***/ },
-/* 29 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(8)();
@@ -12199,7 +12052,7 @@
 
 
 /***/ },
-/* 30 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12232,7 +12085,7 @@
 	};
 
 /***/ },
-/* 31 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12253,66 +12106,6 @@
 	     require("vue-hot-reload-api").rerender("data-v-6d0a882a", module.exports)
 	  }
 	}
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: "content",
-	    attrs: {
-	      "id": "content"
-	    }
-	  }, [_c('router-view')], 1)
-	},staticRenderFns: []}
-	module.exports.render._withStripped = true
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-5611bdc1", module.exports)
-	  }
-	}
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('myNav'), _vm._v(" "), _c('myContent'), _vm._v(" "), _c('panel')], 1)
-	},staticRenderFns: []}
-	module.exports.render._withStripped = true
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-19976290", module.exports)
-	  }
-	}
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _welcome = __webpack_require__(27);
-	
-	var _welcome2 = _interopRequireDefault(_welcome);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var routes = [{
-	    path: '/',
-	    name: 'index',
-	    components: _welcome2.default
-	}]; /**
-	     * Created by Administrator on 2017/1/13 0013.
-	     */
-	exports.default = routes;
 
 /***/ }
 /******/ ]);

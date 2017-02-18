@@ -8,10 +8,10 @@ import App from './App.vue';
 import routers from './routers.js';
 //注册VueRouter
 Vue.use(VueRouter);
-var router = new VueRouter({
+const router = new VueRouter({
     routers
 });
-var app = new Vue({
+const app = new Vue({
     components: {
         App
     },

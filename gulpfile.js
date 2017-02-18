@@ -61,8 +61,7 @@ gulp.task('bundle', function () {
                     'vue$': 'vue/dist/vue.common.js'
                 }
             },
-            devtool: 'source-map',
-            watch: true
+            devtool: 'source-map'
         }))
         .pipe(gulp.dest('./public/admin/js'))
 });

@@ -1,13 +1,13 @@
 <template>
     <div>
         <start v-show="show"></start>
-            <transition name="show">
-                <router-view></router-view>
-            </transition>
-            <transition name="show">
-                <router-view name="content"></router-view>
-            </transition>
-            <panel></panel>
+        <transition name="show">
+            <router-view></router-view>
+        </transition>
+        <transition name="show">
+            <router-view name="content"></router-view>
+        </transition>
+        <panel></panel>
     </div>
 </template>
 <script>
