@@ -7,7 +7,6 @@ var router = express.Router();
 var Category = require('../models/category');
 var Content = require('../models/Content');
 var Markdown = require('markdown').markdown;
-var Marked = require('marked');
 /*
 * 验证登录用户身份
 * */

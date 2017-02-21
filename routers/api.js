@@ -131,34 +131,12 @@ router.get('/user/logout', function (req, res) {
 });
 //用户列表
 router.post('/user/usersList', function (req, res) {
-    /*
-    * 从数据库中读取所有数据
-    *
-    * limit(Number): 限制获取的数据条数
-    *
-    * skip(): 忽略数据的条数
-    * */
-    var page = Number(req.query.page || 1);
-    var limit = 2;
-    var pages = 0;
-    User.count().then(function (count) {
-        pages = Math.ceil(count/limit);
-        page = Math.min(page, pages);
-        page = Math.max(page, 1);
-        var skip = (page-1) * limit;
-
-        User.find().limit(limit).skip(skip).then(function (users) {
-            responseData.users = users;
-            res.json({
-                users: users,
-                page: page,
-                pages: pages,
-                count: count,
-                limit: limit
-            });
-            return;
-        })
-    });
+    User.find().then(function (users) {
+        res.json({
+            users: users,
+        });
+        return;
+    })
 });
 /*
 * 分类列表
@@ -290,5 +268,5 @@ router.post('/main/discussSave', function (req, res) {
     }).then(function (content) {
         res.json(content.discuss);
     })
-})
+});
 module.exports = router;

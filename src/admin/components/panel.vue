@@ -1,8 +1,8 @@
 <template>
     <div class="panel panel-left panel-cover theme-dark" id='panel-left-demo'>
         <div class="content-block">
-            <p><router-link to="/index" class="close-panel">首页</router-link></p>
-            <p v-for="data in list"><a class="close-panel">{{data.name}}</a></p>
+            <p><router-link to="/" class="close-panel">首页</router-link></p>
+            <p v-for="data in list"><router-link :to='data.path' class="close-panel">{{data.name}}</router-link></p>
             <p><a href="javascript:;" class="close-panel">{{close}}</a></p>
         </div>
         <div class="list-block">
@@ -27,9 +27,9 @@
             return{
                 close:'返回',
                 list: [
-                    {name:'用户管理'},
-                    {name:'分类管理'},
-                    {name:'内容管理'},
+                    {name:'用户管理',path:'/users'},
+                    {name:'分类管理',path:'/contents'},
+                    {name:'内容管理',path:'/haha'}
                 ]
             }
         }

@@ -12,6 +12,9 @@
     h1, h3{
         color: #21a1d0;
     }
+    .card{
+        margin-top: 3rem;
+    }
 </style>
 <script>
     export default {
