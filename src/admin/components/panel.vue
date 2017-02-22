@@ -28,7 +28,7 @@
                 close:'返回',
                 list: [
                     {name:'用户管理',path:'/users'},
-                    {name:'分类管理',path:'/contents'},
+                    {name:'分类管理',path:'/categories'},
                     {name:'内容管理',path:'/haha'}
                 ]
             }

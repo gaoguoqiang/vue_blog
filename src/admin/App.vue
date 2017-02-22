@@ -1,8 +1,11 @@
 <template>
     <div>
         <myNav></myNav>
-        <router-view></router-view>
+        <div class="content">
+            <router-view></router-view>
+        </div>
         <panel></panel>
+        <popup></popup>
     </div>
 </template>
 <style lang="less">
@@ -13,6 +16,7 @@
 <script>
     import myNav from './components/nav.vue';
     import panel from './components/panel.vue';
+    import popup from './components/popup_edit.vue';
     export default {
         data: function () {
             return {
@@ -21,7 +25,8 @@
         },
         components: {
             myNav,
-            panel
+            panel,
+            popup
         }
     }
 </script>

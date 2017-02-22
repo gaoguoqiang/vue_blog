@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 
 import welcome from './components/welcome.vue';
 import users from './components/users.vue';
+import category from './components/category.vue';
 //注册vue-router
 Vue.use(VueRouter);
 
@@ -18,6 +19,10 @@ export default new VueRouter({
         {
             path: '/users',
             component: users
+        },
+        {
+            path: '/categories',
+            component: category
         }
     ]
 })

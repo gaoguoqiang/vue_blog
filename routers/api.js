@@ -149,22 +149,19 @@ router.post('/category/categoryList', function (req, res) {
      *
      * skip(): 忽略数据的条数
      * */
-    var page = Number(req.query.page || 1);
-    var limit = 3;
-    var pages = 0;
+    // var page = Number(req.query.page || 1);
+    // var limit = 3;
+    // var pages = 0;
     Category.count().then(function (count) {
-        pages = Math.ceil(count/limit);
-        page = Math.min(page, pages);
-        page = Math.max(page, 1);
-        var skip = (page-1) * limit;
+        // pages = Math.ceil(count/limit);
+        // page = Math.min(page, pages);
+        // page = Math.max(page, 1);
+        // var skip = (page-1) * limit;
 
-        Category.find().sort({_id:-1}).limit(limit).skip(skip).then(function (categories) {
+        Category.find().sort({_id:-1}).then(function (categories) {
             res.json({
                 categories: categories,
-                page: page,
-                pages: pages,
-                count: count,
-                limit: limit
+                count: count
             });
             return;
         })
