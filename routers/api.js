@@ -203,7 +203,7 @@ router.post('/content/contentList', function (req, res) {
                 limit: limit
             });
             return;
-        })
+        });
     });
 });
 /*
@@ -265,5 +265,11 @@ router.post('/main/discussSave', function (req, res) {
     }).then(function (content) {
         res.json(content.discuss);
     })
+});
+//分类修改
+router.get('/admin/categoryEdit', function (req, res) {
+   var id = req.query.id || '';
+   var name = req.query.name || '';
+   console.log(id + name);
 });
 module.exports = router;

@@ -5,7 +5,7 @@
   "author": "gaoguoqiang <1289984171@qq.com>",
   "private": true,
   "scripts": {
-    "start": "pm2 start app.js"
+    "start": "pm2 start app.js --watch ./routers/"
   },
   "devDependencies": {
     "babel": "^6.23.0",

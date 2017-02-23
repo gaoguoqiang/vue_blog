@@ -5,7 +5,9 @@
             <router-view></router-view>
         </div>
         <panel></panel>
-        <popup></popup>
+        <popupEdit></popupEdit>
+        <popupDelete></popupDelete>
+        <popupAdd></popupAdd>
     </div>
 </template>
 <style lang="less">
@@ -16,7 +18,9 @@
 <script>
     import myNav from './components/nav.vue';
     import panel from './components/panel.vue';
-    import popup from './components/popup_edit.vue';
+    import popupEdit from './components/popupEdit.vue';
+    import popupDelete from './components/popupDelete.vue';
+    import popupAdd from './components/popupAdd.vue';
     export default {
         data: function () {
             return {
@@ -26,7 +30,9 @@
         components: {
             myNav,
             panel,
-            popup
+            popupEdit,
+            popupDelete,
+            popupAdd
         }
     }
 </script>

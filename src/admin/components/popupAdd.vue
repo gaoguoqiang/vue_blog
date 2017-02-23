@@ -1,11 +1,11 @@
 <template>
-    <div class="popup edit">
+    <div class="popup add">
         <div class="content-block">
             <p>修改分类名称</p>
             <input class="edit-category-name" type="text" autofocus v-model="name">
             <div class="row edit-btn">
                 <span class="col-50 button button-fill button-danger close-popup">取消</span>
-                <span class="col-50 button button-fill button-success">提交</span>
+                <span class="col-50 button button-fill button-success" @click="update">提交</span>
             </div>
         </div>
     </div>
@@ -27,9 +27,7 @@
 </style>
 <script>
     export default {
-        props: [
-            'id'
-        ],
+        props:['id'],
         data () {
             return{
                 name: ''
@@ -39,10 +37,10 @@
             update () {
                 let _this = this;
                 $.ajax({
-                    type: 'post',
-                    url: '/api/category/categoryList',
+                    type: 'get',
+                    url: '/api/admin/categoryEdit?id='+_this.id+'&'+_this.name,
                     success (data) {
-                        _this.categories = data.categories;
+                        console.log(data)
                     }
                 })
             }

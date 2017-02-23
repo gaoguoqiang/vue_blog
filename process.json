@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "my-blog",
+      "script": "./app.js",
+      "watch":
+    }
+  ]
+}

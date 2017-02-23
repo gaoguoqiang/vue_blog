@@ -8,14 +8,14 @@
                 </div>
             </div>
             <div class="card-footer">
-                <span class="button button-fill button-danger">删除</span>
+                <span class="button button-fill button-danger open-popup" data-popup=".delete">删除</span>
                 <a href="javascript:;" class="button button-fill open-popup" data-popup=".edit">修改</a>
             </div>
         </div>
         <div class="card end">
             <div class="card-content">
                 <div class="card-content-inner">
-                    <h3 class="button button-fill button-success">添加</h3>
+                    <h3 class="button button-fill button-success open-popup"  data-popup=".add">添加</h3>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
     }
 </style>
 <script>
-    //import popup from './popup_edit.vue'
+    //import popup from './popupEdit.vue'
     export default {
         data () {
             return{
