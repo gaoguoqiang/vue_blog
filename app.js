@@ -75,7 +75,7 @@ app.use('/', require('./routers/main'));
 });*/
 //
 // 监听http请求
-mongoose.connect('mongodb://sam:sr19941015..@www.ggqboy.top:27017/blog', function (err) {
+mongoose.connect('mongodb://sam:sr19941015..@123.207.141.239:27017/blog', function (err) {
     if(err){
         console.log('数据库连接失败');
         console.log(err);

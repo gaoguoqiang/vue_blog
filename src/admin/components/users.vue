@@ -17,34 +17,34 @@
     </div>
 </template>
 <style lang="less">
-    .users-list{
-        width: 100%;
-        td{
-            text-align: center;
-        }
+.users-list {
+    width: 100%;
+    td {
+        text-align: center;
     }
+}
 </style>
 <script>
-    export default {
-        data: function(){
-            return{
-                users: {}
-            }
-        },
-        methods: {
-            getData () {
-                let _this = this;
-                $.ajax({
-                    type: 'post',
-                    url: '/api/user/usersList',
-                    success (data) {
-                        _this.users = data.users;
-                    }
-                })
-            }
-        },
-        created () {
-            this.getData()
+export default {
+    data: function() {
+        return {
+            users: {}
         }
+    },
+    methods: {
+        getData() {
+            let _this = this;
+            $.ajax({
+                type: 'post',
+                url: '/api/user/usersList',
+                success(data) {
+                    _this.users = data.users;
+                }
+            })
+        }
+    },
+    created() {
+        this.getData()
     }
+}
 </script>

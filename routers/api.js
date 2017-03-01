@@ -270,6 +270,6 @@ router.post('/main/discussSave', function (req, res) {
 router.get('/admin/categoryEdit', function (req, res) {
    var id = req.query.id || '';
    var name = req.query.name || '';
-   console.log(id + name);
+   console.log(name);
 });
 module.exports = router;

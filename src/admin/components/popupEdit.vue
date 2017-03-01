@@ -11,42 +11,47 @@
     </div>
 </template>
 <style lang="less">
-    .edit-category-name{
-        display: block;
-        margin: 0 auto;
-        border: 1px solid #666;
-        border-radius: .2rem;
-        text-indent: .2rem;
+.edit-category-name {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #666;
+    border-radius: .2rem;
+    text-indent: .2rem;
+}
+
+.edit-btn {
+    margin-top: .5rem;
+    span {
+        margin-top: .3rem;
     }
-    .edit-btn{
-        margin-top: .5rem;
-        span{
-            margin-top: .3rem;
-        }
-    }
+}
 </style>
 <script>
-    export default {
-        props:['id'],
-        data () {
-            return{
-                name: ''
-            }
-        },
-        methods: {
-            update () {
-                let _this = this;
-                $.ajax({
-                    type: 'get',
-                    url: '/api/admin/categoryEdit?id='+_this.id+'&'+_this.name,
-                    success (data) {
-                        console.log(data)
-                    }
-                })
-            }
-        },
-        created () {
-            //this.getData()
+import bus from "../bus.js";
+export default {
+    data () {
+        return {
+            name: ''
         }
+    },
+    methods: {
+        update () {
+            let _this = this;
+            $.ajax({
+                type: 'get',
+                url: '/api/admin/categoryEdit?id=' + _this.id + '&name=' + _this.name,
+                success (data) {
+                    console.log(data);
+                }
+            })
+        }
+    },
+    created () {
+        let _this = this;
+        bus.$on('setId', function (id) {
+            _this.id = id;
+        });
+        //this.getData()
     }
+}
 </script>

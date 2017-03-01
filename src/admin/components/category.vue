@@ -9,7 +9,7 @@
             </div>
             <div class="card-footer">
                 <span class="button button-fill button-danger open-popup" data-popup=".delete">删除</span>
-                <a href="javascript:;" class="button button-fill open-popup" data-popup=".edit">修改</a>
+                <a @click="showEdit(data._id)" href="javascript:;" class="button button-fill open-popup" data-popup=".edit">修改</a>
             </div>
         </div>
         <div class="card end">
@@ -30,7 +30,7 @@
     }
 </style>
 <script>
-    //import popup from './popupEdit.vue'
+    import bus from "../bus.js";
     export default {
         data () {
             return{
@@ -47,10 +47,15 @@
                         _this.categories = data.categories;
                     }
                 })
+            },
+            showEdit (id) {
+                console.log(id);
+                bus.$emit('setId',id)
             }
         },
         created () {
-            this.getData()
+            //初始化组件时获取数据
+            this.getData();
         }
     }
 </script>
