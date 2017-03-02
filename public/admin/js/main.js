@@ -10610,10 +10610,9 @@
 	                type: 'get',
 	                url: '/api/admin/categoryDelete?id=' + _this.id,
 	                success: function success(data) {
-	                    console.log(data);
 	                    _this.msg = data;
+	                    $.toast(_this.msg);
 	                    if (_this.msg == '删除成功！') {
-	                        $.toast(_this.msg);
 	                        location.reload();
 	                    }
 	                }
@@ -10699,7 +10698,7 @@
 	
 	var Component = __webpack_require__(10)(
 	  /* script */
-	  __webpack_require__(36),
+	  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"!!babel-loader!../../../node_modules/vue-loader/lib/selector?type=script&index=0!./popupAdd.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
 	  /* template */
 	  __webpack_require__(37),
 	  /* scopeId */
@@ -10762,74 +10761,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.edit-category-name {\n  display: block;\n  margin: 0 auto;\n  border: 1px solid #666;\n  border-radius: .2rem;\n  text-indent: .2rem;\n}\n.edit-btn {\n  margin-top: .5rem;\n}\n.edit-btn span {\n  margin-top: .3rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/popupAdd.vue"],"names":[],"mappings":";AAAA;EACE,eAAe;EACf,eAAe;EACf,uBAAuB;EACvB,qBAAqB;EACrB,mBAAmB;CACpB;AACD;EACE,kBAAkB;CACnB;AACD;EACE,kBAAkB;CACnB","file":"popupAdd.vue","sourcesContent":[".edit-category-name {\n  display: block;\n  margin: 0 auto;\n  border: 1px solid #666;\n  border-radius: .2rem;\n  text-indent: .2rem;\n}\n.edit-btn {\n  margin-top: .5rem;\n}\n.edit-btn span {\n  margin-top: .3rem;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.add-category-name {\n  display: block;\n  margin: 0 auto;\n  border: 1px solid #666;\n  border-radius: .2rem;\n  text-indent: .2rem;\n}\n.add-btn {\n  margin-top: .5rem;\n}\n.add-btn span {\n  margin-top: .3rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/popupAdd.vue"],"names":[],"mappings":";AAAA;EACE,eAAe;EACf,eAAe;EACf,uBAAuB;EACvB,qBAAqB;EACrB,mBAAmB;CACpB;AACD;EACE,kBAAkB;CACnB;AACD;EACE,kBAAkB;CACnB","file":"popupAdd.vue","sourcesContent":[".add-category-name {\n  display: block;\n  margin: 0 auto;\n  border: 1px solid #666;\n  border-radius: .2rem;\n  text-indent: .2rem;\n}\n.add-btn {\n  margin-top: .5rem;\n}\n.add-btn span {\n  margin-top: .3rem;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 36 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	
-	exports.default = {
-	    props: ['id'],
-	    data: function data() {
-	        return {
-	            name: ''
-	        };
-	    },
-	
-	    methods: {
-	        update: function update() {
-	            var _this = this;
-	            $.ajax({
-	                type: 'get',
-	                url: '/api/admin/categoryEdit?id=' + _this.id + '&' + _this.name,
-	                success: function success(data) {
-	                    console.log(data);
-	                }
-	            });
-	        }
-	    },
-	    created: function created() {
-	        //this.getData()
-	    }
-	};
-
-/***/ },
+/* 36 */,
 /* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -10838,14 +10776,14 @@
 	    staticClass: "popup add"
 	  }, [_c('div', {
 	    staticClass: "content-block"
-	  }, [_c('p', [_vm._v("修改分类名称")]), _vm._v(" "), _c('input', {
+	  }, [_c('p', [_vm._v("添加分类")]), _vm._v(" "), _c('input', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
 	      value: (_vm.name),
 	      expression: "name"
 	    }],
-	    staticClass: "edit-category-name",
+	    staticClass: "add-category-name",
 	    attrs: {
 	      "type": "text",
 	      "autofocus": ""
@@ -10860,7 +10798,7 @@
 	      }
 	    }
 	  }), _vm._v(" "), _c('div', {
-	    staticClass: "row edit-btn"
+	    staticClass: "row add-btn"
 	  }, [_c('span', {
 	    staticClass: "col-50 button button-fill button-danger close-popup"
 	  }, [_vm._v("取消")]), _vm._v(" "), _c('span', {
@@ -13645,7 +13583,7 @@
 	                }
 	            });
 	        },
-	        showEdit: function showEdit(id) {
+	        showPopup: function showPopup(id) {
 	            console.log(id);
 	            _bus2.default.$emit('setId', id);
 	        }
@@ -13712,7 +13650,7 @@
 	      },
 	      on: {
 	        "click": function($event) {
-	          _vm.showEdit(data._id)
+	          _vm.showPopup(data._id)
 	        }
 	      }
 	    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
@@ -13723,7 +13661,7 @@
 	      },
 	      on: {
 	        "click": function($event) {
-	          _vm.showEdit(data._id)
+	          _vm.showPopup(data._id)
 	        }
 	      }
 	    }, [_vm._v("修改")])])])

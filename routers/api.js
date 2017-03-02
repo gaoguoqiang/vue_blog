@@ -318,11 +318,13 @@ router.get('/admin/categoryDelete', function (req, res) {
             msg = '分类信息不存在！';
             res.json(msg);
         }else{
+            //删除该分类下的所有文章
             Content.remove({category: id}).then(function (rs) {
                 if(!rs){
                     msg = '删除失败！';
                     res.json(msg);
                 }else{
+                    //删除分类
                     Category.remove({_id:id}).then(function (data) {
                         if(!data){
                             msg = '删除失败！';
@@ -336,5 +338,10 @@ router.get('/admin/categoryDelete', function (req, res) {
             })
         }
     })
-})
+});
+//分类添加
+router.get('/admin/categoryAdd', function (req, res) {
+    var name = req.query.name || '';
+    console.log(name);
+});
 module.exports = router;

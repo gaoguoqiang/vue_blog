@@ -35,10 +35,9 @@
                     type: 'get',
                     url: '/api/admin/categoryDelete?id='+_this.id,
                     success (data) {
-                        console.log(data);
                         _this.msg = data;
+                        $.toast(_this.msg);
                         if(_this.msg == '删除成功！'){
-                            $.toast(_this.msg);
                             location.reload();
                         }
                     }
