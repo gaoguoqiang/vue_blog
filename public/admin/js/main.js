@@ -10386,6 +10386,7 @@
 	                    _this.msg = data;
 	                    $.toast(_this.msg);
 	                    if (_this.msg == '分类修改成功！') {
+	                        //刷新当前页面
 	                        location.reload();
 	                    };
 	                }
@@ -10572,72 +10573,93 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.edit-category-name {\n  display: block;\n  margin: 0 auto;\n  border: 1px solid #666;\n  border-radius: .2rem;\n  text-indent: .2rem;\n}\n.edit-btn {\n  margin-top: .5rem;\n}\n.edit-btn span {\n  margin-top: .3rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/popupDelete.vue"],"names":[],"mappings":";AAAA;EACE,eAAe;EACf,eAAe;EACf,uBAAuB;EACvB,qBAAqB;EACrB,mBAAmB;CACpB;AACD;EACE,kBAAkB;CACnB;AACD;EACE,kBAAkB;CACnB","file":"popupDelete.vue","sourcesContent":[".edit-category-name {\n  display: block;\n  margin: 0 auto;\n  border: 1px solid #666;\n  border-radius: .2rem;\n  text-indent: .2rem;\n}\n.edit-btn {\n  margin-top: .5rem;\n}\n.edit-btn span {\n  margin-top: .3rem;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.delete-btn {\n  margin-top: .5rem;\n}\n.delete-btn span {\n  margin-top: .3rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/popupDelete.vue"],"names":[],"mappings":";AAAA;EACE,kBAAkB;CACnB;AACD;EACE,kBAAkB;CACnB","file":"popupDelete.vue","sourcesContent":[".delete-btn {\n  margin-top: .5rem;\n}\n.delete-btn span {\n  margin-top: .3rem;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
 /* 31 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+	
+	var _bus = __webpack_require__(26);
+	
+	var _bus2 = _interopRequireDefault(_bus);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	    props: ['id'],
 	    data: function data() {
 	        return {
-	            number: null
+	            id: '',
+	            number: null,
+	            msg: ''
 	        };
 	    },
 	
 	    methods: {
-	        update: function update() {
+	        del: function del() {
 	            var _this = this;
 	            $.ajax({
 	                type: 'get',
-	                url: '/api/admin/categoryEdit?id=' + _this.id + '&' + _this.name,
+	                url: '/api/admin/categoryDelete?id=' + _this.id,
 	                success: function success(data) {
 	                    console.log(data);
+	                    _this.msg = data;
+	                    if (_this.msg == '删除成功！') {
+	                        $.toast(_this.msg);
+	                        location.reload();
+	                    }
+	                }
+	            });
+	        },
+	        getData: function getData() {
+	            var _this = this;
+	            $.ajax({
+	                type: 'post',
+	                url: '/api/main/contents',
+	                data: { id: _this.id },
+	                success: function success(data) {
+	                    _this.number = data.count;
 	                }
 	            });
 	        }
 	    },
 	    created: function created() {
-	        //this.getData()
+	        var _this = this;
+	        //接收category组件传来的数据
+	        _bus2.default.$on('setId', function (id) {
+	            _this.id = id;
+	            //获取该分类下的文章总数
+	            _this.getData();
+	        });
 	    }
-	};
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 /***/ },
 /* 32 */
@@ -10649,15 +10671,15 @@
 	  }, [_c('div', {
 	    staticClass: "content-block"
 	  }, [_c('p', [_vm._v("删除该分类")]), _vm._v(" "), _c('p', [_vm._v("如果您删除该分类，将会删除该分类下的 " + _vm._s(_vm.number) + " 篇文章！请您做好数据备份！")]), _vm._v(" "), _c('div', {
-	    staticClass: "row edit-btn"
+	    staticClass: "row delete-btn"
 	  }, [_c('span', {
 	    staticClass: "col-50 button button-fill button-danger close-popup"
 	  }, [_vm._v("取消")]), _vm._v(" "), _c('span', {
 	    staticClass: "col-50 button button-fill button-success",
 	    on: {
-	      "click": _vm.update
+	      "click": _vm.del
 	    }
-	  }, [_vm._v("提交")])])])])
+	  }, [_vm._v("删除")])])])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -13682,10 +13704,16 @@
 	      staticClass: "category-name"
 	    }, [_vm._v(_vm._s(data.name))])])]), _vm._v(" "), _c('div', {
 	      staticClass: "card-footer"
-	    }, [_c('span', {
+	    }, [_c('a', {
 	      staticClass: "button button-fill button-danger open-popup",
 	      attrs: {
+	        "href": "javascript:;",
 	        "data-popup": ".delete"
+	      },
+	      on: {
+	        "click": function($event) {
+	          _vm.showEdit(data._id)
+	        }
 	      }
 	    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
 	      staticClass: "button button-fill open-popup",

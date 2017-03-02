@@ -214,8 +214,6 @@ router.post('/main/contents', function (req, res) {
     var categoryId = {};
     if(req.body.id){
         categoryId.category = req.body.id;
-        // console.log(req.query.id)
-        // console.log(categoryId)
     }
     var limit = 3;
     var pages = 0;
@@ -307,4 +305,36 @@ router.get('/admin/categoryEdit', function (req, res) {
        }
    })
 });
+//分类删除
+router.get('/admin/categoryDelete', function (req, res) {
+    var id = req.query.id || '';
+    var msg = '';
+    if(id == ''){
+        msg = '分类信息不存在！';
+        res.json(msg);
+    }
+    Category.findOne({_id:id}).then(function (category) {
+        if(!category){
+            msg = '分类信息不存在！';
+            res.json(msg);
+        }else{
+            Content.remove({category: id}).then(function (rs) {
+                if(!rs){
+                    msg = '删除失败！';
+                    res.json(msg);
+                }else{
+                    Category.remove({_id:id}).then(function (data) {
+                        if(!data){
+                            msg = '删除失败！';
+                            res.json(msg);
+                        }else{
+                            msg = '删除成功！';
+                            res.json(msg);
+                        }
+                    })
+                }
+            })
+        }
+    })
+})
 module.exports = router;

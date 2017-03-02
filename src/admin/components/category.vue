@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <span class="button button-fill button-danger open-popup" data-popup=".delete">删除</span>
+                <a @click="showEdit(data._id)" href="javascript:;" class="button button-fill button-danger open-popup" data-popup=".delete">删除</a>
                 <a @click="showEdit(data._id)" href="javascript:;" class="button button-fill open-popup" data-popup=".edit">修改</a>
             </div>
         </div>

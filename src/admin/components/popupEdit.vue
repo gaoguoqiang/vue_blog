@@ -51,6 +51,7 @@ export default {
                     _this.msg = data;
                     $.toast(_this.msg);
                     if(_this.msg == '分类修改成功！'){
+                        //刷新当前页面
                         location.reload();
                     };
                 }
