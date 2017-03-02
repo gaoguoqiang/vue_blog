@@ -10365,28 +10365,39 @@
 	exports.default = {
 	    data: function data() {
 	        return {
-	            name: ''
+	            name: '',
+	            msg: ''
 	        };
 	    },
 	
 	    methods: {
 	        update: function update() {
 	            var _this = this;
+	            //判断用户是否输入
+	            if (_this.name == '') {
+	                _this.msg = '名称不能为空！';
+	                $.toast(_this.msg);
+	                return;
+	            }
 	            $.ajax({
 	                type: 'get',
 	                url: '/api/admin/categoryEdit?id=' + _this.id + '&name=' + _this.name,
 	                success: function success(data) {
-	                    console.log(data);
+	                    _this.msg = data;
+	                    $.toast(_this.msg);
+	                    if (_this.msg == '分类修改成功！') {
+	                        location.reload();
+	                    };
 	                }
 	            });
 	        }
 	    },
 	    created: function created() {
 	        var _this = this;
+	        //接收category组件传来的数据
 	        _bus2.default.$on('setId', function (id) {
 	            _this.id = id;
 	        });
-	        //this.getData()
 	    }
 	}; //
 	//

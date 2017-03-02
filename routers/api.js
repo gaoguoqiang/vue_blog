@@ -270,6 +270,41 @@ router.post('/main/discussSave', function (req, res) {
 router.get('/admin/categoryEdit', function (req, res) {
    var id = req.query.id || '';
    var name = req.query.name || '';
+   var msg = '';
    console.log(name);
+   Category.findOne({_id:id}).then(function (category) {
+       //查询该分类是否存在与数据库中
+       if(!category){
+           msg = '该分类不存在！';
+           res.json(msg);
+       }else{
+           //查询修改后的名字是否与当前名字相同
+           if(name == category.name){
+               msg = '分类修改成功！';
+               res.json(msg);
+           }else{
+               //查询修改后的名字是否在数据库中有重复
+               Category.findOne({
+                   _id: {$ne:id},
+                   name: name
+               }).then(function (samecategory) {
+                   if(samecategory){
+                       msg = '该名称已存在！';
+                       res.json(msg);
+                   }else{
+                       //更新数据
+                       Category.update({
+                           _id: id
+                       },{
+                           name: name
+                       }).then(function () {
+                           msg = '分类修改成功！';
+                           res.json(msg);
+                       })
+                   }
+               })
+           }
+       }
+   })
 });
 module.exports = router;

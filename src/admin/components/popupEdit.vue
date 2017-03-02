@@ -31,27 +31,38 @@ import bus from "../bus.js";
 export default {
     data () {
         return {
-            name: ''
+            name: '',
+            msg: ''
         }
     },
     methods: {
         update () {
             let _this = this;
+            //判断用户是否输入
+            if(_this.name == ''){
+                _this.msg = '名称不能为空！';
+                $.toast(_this.msg);
+                return;
+            }
             $.ajax({
                 type: 'get',
                 url: '/api/admin/categoryEdit?id=' + _this.id + '&name=' + _this.name,
                 success (data) {
-                    console.log(data);
+                    _this.msg = data;
+                    $.toast(_this.msg);
+                    if(_this.msg == '分类修改成功！'){
+                        location.reload();
+                    };
                 }
             })
         }
     },
     created () {
         let _this = this;
+        //接收category组件传来的数据
         bus.$on('setId', function (id) {
             _this.id = id;
         });
-        //this.getData()
     }
 }
 </script>
