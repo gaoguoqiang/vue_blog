@@ -312,6 +312,7 @@ router.get('/admin/categoryDelete', function (req, res) {
     if(id == ''){
         msg = '分类信息不存在！';
         res.json(msg);
+        return;
     }
     Category.findOne({_id:id}).then(function (category) {
         if(!category){
@@ -342,6 +343,28 @@ router.get('/admin/categoryDelete', function (req, res) {
 //分类添加
 router.get('/admin/categoryAdd', function (req, res) {
     var name = req.query.name || '';
-    console.log(name);
+    var msg = '';
+    if(name == ''){
+        msg = '分类名称不能为空！';
+        res.json(msg);
+    }else{
+        //查询名称是否被占用
+        Category.findOne({name: name}).then(function (category) {
+            if(category){
+                msg = '分类已存在！';
+                res.json(msg);
+            }else{
+                new Category({name: name}).save().then(function (newCategoyr) {
+                    if(!newCategoyr){
+                        msg = '分类添加失败！';
+                        res.json(msg);
+                    }else{
+                        msg = '分类添加成功！';
+                        res.json(msg);
+                    }
+                });
+            }
+        });
+    }
 });
 module.exports = router;
