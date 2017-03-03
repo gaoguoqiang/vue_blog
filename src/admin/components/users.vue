@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card users">
         <div class="card-content">
             <div class="card-content-inner">
                 <table class="users-list" border='1'>
@@ -17,6 +17,9 @@
     </div>
 </template>
 <style lang="less">
+.users {
+    margin-top: 3rem;
+}
 .users-list {
     width: 100%;
     td {

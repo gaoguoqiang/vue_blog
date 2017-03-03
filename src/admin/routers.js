@@ -7,6 +7,8 @@ import VueRouter from 'vue-router';
 import welcome from './components/welcome.vue';
 import users from './components/users.vue';
 import category from './components/category.vue';
+import content from './components/content.vue';
+import addContent from './components/addContent.vue';
 //注册vue-router
 Vue.use(VueRouter);
 
@@ -23,6 +25,14 @@ export default new VueRouter({
         {
             path: '/categories',
             component: category
+        },
+        {
+            path: '/contents',
+            component: content
+        },
+        {
+            path: '/addContent',
+            component: addContent
         }
     ]
 })

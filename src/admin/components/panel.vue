@@ -29,7 +29,7 @@
                 list: [
                     {name:'用户管理',path:'/users'},
                     {name:'分类管理',path:'/categories'},
-                    {name:'内容管理',path:'/haha'}
+                    {name:'内容管理',path:'/contents'}
                 ]
             }
         }

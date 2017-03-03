@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card welcome">
         <div class="card-content">
             <div class="card-content-inner">
                 <h1>Hello admin</h1>
@@ -12,7 +12,7 @@
     h1, h3{
         color: #21a1d0;
     }
-    .card{
+    .welcome{
         margin-top: 3rem;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="category">
         <div v-for="data in categories" class="card">
             <div class="card-header">分类名称：</div>
             <div class="card-content">
@@ -22,6 +22,9 @@
     </div>
 </template>
 <style lang="less">
+    .category{
+        margin-top: 3rem;
+    }
     .category-name{
         text-align: center;
     }
@@ -49,7 +52,6 @@
                 })
             },
             showPopup (id) {
-                console.log(id);
                 bus.$emit('setId',id)
             }
         },
