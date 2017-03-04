@@ -81,7 +81,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global) {/*!
-	 * Vue.js v2.2.0
+	 * Vue.js v2.2.1
 	 * (c) 2014-2017 Evan You
 	 * Released under the MIT License.
 	 */
@@ -4143,7 +4143,7 @@
 	  get: isServerRendering
 	});
 	
-	Vue$3.version = '2.2.0';
+	Vue$3.version = '2.2.1';
 	
 	/*  */
 	
@@ -9464,7 +9464,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/App.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\App.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -9983,7 +9983,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/nav.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\nav.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] nav.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -10125,7 +10125,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/panel.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\panel.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] panel.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -10286,7 +10286,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/popupEdit.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\popupEdit.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] popupEdit.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -10518,7 +10518,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/popupDelete.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\popupDelete.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] popupDelete.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -10706,7 +10706,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/popupAdd.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\popupAdd.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] popupAdd.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -13266,7 +13266,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/welcome.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\welcome.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] welcome.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -13403,7 +13403,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/users.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\users.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] users.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -13573,7 +13573,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/category.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\category.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] category.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -13794,7 +13794,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/content.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\content.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] content.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -14120,7 +14120,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/loading.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\loading.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] loading.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -14319,7 +14319,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/addContent.vue"
+	Component.options.__file = "D:\\samProject\\vue_blog\\src\\admin\\components\\addContent.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] addContent.vue: functional components are not supported with templates, they should use render functions.")}
 	
@@ -14479,12 +14479,15 @@
 	//
 	//
 	//
-	//
 	
 	exports.default = {
 	    data: function data() {
 	        return {
-	            categories: {}
+	            categories: {},
+	            title: '',
+	            description: '',
+	            content: '',
+	            pic: ''
 	        };
 	    },
 	
@@ -14496,11 +14499,15 @@
 	                url: '/api/category/categoryList',
 	                success: function success(data) {
 	                    _this.categories = data.categories;
+	                    console.log(data);
 	                }
 	            });
 	        }
 	    },
-	    created: function created() {}
+	    created: function created() {
+	        //初始化分类列表
+	        this.getData();
+	    }
 	};
 
 /***/ },
@@ -14508,25 +14515,29 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _vm._m(0)
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "addContent"
 	  }, [_c('div', {
 	    staticClass: "list-block"
 	  }, [_c('ul', [_c('li', [_c('div', {
 	    staticClass: "item-content"
-	  }, [_c('div', {
-	    staticClass: "item-media"
-	  }, [_c('i', {
-	    staticClass: "icon icon-form-gender"
-	  })]), _vm._v(" "), _c('div', {
+	  }, [_vm._m(0), _vm._v(" "), _c('div', {
 	    staticClass: "item-inner"
 	  }, [_c('div', {
 	    staticClass: "item-title label"
 	  }, [_vm._v("分类")]), _vm._v(" "), _c('div', {
 	    staticClass: "item-input"
-	  }, [_c('select', [_c('option', [_vm._v("Male")]), _vm._v(" "), _c('option', [_vm._v("Female")])])])])])]), _vm._v(" "), _c('li', [_c('div', {
+	  }, [_c('select', _vm._l((_vm.categories), function(data) {
+	    return _c('option', [_vm._v(_vm._s(data.name))])
+	  }))])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4)])]), _vm._v(" "), _vm._m(5)])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "item-media"
+	  }, [_c('i', {
+	    staticClass: "icon icon-form-gender"
+	  })])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', [_c('div', {
 	    staticClass: "item-content"
 	  }, [_c('div', {
 	    staticClass: "item-media"
@@ -14543,7 +14554,9 @@
 	      "type": "text",
 	      "placeholder": "Your name"
 	    }
-	  })])])])]), _vm._v(" "), _c('li', [_c('div', {
+	  })])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', [_c('div', {
 	    staticClass: "item-content"
 	  }, [_c('div', {
 	    staticClass: "item-media"
@@ -14560,7 +14573,9 @@
 	      "type": "text",
 	      "placeholder": "E-mail"
 	    }
-	  })])])])]), _vm._v(" "), _c('li', [_c('div', {
+	  })])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', [_c('div', {
 	    staticClass: "item-content"
 	  }, [_c('div', {
 	    staticClass: "item-media"
@@ -14579,7 +14594,9 @@
 	    attrs: {
 	      "type": "file"
 	    }
-	  })])])])]), _vm._v(" "), _c('li', {
+	  })])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', {
 	    staticClass: "align-top"
 	  }, [_c('div', {
 	    staticClass: "item-content"
@@ -14593,7 +14610,9 @@
 	    staticClass: "item-title label"
 	  }, [_vm._v("正文")]), _vm._v(" "), _c('div', {
 	    staticClass: "item-input"
-	  }, [_c('textarea')])])])])])]), _vm._v(" "), _c('div', {
+	  }, [_c('textarea')])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
 	    staticClass: "content-block"
 	  }, [_c('div', {
 	    staticClass: "row"
@@ -14611,7 +14630,7 @@
 	    attrs: {
 	      "href": "#"
 	    }
-	  }, [_vm._v("提交")])])])])])
+	  }, [_vm._v("提交")])])])])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {

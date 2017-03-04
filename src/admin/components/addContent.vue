@@ -10,8 +10,7 @@
                             <div class="item-title label">分类</div>
                             <div class="item-input">
                                 <select>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option v-for="data in categories">{{data.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -94,7 +93,11 @@
     export default {
         data () {
             return{
-                categories: {}
+                categories: {},
+                title: '',
+                description: '',
+                content: '',
+                pic: ''
             }
         },
         methods: {
@@ -105,12 +108,14 @@
                     url: '/api/category/categoryList',
                     success (data) {
                         _this.categories = data.categories;
+                        console.log(data)
                     }
                 })
             }
         },
         created () {
-
+            //初始化分类列表
+            this.getData()
         }
     }
 </script>

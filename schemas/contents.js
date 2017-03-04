@@ -33,6 +33,11 @@ module.exports = new mongoose.Schema({
         type: String,
         default: ''
     },
+    //封面图片路径
+    pic: {
+        type: String,
+        default: ''
+    },
     //内容
     content: {
         type: String,
