@@ -45,7 +45,7 @@
                             <div class="item-title label">封面</div>
                             <div class="item-input">
                                 <span class=" uploadImg icon icon-picture"></span>
-                                <input type="file" class="ehdel_upload" @change="uploadImg">
+                                <input id="pickfiles" type="file" class="ehdel_upload">
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,6 @@
     .ehdel_upload{
         float: left;
         filter:alpha(opacity=0);
-        -moz-opacity:0;
         opacity:0;
     }
     .uploadImg {
@@ -90,6 +89,7 @@
     }
 </style>
 <script>
+    import uploader from '../uploadqiiu.js';
     export default {
         data () {
             return{
@@ -97,7 +97,8 @@
                 title: '',
                 description: '',
                 content: '',
-                pic: ''
+                pic: '',
+                token: ''
             }
         },
         methods: {
@@ -115,26 +116,61 @@
             uploadImg (e) {
                 let _this = this;
                 let fileName = e.target.files[0].name;
-                let filePath = e.target.value;
-                console.log(fileName);
-                console.log(filePath);
-                console.log(e)
+                let filePath = e.target.files;
+//                console.log(fileName);
+//                console.log(filePath);
                 $.ajax({
                     type: 'post',
-                    url: '/api/admin/uploadImg',
-                    data: {
-                        fileName,
-                        filePath
-                    },
+                    url: '/api/admin/token',
+                    data: {fileName},
                     success (data) {
-                        console.log(data);
+                        var tokens = data;
+                        console.log(tokens)
+                        $.ajax({
+                            type: 'post',
+                            url: 'http://upload.qiniu.com/',
+                            data: {
+                                file:filePath,
+                                token: e.target.files[0]
+                            },
+                            success (data){
+                                console.log(data)
+                            }
+                        })
                     }
                 })
+                console.log(e)
+//                $.ajax({
+//                    type: 'post',
+//                    url: 'http://upload.qiniu.com/',
+//                    data: {
+//                        fileName,
+//                        filePath
+//                    },
+//                    success (data) {
+//                        console.log(data);
+//                    }
+//                })
+            },
+            getPath (obj) {
+                if(obj) {
+                    if (window.navigator.userAgent.indexOf("MSIE")>=1) {
+                        obj.select();
+                        return document.selection.createRange().text;
+                    }else if(window.navigator.userAgent.indexOf("Firefox")>=1) {
+                        if(obj.files) {
+                            return obj.files.item(0).getAsDataURL();
+                        }
+                        return obj.value;
+                    }
+                    return obj.value;
+                }
             }
         },
         created () {
             //初始化分类列表
-            this.getData()
+            this.getData();
+
         }
     }
 </script>
