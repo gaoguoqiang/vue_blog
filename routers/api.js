@@ -9,6 +9,20 @@ var Category = require('../models/category');
 var Content = require('../models/Content');
 var Markdown = require('markdown').markdown;
 var iconv = require('iconv-lite');
+var qiniu = require('qiniu');
+
+//初始化七牛秘钥
+qiniu.conf.ACCESS_KEY = 'sTREiBQlF-juGQB0p6c_B2Er21obHQiBxFEAQmUW';
+qiniu.conf.SECRET_KEY = 'gBGVWWF1Hv2d8vsmCUhIt1wf8JK06C3qb-6ktIEN';
+
+//要上传的空间
+bucket = 'sam-ggq';
+
+//构建上传策略函数
+function uptoken(bucket, key) {
+    var putPolicy = new qiniu.rs.PutPolicy(bucket+":"+key);
+    return putPolicy.token();
+};
 
 //统一返回数据的格式
 var responseData;
@@ -366,5 +380,29 @@ router.get('/admin/categoryAdd', function (req, res) {
             }
         });
     }
+});
+//七牛文件上传
+router.post('/admin/uploadImg', function (req, res) {
+    //上传到七牛后的文件名
+    let key = req.body.fileName;
+    //要上传文件的本地路径
+    let filePath = req.body.filePath;
+    //生成上传 Token
+    token = uptoken(bucket, key);
+    //构造上传函数
+    function uploadFile(uptoken, key, localFile) {
+        var extra = new qiniu.io.PutExtra();
+        qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
+            if(!err) {
+                // 上传成功， 处理返回值
+                console.log(ret.hash, ret.key, ret.persistentId);
+            } else {
+                // 上传失败， 处理返回代码
+                console.log(err);
+            }
+        });
+    };
+    //调用uploadFile上传
+    uploadFile(token, key, filePath);
 });
 module.exports = router;

@@ -45,7 +45,7 @@
                             <div class="item-title label">封面</div>
                             <div class="item-input">
                                 <span class=" uploadImg icon icon-picture"></span>
-                                <input type="file" class="ehdel_upload">
+                                <input type="file" class="ehdel_upload" @change="uploadImg">
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,26 @@
                     url: '/api/category/categoryList',
                     success (data) {
                         _this.categories = data.categories;
-                        console.log(data)
+//                        console.log(data)
+                    }
+                })
+            },
+            uploadImg (e) {
+                let _this = this;
+                let fileName = e.target.files[0].name;
+                let filePath = e.target.value;
+                console.log(fileName);
+                console.log(filePath);
+                console.log(e)
+                $.ajax({
+                    type: 'post',
+                    url: '/api/admin/uploadImg',
+                    data: {
+                        fileName,
+                        filePath
+                    },
+                    success (data) {
+                        console.log(data);
                     }
                 })
             }
