@@ -9,8 +9,9 @@
                         <div class="item-inner">
                             <div class="item-title label">分类</div>
                             <div class="item-input">
-                                <select>
-                                    <option v-for="data in categories">{{data.name}}</option>
+                                <select @change="show" v-model="category">
+                                    <option value="0">请选择分类</option>
+                                    <option v-for="data in categories" :value="data._id">{{data.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -22,7 +23,7 @@
                         <div class="item-inner">
                             <div class="item-title label">标题</div>
                             <div class="item-input">
-                                <input type="text" placeholder="Your name">
+                                <input type="text" placeholder="请输入文章标题" v-model="title">
                             </div>
                         </div>
                     </div>
@@ -33,7 +34,7 @@
                         <div class="item-inner">
                             <div class="item-title label">简介</div>
                             <div class="item-input">
-                                <input type="text" placeholder="E-mail">
+                                <input type="text" placeholder="请输入文章简介" v-model="description">
                             </div>
                         </div>
                     </div>
@@ -44,8 +45,8 @@
                         <div class="item-inner">
                             <div class="item-title label">封面</div>
                             <div class="item-input">
-                                <span class=" uploadImg icon icon-picture"></span>
-                                <input id="pickfiles" type="file" class="ehdel_upload">
+                                <label id="pickfiles" for="file" class=" uploadImg icon icon-picture"></label>
+                                <input id="file" type="file" class="ehdel_upload">
                             </div>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                         <div class="item-inner">
                             <div class="item-title label">正文</div>
                             <div class="item-input">
-                                <textarea></textarea>
+                                <textarea v-model="content"></textarea>
                             </div>
                         </div>
                     </div>
@@ -65,8 +66,8 @@
         </div>
         <div class="content-block">
             <div class="row">
-                <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
-                <div class="col-50"><a href="#" class="button button-big button-fill button-success">提交</a></div>
+                <div class="col-50"><router-link to="/contents" class="button button-big button-fill button-danger">取消</router-link></div>
+                <div class="col-50"><a href="javascript:;" @click="uploadFrom" class="button button-big button-fill button-success">提交</a></div>
             </div>
         </div>
     </div>
@@ -76,24 +77,27 @@
         margin-top: 3rem;
     }
     .ehdel_upload{
-        float: left;
+        margin-left: -2000px;
         filter:alpha(opacity=0);
         opacity:0;
     }
     .uploadImg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -1.2rem;
+        /*position: absolute;*/
+        /*top: 50%;*/
+        /*left: 50%;*/
+        /*margin-top: -1.2rem;*/
+        display: inline-block;
+        width: 80%;
+        text-align: center;
         font-size: 1.5rem;
     }
 </style>
 <script>
-    import uploader from '../uploadqiiu.js';
     export default {
         data () {
             return{
                 categories: {},
+                category: '0',
                 title: '',
                 description: '',
                 content: '',
@@ -102,6 +106,9 @@
             }
         },
         methods: {
+            show () {
+                console.log(this.category)
+            },
             getData () {
                 let _this = this;
                 $.ajax({
@@ -113,64 +120,137 @@
                     }
                 })
             },
-            uploadImg (e) {
+            uploadQiniu () {
                 let _this = this;
-                let fileName = e.target.files[0].name;
-                let filePath = e.target.files;
-//                console.log(fileName);
-//                console.log(filePath);
-                $.ajax({
-                    type: 'post',
-                    url: '/api/admin/token',
-                    data: {fileName},
-                    success (data) {
-                        var tokens = data;
-                        console.log(tokens)
-                        $.ajax({
-                            type: 'post',
-                            url: 'http://upload.qiniu.com/',
-                            data: {
-                                file:filePath,
-                                token: e.target.files[0]
-                            },
-                            success (data){
-                                console.log(data)
-                            }
-                        })
-                    }
-                })
-                console.log(e)
-//                $.ajax({
-//                    type: 'post',
-//                    url: 'http://upload.qiniu.com/',
-//                    data: {
-//                        fileName,
-//                        filePath
-//                    },
-//                    success (data) {
-//                        console.log(data);
-//                    }
-//                })
-            },
-            getPath (obj) {
-                if(obj) {
-                    if (window.navigator.userAgent.indexOf("MSIE")>=1) {
-                        obj.select();
-                        return document.selection.createRange().text;
-                    }else if(window.navigator.userAgent.indexOf("Firefox")>=1) {
-                        if(obj.files) {
-                            return obj.files.item(0).getAsDataURL();
+                const uploader = Qiniu.uploader({
+                    runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+                    browse_button: 'pickfiles',         // 上传选择的点选按钮，**必需**
+                    // 在初始化时，uptoken, uptoken_url, uptoken_func 三个参数中必须有一个被设置
+                    // 切如果提供了多个，其优先级为 uptoken > uptoken_url > uptoken_func
+                    // 其中 uptoken 是直接提供上传凭证，uptoken_url 是提供了获取上传凭证的地址，如果需要定制获取 uptoken 的过程则可以设置 uptoken_func
+                    // uptoken : '<Your upload token>', // uptoken 是上传凭证，由其他程序生成
+                    uptoken_url: '/api/admin/token',         // Ajax 请求 uptoken 的 Url，**强烈建议设置**（服务端提供）
+                    // uptoken_func: function(file){    // 在需要获取 uptoken 时，该方法会被调用
+                    //    // do something
+                    //    return uptoken;
+                    // },
+                    get_new_uptoken: true,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+                    // downtoken_url: '/downtoken',
+                    // Ajax请求downToken的Url，私有空间时使用,JS-SDK 将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
+                    // unique_names: true,              // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
+                    save_key: true,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+                    domain: 'http://okwps3vs4.bkt.clouddn.com',     // bucket 域名，下载资源时用到，如：'http://xxx.bkt.clouddn.com/' **必需**
+                    //container: 'container',             // 上传区域 DOM ID，默认是 browser_button 的父元素，
+                    //max_file_size: '100mb',             // 最大文件体积限制
+                    //flash_swf_url: 'path/of/plupload/Moxie.swf',  //引入 flash,相对路径
+                    max_retries: 3,                     // 上传失败最大重试次数
+                    //dragdrop: true,                     // 开启可拖曳上传
+                    //drop_element: 'container',          // 拖曳上传区域元素的 ID，拖曳文件或文件夹后可触发上传
+                    //chunk_size: '4mb',                  // 分块上传时，每块的体积
+                    auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+                    //x_vars : {
+                    //    自定义变量，参考http://developer.qiniu.com/docs/v6/api/overview/up/response/vars.html
+                    //    'time' : function(up,file) {
+                    //        var time = (new Date()).getTime();
+                    // do something with 'time'
+                    //        return time;
+                    //    },
+                    //    'size' : function(up,file) {
+                    //        var size = file.size;
+                    // do something with 'size'
+                    //        return size;
+                    //    }
+                    //},
+                    init: {
+                        'FilesAdded': function(up, files) {
+                            plupload.each(files, function(file) {
+                                // 文件添加进队列后,处理相关的事情
+                            });
+                        },
+                        'BeforeUpload': function(up, file) {
+                            // 每个文件上传前,处理相关的事情
+                        },
+                        'UploadProgress': function(up, file) {
+                            // 每个文件上传时,处理相关的事情
+                        },
+                        'FileUploaded': function(up, file, info) {
+                            // 每个文件上传成功后,处理相关的事情
+                            // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                            // {
+                            //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                            //    "key": "gogopher.jpg"
+                            //  }
+                            // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+                            var domain = up.getOption('domain');
+                            //console.log(info)
+                            var res = $.parseJSON(info);
+                            var sourceLink = domain + '/' + res.key; //获取上传成功后的文件的Url
+                            _this.pic = sourceLink;
+                            console.log(_this.pic)
+                        },
+                        'Error': function(up, err, errTip) {
+                            //上传出错时,处理相关的事情
+                            console.log(err);
+                        },
+                        'UploadComplete': function() {
+                            //队列文件处理完毕后,处理相关的事情
+                        },
+                        'Key': function(up, file) {
+                            // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                            // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+                            var key = "";
+                            // do something with key here
+                            return key
                         }
-                        return obj.value;
                     }
-                    return obj.value;
+                });
+            },
+            uploadFrom () {
+                let _this = this;
+                if(_this.category == '0'){
+                    $.toast('请选择文章分类');
+                    return;
+                }else if(_this.title == ''){
+                    $.toast('请填写文章标题');
+                    return;
+                }else if(_this.description == ''){
+                    $.toast('请填写文章简介');
+                    return;
+                }else if(_this.content == ''){
+                    $.toast('请填写文章内容');
+                    return;
+                }else{
+                    $.ajax({
+                        type: 'post',
+                        url: '/api/admin/contentSave',
+                        data: {
+                            category: _this.category,
+                            title: _this.title,
+                            description: _this.description,
+                            pic: _this.pic,
+                            content: _this.content
+                        },
+                        success (data){
+                            $.toast(data);
+                            //两秒后返回内容管理页面
+                            setTimeout(function () {
+                                window.history.back(-1);
+                            },2000)
+
+                        }
+                    })
                 }
             }
         },
         created () {
             //初始化分类列表
             this.getData();
-
+        },
+        mounted () {
+            //初始化七牛上传方法
+            this.uploadQiniu();
         }
     }
 </script>

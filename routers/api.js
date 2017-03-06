@@ -378,7 +378,7 @@ router.get('/admin/categoryAdd', function (req, res) {
         });
     }
 });
-//七牛文件上传
+//七牛token
 router.get('/admin/token', function (req, res) {
     var myUptoken = new qiniu.rs.PutPolicy('sam-ggq');
     var token = myUptoken.token();
@@ -393,5 +393,22 @@ router.get('/admin/token', function (req, res) {
             sava_key :currentKey
         });
     }
+});
+//文章保存
+router.post('/admin/contentSave', function (req, res) {
+
+    var msg = '';
+
+    new Content({
+        category: req.body.category,
+        title: req.body.title,
+        description: req.body.description,
+        pic: req.body.pic || '',
+        content: req.body.content,
+        user: req.userInfo.id
+    }).save().then(function (data) {
+        msg = '文章保存成功'
+        res.json(msg)
+    })
 });
 module.exports = router;

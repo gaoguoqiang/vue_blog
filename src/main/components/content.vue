@@ -7,7 +7,7 @@
                         <ul>
                             <li class="item-content">
                                 <div class="item-media">
-                                    <img src="http://okwps3vs4.bkt.clouddn.com/start-bg.png">
+                                    <img :src="data.pic">
                                 </div>
                                 <div class="item-inner">
                                     <div class="item-title-row">

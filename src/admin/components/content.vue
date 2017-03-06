@@ -3,7 +3,7 @@
         <div class="content-padded grid-demo" v-scroll="scrollLoad">
             <router-link v-for="data in datas" class="card demo-card-header-pic" :to="'/concrete/'+data._id" tag="div">
                 <div valign="bottom" class="card-header color-white no-border no-padding">
-                    <img class='card-cover' src="http://okwps3vs4.bkt.clouddn.com/start-bg.png" alt="">
+                    <img class='card-cover' :src="data.pic" alt="">
                 </div>
                 <div class="card-content">
 
