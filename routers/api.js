@@ -382,15 +382,14 @@ router.get('/admin/categoryAdd', function (req, res) {
 router.get('/admin/token', function (req, res) {
     var myUptoken = new qiniu.rs.PutPolicy('sam-ggq');
     var token = myUptoken.token();
-    moment.locale('en');
-    var currentKey = moment(new Date()).format('YYYY-MM-DD--HH-mm-ss');
+    // moment.locale('en');
+    // var currentKey = moment(new Date()).format('YYYY-MM-DD--HH-mm-ss');
     res.header("Cache-Control", "max-age=0, private, must-revalidate");
     res.header("Pragma", "no-cache");
     res.header("Expires", 0);
     if (token) {
         res.json({
-            uptoken: token,
-            sava_key :currentKey
+            uptoken: token
         });
     }
 });
@@ -409,6 +408,86 @@ router.post('/admin/contentSave', function (req, res) {
     }).save().then(function (data) {
         msg = '文章保存成功'
         res.json(msg)
+    })
+});
+//修改文章详情
+router.post('/admin/showContent', function (req, res) {
+   var id = req.body.id;
+   console.log(id);
+   Content.findOne({_id: id}).populate(['category']).then(function (content) {
+       res.json(content)
+   })
+});
+//文章修改保存
+router.post('/admin/contentUpdate', function (req, res) {
+    var msg = '';
+    Content.findOne({_id:req.body.id}).then(function (content) {
+        if(!content){
+            msg = '文章不存在';
+            res.json(msg);
+            return;
+        }else{
+            if(req.body.pic == '' || req.body.pic == content.pic){
+                console.log('走了上面')
+                Content.update({
+                    _id: req.body.id
+                },{
+                    category: req.body.category,
+                    title: req.body.title,
+                    description: req.body.description,
+                    content: req.body.content
+                }).then(function (data) {
+                    msg = '文章修改成功';
+                    res.json(msg);
+                    return;
+                })
+            }else{
+                console.log('走了下面')
+                //构建bucketmanager对象
+                var client = new qiniu.rs.Client();
+                //你要测试的空间， 并且这个key在你空间中存在
+                bucket = 'sam-ggq';
+                var a = content.pic.split('/');
+                //console.log(a)
+                key = a[a.length-1];
+                //console.log(key)
+                //删除资源
+                client.remove(bucket, key, function(err, ret) {
+                    if (!err) {
+                        Content.update({
+                            _id: req.body.id
+                        },{
+                            category: req.body.category,
+                            title: req.body.title,
+                            description: req.body.description,
+                            content: req.body.content,
+                            pic: req.body.pic
+                        }).then(function (data) {
+                            msg = '文章修改成功';
+                            res.json(msg);
+                            return;
+                        })
+                    } else {
+                        console.log(err);
+                        Content.update({
+                            _id: req.body.id
+                        },{
+                            category: req.body.category,
+                            title: req.body.title,
+                            description: req.body.description,
+                            content: req.body.content,
+                            pic: req.body.pic
+                        }).then(function (data) {
+                            msg = '文章修改成功,之前的图片删除失败,请手动删除';
+                            res.json(msg);
+                            return;
+                        })
+                    }
+                });
+
+
+            }
+        }
     })
 });
 module.exports = router;

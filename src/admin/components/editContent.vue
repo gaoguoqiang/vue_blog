@@ -9,7 +9,7 @@
                         <div class="item-inner">
                             <div class="item-title label">分类</div>
                             <div class="item-input">
-                                <select @change="show" v-model="category">
+                                <select v-model="category">
                                     <option value="0">请选择分类</option>
                                     <option v-for="data in categories" :value="data._id">{{data.name}}</option>
                                 </select>
@@ -102,14 +102,29 @@
                 description: '',
                 content: '',
                 pic: '',
-                token: ''
+                token: '',
+                id: this.$route.params.id
             }
         },
         methods: {
-            show () {
-                console.log(this.category)
-            },
             getData () {
+                let _this = this;
+                $.ajax({
+                    type: 'post',
+                    url: '/api/admin/showContent',
+                    data: {id: _this.id},
+                    success (data) {
+                        //console.log(data)
+                        _this.title = data.title;
+                        _this.description = data.description;
+                        _this.content = data.content;
+                        _this.category = data.category._id;
+                        //console.log(_this.category)
+
+                    }
+                })
+            },
+            getCategories () {
                 let _this = this;
                 $.ajax({
                     type: 'post',
@@ -224,8 +239,9 @@
                 }else{
                     $.ajax({
                         type: 'post',
-                        url: '/api/admin/contentSave',
+                        url: '/api/admin/contentUpdate',
                         data: {
+                            id: _this.$route.params.id,
                             category: _this.category,
                             title: _this.title,
                             description: _this.description,
@@ -235,9 +251,9 @@
                         success (data){
                             $.toast(data);
                             //两秒后返回内容管理页面
-                            setTimeout(function () {
-                                window.history.back(-1);
-                            },2000)
+//                            setTimeout(function () {
+//                                window.history.back(-1);
+//                            },2000)
 
                         }
                     })
@@ -246,7 +262,8 @@
         },
         created () {
             //初始化分类列表
-            this.getData();
+            this.getCategories();
+            this.getData()
         },
         mounted () {
             //初始化七牛上传方法

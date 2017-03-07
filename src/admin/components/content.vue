@@ -17,7 +17,7 @@
                     </div>
                     <div class="card-footer">
                         <span>删除</span>
-                        <span>修改</span>
+                        <router-link :to="{name:'editContent',params: {id:data._id}}" tag="span">修改</router-link>
                     </div>
                 </div>
             </router-link>
@@ -71,7 +71,6 @@
                 page: 1,
                 show: false,
                 endShow: false,
-                id: this.$route.params.id
             }
         },
         components: {
@@ -101,7 +100,7 @@
                     $.ajax({
                         type: 'post',
                         url: 'api/main/contents?page='+_this.page,
-                        data: {id: _this.id},
+//                        data: {id: _this.id},
                         success (data) {
                             //把新获取到的数据插入到之前的数组中
                             for(let i = 0; i < data.contents.length; i++){

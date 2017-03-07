@@ -10938,12 +10938,18 @@
 	
 	var _addContent2 = _interopRequireDefault(_addContent);
 	
+	var _editContent = __webpack_require__(73);
+	
+	var _editContent2 = _interopRequireDefault(_editContent);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	//注册vue-router
-	_vue2.default.use(_vueRouter2.default); /**
-	                                         * Created by Administrator on 2017/1/13 0013.
-	                                         */
+	/**
+	 * Created by Administrator on 2017/1/13 0013.
+	 */
+	_vue2.default.use(_vueRouter2.default);
+	
 	exports.default = new _vueRouter2.default({
 	    routes: [{
 	        path: '/',
@@ -10960,6 +10966,10 @@
 	    }, {
 	        path: '/addContent',
 	        component: _addContent2.default
+	    }, {
+	        path: '/editContent/:id',
+	        name: 'editContent',
+	        component: _editContent2.default
 	    }]
 	});
 
@@ -13849,7 +13859,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n#content img{\n    max-height: 20rem;\n}\n.row div{\n    border: 1px solid #000;\n}\n.endInfo{\n    color: #ccc;\n    text-align: center;\n}\n.addContentBtn{\n    display: block;\n    width: 3rem;\n    height: 3rem;\n    text-align: center;\n    line-height: 3rem;\n    color: #2b92d4;\n    font-size: 3rem;\n    position: fixed;\n    bottom: 4rem;\n    right: 0;\n}\n", "", {"version":3,"sources":["/./src/admin/components/content.vue?1a036db2"],"names":[],"mappings":";AA8BA;IACA,mBAAA;CACA;AACA;IACA,kBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,YAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;IACA,YAAA;IACA,aAAA;IACA,mBAAA;IACA,kBAAA;IACA,eAAA;IACA,gBAAA;IACA,gBAAA;IACA,aAAA;IACA,SAAA;CACA","file":"content.vue","sourcesContent":["<template>\n    <div id=\"content\" class=\"content\">\n        <div class=\"content-padded grid-demo\" v-scroll=\"scrollLoad\">\n            <router-link v-for=\"data in datas\" class=\"card demo-card-header-pic\" :to=\"'/concrete/'+data._id\" tag=\"div\">\n                <div valign=\"bottom\" class=\"card-header color-white no-border no-padding\">\n                    <img class='card-cover' :src=\"data.pic\" alt=\"\">\n                </div>\n                <div class=\"card-content\">\n\n                    <div class=\"card-content\">\n                        <div class=\"card-content-inner\">\n                            <p class=\"color-gray\">发表于 {{data.addTime | time}}</p>\n                            <p>文章标题：{{data.title}}</p>\n                            <p>所属分类：{{data.category.name}}</p>\n                            <p>阅读  {{data.views}}</p>\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <span>删除</span>\n                        <span>修改</span>\n                    </div>\n                </div>\n            </router-link>\n        </div>\n        <router-link class=\"addContentBtn\" to=\"/addContent\" tag=\"span\">+</router-link>\n        <loading v-show=\"show\"></loading>\n        <p v-show=\"endShow\" class=\"endInfo\">歇息一会儿吧！后边什么都没有了！</p>\n    </div>\n</template>\n<style>\n    #content{\n        margin-top: 2.3rem;\n    }\n    #content img{\n        max-height: 20rem;\n    }\n    .row div{\n        border: 1px solid #000;\n    }\n    .endInfo{\n        color: #ccc;\n        text-align: center;\n    }\n    .addContentBtn{\n        display: block;\n        width: 3rem;\n        height: 3rem;\n        text-align: center;\n        line-height: 3rem;\n        color: #2b92d4;\n        font-size: 3rem;\n        position: fixed;\n        bottom: 4rem;\n        right: 0;\n    }\n</style>\n<script>\n    //加载过滤器\n    import filter from '../filter.js';\n    //加载指令\n    import directive from'../directives.js';\n    //加载等待组件\n    import loading from'./loading.vue';\n    //加载Bus实例\n    import Bus from'../bus.js';\n    export default {\n        data (){\n            return{\n                datas:{},\n                pages:null,\n                page: 1,\n                show: false,\n                endShow: false,\n                id: this.$route.params.id\n            }\n        },\n        components: {\n            //注册loading组件\n            loading:loading\n        },\n        methods: {\n            getData () {\n                let _this = this;\n                $.ajax({\n                    type: 'post',\n                    url: 'api/main/contents',\n                    data: {id: _this.id},\n                    success:function (data) {\n                        _this.datas = data.contents;\n                        _this.pages = data.pages;\n                    }\n                })\n            },\n            scrollLoad (fn) {\n                let _this = this;\n                //显示loading界面\n                _this.show = true;\n                _this.page++;\n                //当前页等于总页数时，停止执行ajax\n                if(_this.page <= _this.pages){\n                    $.ajax({\n                        type: 'post',\n                        url: 'api/main/contents?page='+_this.page,\n                        data: {id: _this.id},\n                        success (data) {\n                            //把新获取到的数据插入到之前的数组中\n                            for(let i = 0; i < data.contents.length; i++){\n                                _this.datas.push(data.contents[i])\n                            }\n                            //关闭loading界面\n                            _this.show = false;\n                            //回调函数\n                            fn();\n                        }\n                    })\n                }else{\n                    //关闭loading界面\n                    _this.show = false;\n                    //显示没有数据的提示语\n                    _this.endShow = true;\n                    fn();\n                }\n            }\n        },\n        filters:{\n            //时间格式过滤器\n            time: filter.time\n        },\n        directives:{\n            //无限加载指令\n            scroll: directive.scroll\n        },\n        created () {\n            //数据初始化\n            this.getData();\n        },\n        watch: {\n            //监听路由变化，刷新组件数据\n            '$route' () {\n                this.id = this.$route.params.id;\n                this.getData();\n                //重置当前页\n                this.page = 1;\n                //关闭没有数据的提示语\n                this.endShow = false;\n                //重置内容滚动条位置\n                $('#content').scrollTop(0);\n            }\n        }\n    }\n\n</script>\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n#content img{\n    max-height: 20rem;\n}\n.row div{\n    border: 1px solid #000;\n}\n.endInfo{\n    color: #ccc;\n    text-align: center;\n}\n.addContentBtn{\n    display: block;\n    width: 3rem;\n    height: 3rem;\n    text-align: center;\n    line-height: 3rem;\n    color: #2b92d4;\n    font-size: 3rem;\n    position: fixed;\n    bottom: 4rem;\n    right: 0;\n}\n", "", {"version":3,"sources":["/./src/admin/components/content.vue?4c6cd0ef"],"names":[],"mappings":";AA8BA;IACA,mBAAA;CACA;AACA;IACA,kBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,YAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;IACA,YAAA;IACA,aAAA;IACA,mBAAA;IACA,kBAAA;IACA,eAAA;IACA,gBAAA;IACA,gBAAA;IACA,aAAA;IACA,SAAA;CACA","file":"content.vue","sourcesContent":["<template>\n    <div id=\"content\" class=\"content\">\n        <div class=\"content-padded grid-demo\" v-scroll=\"scrollLoad\">\n            <router-link v-for=\"data in datas\" class=\"card demo-card-header-pic\" :to=\"'/concrete/'+data._id\" tag=\"div\">\n                <div valign=\"bottom\" class=\"card-header color-white no-border no-padding\">\n                    <img class='card-cover' :src=\"data.pic\" alt=\"\">\n                </div>\n                <div class=\"card-content\">\n\n                    <div class=\"card-content\">\n                        <div class=\"card-content-inner\">\n                            <p class=\"color-gray\">发表于 {{data.addTime | time}}</p>\n                            <p>文章标题：{{data.title}}</p>\n                            <p>所属分类：{{data.category.name}}</p>\n                            <p>阅读  {{data.views}}</p>\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <span>删除</span>\n                        <router-link :to=\"{name:'editContent',params: {id:data._id}}\" tag=\"span\">修改</router-link>\n                    </div>\n                </div>\n            </router-link>\n        </div>\n        <router-link class=\"addContentBtn\" to=\"/addContent\" tag=\"span\">+</router-link>\n        <loading v-show=\"show\"></loading>\n        <p v-show=\"endShow\" class=\"endInfo\">歇息一会儿吧！后边什么都没有了！</p>\n    </div>\n</template>\n<style>\n    #content{\n        margin-top: 2.3rem;\n    }\n    #content img{\n        max-height: 20rem;\n    }\n    .row div{\n        border: 1px solid #000;\n    }\n    .endInfo{\n        color: #ccc;\n        text-align: center;\n    }\n    .addContentBtn{\n        display: block;\n        width: 3rem;\n        height: 3rem;\n        text-align: center;\n        line-height: 3rem;\n        color: #2b92d4;\n        font-size: 3rem;\n        position: fixed;\n        bottom: 4rem;\n        right: 0;\n    }\n</style>\n<script>\n    //加载过滤器\n    import filter from '../filter.js';\n    //加载指令\n    import directive from'../directives.js';\n    //加载等待组件\n    import loading from'./loading.vue';\n    //加载Bus实例\n    import Bus from'../bus.js';\n    export default {\n        data (){\n            return{\n                datas:{},\n                pages:null,\n                page: 1,\n                show: false,\n                endShow: false,\n            }\n        },\n        components: {\n            //注册loading组件\n            loading:loading\n        },\n        methods: {\n            getData () {\n                let _this = this;\n                $.ajax({\n                    type: 'post',\n                    url: 'api/main/contents',\n                    data: {id: _this.id},\n                    success:function (data) {\n                        _this.datas = data.contents;\n                        _this.pages = data.pages;\n                    }\n                })\n            },\n            scrollLoad (fn) {\n                let _this = this;\n                //显示loading界面\n                _this.show = true;\n                _this.page++;\n                //当前页等于总页数时，停止执行ajax\n                if(_this.page <= _this.pages){\n                    $.ajax({\n                        type: 'post',\n                        url: 'api/main/contents?page='+_this.page,\n//                        data: {id: _this.id},\n                        success (data) {\n                            //把新获取到的数据插入到之前的数组中\n                            for(let i = 0; i < data.contents.length; i++){\n                                _this.datas.push(data.contents[i])\n                            }\n                            //关闭loading界面\n                            _this.show = false;\n                            //回调函数\n                            fn();\n                        }\n                    })\n                }else{\n                    //关闭loading界面\n                    _this.show = false;\n                    //显示没有数据的提示语\n                    _this.endShow = true;\n                    fn();\n                }\n            }\n        },\n        filters:{\n            //时间格式过滤器\n            time: filter.time\n        },\n        directives:{\n            //无限加载指令\n            scroll: directive.scroll\n        },\n        created () {\n            //数据初始化\n            this.getData();\n        },\n        watch: {\n            //监听路由变化，刷新组件数据\n            '$route' () {\n                this.id = this.$route.params.id;\n                this.getData();\n                //重置当前页\n                this.page = 1;\n                //关闭没有数据的提示语\n                this.endShow = false;\n                //重置内容滚动条位置\n                $('#content').scrollTop(0);\n            }\n        }\n    }\n\n</script>\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13948,8 +13958,7 @@
 	            pages: null,
 	            page: 1,
 	            show: false,
-	            endShow: false,
-	            id: this.$route.params.id
+	            endShow: false
 	        };
 	    },
 	
@@ -13980,7 +13989,7 @@
 	                $.ajax({
 	                    type: 'post',
 	                    url: 'api/main/contents?page=' + _this.page,
-	                    data: { id: _this.id },
+	                    //                        data: {id: _this.id},
 	                    success: function success(data) {
 	                        //把新获取到的数据插入到之前的数组中
 	                        for (var i = 0; i < data.contents.length; i++) {
@@ -14269,7 +14278,17 @@
 	      staticClass: "color-gray"
 	    }, [_vm._v("发表于 " + _vm._s(_vm._f("time")(data.addTime)))]), _vm._v(" "), _c('p', [_vm._v("文章标题：" + _vm._s(data.title))]), _vm._v(" "), _c('p', [_vm._v("所属分类：" + _vm._s(data.category.name))]), _vm._v(" "), _c('p', [_vm._v("阅读  " + _vm._s(data.views))])])]), _vm._v(" "), _c('div', {
 	      staticClass: "card-footer"
-	    }, [_c('span', [_vm._v("删除")]), _vm._v(" "), _c('span', [_vm._v("修改")])])])])
+	    }, [_c('span', [_vm._v("删除")]), _vm._v(" "), _c('router-link', {
+	      attrs: {
+	        "to": {
+	          name: 'editContent',
+	          params: {
+	            id: data._id
+	          }
+	        },
+	        "tag": "span"
+	      }
+	    }, [_vm._v("修改")])], 1)])])
 	  })), _vm._v(" "), _c('router-link', {
 	    staticClass: "addContentBtn",
 	    attrs: {
@@ -14528,8 +14547,8 @@
 	                get_new_uptoken: true, // 设置上传文件的时候是否每次都重新获取新的 uptoken
 	                // downtoken_url: '/downtoken',
 	                // Ajax请求downToken的Url，私有空间时使用,JS-SDK 将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
-	                // unique_names: true,              // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
-	                save_key: true, // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+	                unique_names: true, // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
+	                //save_key: true,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
 	                domain: 'http://okwps3vs4.bkt.clouddn.com', // bucket 域名，下载资源时用到，如：'http://xxx.bkt.clouddn.com/' **必需**
 	                //container: 'container',             // 上传区域 DOM ID，默认是 browser_button 的父元素，
 	                //max_file_size: '100mb',             // 最大文件体积限制
@@ -14849,6 +14868,573 @@
 	  module.hot.accept()
 	  if (module.hot.data) {
 	     require("vue-hot-reload-api").rerender("data-v-05066a00", module.exports)
+	  }
+	}
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(74)
+	
+	var Component = __webpack_require__(10)(
+	  /* script */
+	  __webpack_require__(76),
+	  /* template */
+	  __webpack_require__(77),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/editContent.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] editContent.vue: functional components are not supported with templates, they should use render functions.")}
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-3bba9557", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-3bba9557", Component.options)
+	  }
+	})()}
+	
+	module.exports = Component.exports
+
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(75);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	if(content.locals) module.exports = content.locals;
+	// add the styles to the DOM
+	var update = __webpack_require__(8)("4b701e5f", content, false);
+	// Hot Module Replacement
+	if(false) {
+	 // When the styles change, update the <style> tags
+	 if(!content.locals) {
+	   module.hot.accept("!!../../../node_modules/css-loader/index.js?sourceMap!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3bba9557!../../../node_modules/less-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./editContent.vue", function() {
+	     var newContent = require("!!../../../node_modules/css-loader/index.js?sourceMap!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3bba9557!../../../node_modules/less-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./editContent.vue");
+	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	     update(newContent);
+	   });
+	 }
+	 // When the module is disposed, remove the <style> tags
+	 module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(7)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.addContent {\n  margin-top: 3rem;\n}\n.ehdel_upload {\n  margin-left: -2000px;\n  filter: alpha(opacity=0);\n  opacity: 0;\n}\n.uploadImg {\n  /*position: absolute;*/\n  /*top: 50%;*/\n  /*left: 50%;*/\n  /*margin-top: -1.2rem;*/\n  display: inline-block;\n  width: 80%;\n  text-align: center;\n  font-size: 1.5rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/editContent.vue"],"names":[],"mappings":";AAAA;EACE,iBAAiB;CAClB;AACD;EACE,qBAAqB;EACrB,yBAAyB;EACzB,WAAW;CACZ;AACD;EACE,uBAAuB;EACvB,aAAa;EACb,cAAc;EACd,wBAAwB;EACxB,sBAAsB;EACtB,WAAW;EACX,mBAAmB;EACnB,kBAAkB;CACnB","file":"editContent.vue","sourcesContent":[".addContent {\n  margin-top: 3rem;\n}\n.ehdel_upload {\n  margin-left: -2000px;\n  filter: alpha(opacity=0);\n  opacity: 0;\n}\n.uploadImg {\n  /*position: absolute;*/\n  /*top: 50%;*/\n  /*left: 50%;*/\n  /*margin-top: -1.2rem;*/\n  display: inline-block;\n  width: 80%;\n  text-align: center;\n  font-size: 1.5rem;\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 76 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	
+	exports.default = {
+	    data: function data() {
+	        return {
+	            categories: {},
+	            category: '0',
+	            title: '',
+	            description: '',
+	            content: '',
+	            pic: '',
+	            token: '',
+	            id: this.$route.params.id
+	        };
+	    },
+	
+	    methods: {
+	        getData: function getData() {
+	            var _this = this;
+	            $.ajax({
+	                type: 'post',
+	                url: '/api/admin/showContent',
+	                data: { id: _this.id },
+	                success: function success(data) {
+	                    //console.log(data)
+	                    _this.title = data.title;
+	                    _this.description = data.description;
+	                    _this.content = data.content;
+	                    _this.category = data.category._id;
+	                    //console.log(_this.category)
+	                }
+	            });
+	        },
+	        getCategories: function getCategories() {
+	            var _this = this;
+	            $.ajax({
+	                type: 'post',
+	                url: '/api/category/categoryList',
+	                success: function success(data) {
+	                    _this.categories = data.categories;
+	                    //                        console.log(data)
+	                }
+	            });
+	        },
+	        uploadQiniu: function uploadQiniu() {
+	            var _this = this;
+	            var uploader = Qiniu.uploader({
+	                runtimes: 'html5,flash,html4', // 上传模式,依次退化
+	                browse_button: 'pickfiles', // 上传选择的点选按钮，**必需**
+	                // 在初始化时，uptoken, uptoken_url, uptoken_func 三个参数中必须有一个被设置
+	                // 切如果提供了多个，其优先级为 uptoken > uptoken_url > uptoken_func
+	                // 其中 uptoken 是直接提供上传凭证，uptoken_url 是提供了获取上传凭证的地址，如果需要定制获取 uptoken 的过程则可以设置 uptoken_func
+	                // uptoken : '<Your upload token>', // uptoken 是上传凭证，由其他程序生成
+	                uptoken_url: '/api/admin/token', // Ajax 请求 uptoken 的 Url，**强烈建议设置**（服务端提供）
+	                // uptoken_func: function(file){    // 在需要获取 uptoken 时，该方法会被调用
+	                //    // do something
+	                //    return uptoken;
+	                // },
+	                get_new_uptoken: true, // 设置上传文件的时候是否每次都重新获取新的 uptoken
+	                // downtoken_url: '/downtoken',
+	                // Ajax请求downToken的Url，私有空间时使用,JS-SDK 将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
+	                unique_names: true, // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
+	                //save_key: true,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+	                domain: 'http://okwps3vs4.bkt.clouddn.com', // bucket 域名，下载资源时用到，如：'http://xxx.bkt.clouddn.com/' **必需**
+	                //container: 'container',             // 上传区域 DOM ID，默认是 browser_button 的父元素，
+	                //max_file_size: '100mb',             // 最大文件体积限制
+	                //flash_swf_url: 'path/of/plupload/Moxie.swf',  //引入 flash,相对路径
+	                max_retries: 3, // 上传失败最大重试次数
+	                //dragdrop: true,                     // 开启可拖曳上传
+	                //drop_element: 'container',          // 拖曳上传区域元素的 ID，拖曳文件或文件夹后可触发上传
+	                //chunk_size: '4mb',                  // 分块上传时，每块的体积
+	                auto_start: true, // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+	                //x_vars : {
+	                //    自定义变量，参考http://developer.qiniu.com/docs/v6/api/overview/up/response/vars.html
+	                //    'time' : function(up,file) {
+	                //        var time = (new Date()).getTime();
+	                // do something with 'time'
+	                //        return time;
+	                //    },
+	                //    'size' : function(up,file) {
+	                //        var size = file.size;
+	                // do something with 'size'
+	                //        return size;
+	                //    }
+	                //},
+	                init: {
+	                    'FilesAdded': function FilesAdded(up, files) {
+	                        plupload.each(files, function (file) {
+	                            // 文件添加进队列后,处理相关的事情
+	                        });
+	                    },
+	                    'BeforeUpload': function BeforeUpload(up, file) {
+	                        // 每个文件上传前,处理相关的事情
+	                    },
+	                    'UploadProgress': function UploadProgress(up, file) {
+	                        // 每个文件上传时,处理相关的事情
+	                    },
+	                    'FileUploaded': function FileUploaded(up, file, info) {
+	                        // 每个文件上传成功后,处理相关的事情
+	                        // 其中 info 是文件上传成功后，服务端返回的json，形式如
+	                        // {
+	                        //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+	                        //    "key": "gogopher.jpg"
+	                        //  }
+	                        // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+	
+	                        var domain = up.getOption('domain');
+	                        //console.log(info)
+	                        var res = $.parseJSON(info);
+	                        var sourceLink = domain + '/' + res.key; //获取上传成功后的文件的Url
+	                        _this.pic = sourceLink;
+	                        console.log(_this.pic);
+	                    },
+	                    'Error': function Error(up, err, errTip) {
+	                        //上传出错时,处理相关的事情
+	                        console.log(err);
+	                    },
+	                    'UploadComplete': function UploadComplete() {
+	                        //队列文件处理完毕后,处理相关的事情
+	                    },
+	                    'Key': function Key(up, file) {
+	                        // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+	                        // 该配置必须要在 unique_names: false , save_key: false 时才生效
+	
+	                        var key = "";
+	                        // do something with key here
+	                        return key;
+	                    }
+	                }
+	            });
+	        },
+	        uploadFrom: function uploadFrom() {
+	            var _this = this;
+	            if (_this.category == '0') {
+	                $.toast('请选择文章分类');
+	                return;
+	            } else if (_this.title == '') {
+	                $.toast('请填写文章标题');
+	                return;
+	            } else if (_this.description == '') {
+	                $.toast('请填写文章简介');
+	                return;
+	            } else if (_this.content == '') {
+	                $.toast('请填写文章内容');
+	                return;
+	            } else {
+	                $.ajax({
+	                    type: 'post',
+	                    url: '/api/admin/contentUpdate',
+	                    data: {
+	                        id: _this.$route.params.id,
+	                        category: _this.category,
+	                        title: _this.title,
+	                        description: _this.description,
+	                        pic: _this.pic,
+	                        content: _this.content
+	                    },
+	                    success: function success(data) {
+	                        $.toast(data);
+	                        //两秒后返回内容管理页面
+	                        //                            setTimeout(function () {
+	                        //                                window.history.back(-1);
+	                        //                            },2000)
+	                    }
+	                });
+	            }
+	        }
+	    },
+	    created: function created() {
+	        //初始化分类列表
+	        this.getCategories();
+	        this.getData();
+	    },
+	    mounted: function mounted() {
+	        //初始化七牛上传方法
+	        this.uploadQiniu();
+	    }
+	};
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "addContent"
+	  }, [_c('div', {
+	    staticClass: "list-block"
+	  }, [_c('ul', [_c('li', [_c('div', {
+	    staticClass: "item-content"
+	  }, [_vm._m(0), _vm._v(" "), _c('div', {
+	    staticClass: "item-inner"
+	  }, [_c('div', {
+	    staticClass: "item-title label"
+	  }, [_vm._v("分类")]), _vm._v(" "), _c('div', {
+	    staticClass: "item-input"
+	  }, [_c('select', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.category),
+	      expression: "category"
+	    }],
+	    on: {
+	      "change": function($event) {
+	        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+	          return o.selected
+	        }).map(function(o) {
+	          var val = "_value" in o ? o._value : o.value;
+	          return val
+	        });
+	        _vm.category = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+	      }
+	    }
+	  }, [_c('option', {
+	    attrs: {
+	      "value": "0"
+	    }
+	  }, [_vm._v("请选择分类")]), _vm._v(" "), _vm._l((_vm.categories), function(data) {
+	    return _c('option', {
+	      domProps: {
+	        "value": data._id
+	      }
+	    }, [_vm._v(_vm._s(data.name))])
+	  })], 2)])])])]), _vm._v(" "), _c('li', [_c('div', {
+	    staticClass: "item-content"
+	  }, [_vm._m(1), _vm._v(" "), _c('div', {
+	    staticClass: "item-inner"
+	  }, [_c('div', {
+	    staticClass: "item-title label"
+	  }, [_vm._v("标题")]), _vm._v(" "), _c('div', {
+	    staticClass: "item-input"
+	  }, [_c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.title),
+	      expression: "title"
+	    }],
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "请输入文章标题"
+	    },
+	    domProps: {
+	      "value": (_vm.title)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.title = $event.target.value
+	      }
+	    }
+	  })])])])]), _vm._v(" "), _c('li', [_c('div', {
+	    staticClass: "item-content"
+	  }, [_vm._m(2), _vm._v(" "), _c('div', {
+	    staticClass: "item-inner"
+	  }, [_c('div', {
+	    staticClass: "item-title label"
+	  }, [_vm._v("简介")]), _vm._v(" "), _c('div', {
+	    staticClass: "item-input"
+	  }, [_c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.description),
+	      expression: "description"
+	    }],
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "请输入文章简介"
+	    },
+	    domProps: {
+	      "value": (_vm.description)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.description = $event.target.value
+	      }
+	    }
+	  })])])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('li', {
+	    staticClass: "align-top"
+	  }, [_c('div', {
+	    staticClass: "item-content"
+	  }, [_vm._m(4), _vm._v(" "), _c('div', {
+	    staticClass: "item-inner"
+	  }, [_c('div', {
+	    staticClass: "item-title label"
+	  }, [_vm._v("正文")]), _vm._v(" "), _c('div', {
+	    staticClass: "item-input"
+	  }, [_c('textarea', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.content),
+	      expression: "content"
+	    }],
+	    domProps: {
+	      "value": (_vm.content)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.content = $event.target.value
+	      }
+	    }
+	  })])])])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "content-block"
+	  }, [_c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-50"
+	  }, [_c('router-link', {
+	    staticClass: "button button-big button-fill button-danger",
+	    attrs: {
+	      "to": "/contents"
+	    }
+	  }, [_vm._v("取消")])], 1), _vm._v(" "), _c('div', {
+	    staticClass: "col-50"
+	  }, [_c('a', {
+	    staticClass: "button button-big button-fill button-success",
+	    attrs: {
+	      "href": "javascript:;"
+	    },
+	    on: {
+	      "click": _vm.uploadFrom
+	    }
+	  }, [_vm._v("提交")])])])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "item-media"
+	  }, [_c('i', {
+	    staticClass: "icon icon-form-gender"
+	  })])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "item-media"
+	  }, [_c('i', {
+	    staticClass: "icon icon-form-name"
+	  })])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "item-media"
+	  }, [_c('i', {
+	    staticClass: "icon icon-form-email"
+	  })])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', [_c('div', {
+	    staticClass: "item-content"
+	  }, [_c('div', {
+	    staticClass: "item-media"
+	  }, [_c('i', {
+	    staticClass: "icon icon-form-password"
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "item-inner"
+	  }, [_c('div', {
+	    staticClass: "item-title label"
+	  }, [_vm._v("封面")]), _vm._v(" "), _c('div', {
+	    staticClass: "item-input"
+	  }, [_c('label', {
+	    staticClass: " uploadImg icon icon-picture",
+	    attrs: {
+	      "id": "pickfiles",
+	      "for": "file"
+	    }
+	  }), _vm._v(" "), _c('input', {
+	    staticClass: "ehdel_upload",
+	    attrs: {
+	      "id": "file",
+	      "type": "file"
+	    }
+	  })])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "item-media"
+	  }, [_c('i', {
+	    staticClass: "icon icon-form-comment"
+	  })])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-3bba9557", module.exports)
 	  }
 	}
 
