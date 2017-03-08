@@ -428,7 +428,7 @@ router.post('/admin/contentUpdate', function (req, res) {
             return;
         }else{
             if(req.body.pic == '' || req.body.pic == content.pic){
-                console.log('走了上面')
+                //console.log('走了上面')
                 Content.update({
                     _id: req.body.id
                 },{
@@ -442,7 +442,7 @@ router.post('/admin/contentUpdate', function (req, res) {
                     return;
                 })
             }else{
-                console.log('走了下面')
+                //console.log('走了下面')
                 //构建bucketmanager对象
                 var client = new qiniu.rs.Client();
                 //你要测试的空间， 并且这个key在你空间中存在

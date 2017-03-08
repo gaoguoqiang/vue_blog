@@ -45,8 +45,8 @@
                         <div class="item-inner">
                             <div class="item-title label">封面</div>
                             <div class="item-input">
-                                <label id="pickfiles" for="file" class=" uploadImg icon icon-picture"></label>
-                                <input id="file" type="file" class="ehdel_upload">
+                                <span id="pickfiles" class=" uploadImg icon icon-picture"></span>
+                                <!--<input id="file" type="file" class="ehdel_upload" @change="changeVal">-->
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
         <div class="content-block">
             <div class="row">
                 <div class="col-50"><router-link to="/contents" class="button button-big button-fill button-danger">取消</router-link></div>
-                <div class="col-50"><a href="javascript:;" @click="uploadFrom" class="button button-big button-fill button-success">提交</a></div>
+                <div class="col-50"><a href="javascript:;" id="submit" @click="uploadFrom" class="button button-big button-fill button-success">提交</a></div>
             </div>
         </div>
     </div>
@@ -114,16 +114,14 @@
                     url: '/api/admin/showContent',
                     data: {id: _this.id},
                     success (data) {
-                        //console.log(data)
                         _this.title = data.title;
                         _this.description = data.description;
                         _this.content = data.content;
                         _this.category = data.category._id;
-                        //console.log(_this.category)
-
                     }
                 })
             },
+            //获取分类列表
             getCategories () {
                 let _this = this;
                 $.ajax({
@@ -131,7 +129,6 @@
                     url: '/api/category/categoryList',
                     success (data) {
                         _this.categories = data.categories;
-//                        console.log(data)
                     }
                 })
             },
@@ -152,8 +149,8 @@
                     get_new_uptoken: true,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
                     // downtoken_url: '/downtoken',
                     // Ajax请求downToken的Url，私有空间时使用,JS-SDK 将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
-                    unique_names: true,              // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
-                    //save_key: true,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+                    unique_names: false,              // 默认 false，key 为文件名。若开启该选项，JS-SDK 会为每个文件自动生成key（文件名）
+                    save_key: false,                  // 默认 false。若在服务端生成 uptoken 的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
                     domain: 'http://okwps3vs4.bkt.clouddn.com',     // bucket 域名，下载资源时用到，如：'http://xxx.bkt.clouddn.com/' **必需**
                     //container: 'container',             // 上传区域 DOM ID，默认是 browser_button 的父元素，
                     //max_file_size: '100mb',             // 最大文件体积限制
@@ -162,7 +159,7 @@
                     //dragdrop: true,                     // 开启可拖曳上传
                     //drop_element: 'container',          // 拖曳上传区域元素的 ID，拖曳文件或文件夹后可触发上传
                     //chunk_size: '4mb',                  // 分块上传时，每块的体积
-                    auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+                    auto_start: false,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
                     //x_vars : {
                     //    自定义变量，参考http://developer.qiniu.com/docs/v6/api/overview/up/response/vars.html
                     //    'time' : function(up,file) {
@@ -180,6 +177,7 @@
                         'FilesAdded': function(up, files) {
                             plupload.each(files, function(file) {
                                 // 文件添加进队列后,处理相关的事情
+                                _this.val = true;
                             });
                         },
                         'BeforeUpload': function(up, file) {
@@ -197,16 +195,35 @@
                             //  }
                             // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
 
-                            var domain = up.getOption('domain');
-                            //console.log(info)
-                            var res = $.parseJSON(info);
-                            var sourceLink = domain + '/' + res.key; //获取上传成功后的文件的Url
+                            let domain = up.getOption('domain');
+                            let res = $.parseJSON(info);
+                            let sourceLink = domain + '/' + res.key; //获取上传成功后的文件的Url
                             _this.pic = sourceLink;
-                            console.log(_this.pic)
+                            //console.log('上传图片')
+                            $.ajax({
+                                type: 'post',
+                                url: '/api/admin/contentUpdate',
+                                data: {
+                                    id: _this.$route.params.id,
+                                    category: _this.category,
+                                    title: _this.title,
+                                    description: _this.description,
+                                    pic: _this.pic,
+                                    content: _this.content
+                                },
+                                success (data){
+                                    $.toast(data);
+                                    //两秒后返回内容管理页面
+                                    setTimeout(function () {
+                                        window.history.back(-1);
+                                    },2000)
+                                }
+                            });
                         },
                         'Error': function(up, err, errTip) {
                             //上传出错时,处理相关的事情
                             console.log(err);
+                            $.toast('图片上传失败');
                         },
                         'UploadComplete': function() {
                             //队列文件处理完毕后,处理相关的事情
@@ -214,13 +231,26 @@
                         'Key': function(up, file) {
                             // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
                             // 该配置必须要在 unique_names: false , save_key: false 时才生效
-
-                            var key = "";
+                            // 获取图片格式
+                            let imgType = file.type.split('/')[1];
+                            // 打印时间戳作为图片名称
+                            let time = new Date(),
+                                year = time.getFullYear(),
+                                month = time.getMonth()+1,
+                                date = time.getDate(),
+                                hours = time.getHours(),
+                                min = time.getMinutes(),
+                                seconds = time.getSeconds();
+                            let key = year + '-' + month + '-' + date + '-' + hours + '-' + min + '-' + seconds + '.' + imgType;
                             // do something with key here
-                            return key
+                            return key;
                         }
                     }
                 });
+                //触发图片上传
+                $('#submit').on('click', function(){
+                    uploader.start()
+                })
             },
             uploadFrom () {
                 let _this = this;
@@ -236,7 +266,8 @@
                 }else if(_this.content == ''){
                     $.toast('请填写文章内容');
                     return;
-                }else{
+                }else if(!_this.val){
+                    //没有上传图片
                     $.ajax({
                         type: 'post',
                         url: '/api/admin/contentUpdate',
@@ -251,12 +282,12 @@
                         success (data){
                             $.toast(data);
                             //两秒后返回内容管理页面
-//                            setTimeout(function () {
-//                                window.history.back(-1);
-//                            },2000)
-
+                            setTimeout(function () {
+                                window.history.back(-1);
+                            },2000)
                         }
                     })
+                    //上传图片的提交方式在七牛上传组件中进行
                 }
             }
         },
