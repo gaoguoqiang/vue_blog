@@ -11,7 +11,11 @@ var Markdown = require('markdown').markdown;
 var iconv = require('iconv-lite');
 var qiniu = require('qiniu');
 var moment = require('moment');
+var crypto = require('crypto');
 
+//设置秘钥
+
+var my_key = 'sam';
 //初始化七牛秘钥
 qiniu.conf.ACCESS_KEY = 'sTREiBQlF-juGQB0p6c_B2Er21obHQiBxFEAQmUW';
 qiniu.conf.SECRET_KEY = 'gBGVWWF1Hv2d8vsmCUhIt1wf8JK06C3qb-6ktIEN';
@@ -87,9 +91,15 @@ router.post('/user/register', function (req, res, next) {
            res.json(responseData);
            return;
        }
+        var cipher = crypto.createCipher('aes192', my_key);
+
+        var newpassword = cipher.update(password, 'utf8', 'hex');
+
+        newpassword += cipher.final('hex');
+
        var user = new User({
            username:username,
-           password:password
+           password:newpassword
        });
        return user.save();
     }).then(function (newUserInfo) {
@@ -109,10 +119,14 @@ router.post('/user/login', function (req, res, next) {
         res.json(responseData);
         return;
     }
+    var cipher = crypto.createCipher('aes192', my_key);
 
+    var newpassword = cipher.update(password, 'utf8', 'hex');
+
+    newpassword += cipher.final('hex');
     User.findOne({
         username:username,
-        password:password
+        password:newpassword
     }).then(function (userInfo) {
         if(!userInfo){
             responseData.code = 2;
@@ -226,7 +240,7 @@ router.post('/main/contents', function (req, res) {
     if(req.body.id){
         categoryId.category = req.body.id;
     }
-    var limit = 3;
+    var limit = 5;
     var pages = 0;
 
     Content.count(categoryId).then(function (count) {
@@ -280,7 +294,7 @@ router.get('/admin/categoryEdit', function (req, res) {
    var id = req.query.id || '';
    var name = req.query.name || '';
    var msg = '';
-   console.log(name);
+   //console.log(name);
    Category.findOne({_id:id}).then(function (category) {
        //查询该分类是否存在与数据库中
        if(!category){
@@ -413,7 +427,7 @@ router.post('/admin/contentSave', function (req, res) {
 //修改文章详情
 router.post('/admin/showContent', function (req, res) {
    var id = req.body.id;
-   console.log(id);
+   //console.log(id);
    Content.findOne({_id: id}).populate(['category']).then(function (content) {
        res.json(content)
    })
@@ -490,4 +504,76 @@ router.post('/admin/contentUpdate', function (req, res) {
         }
     })
 });
+//文章删除
+router.get('/admin/delContent', function (req, res) {
+   var id = req.query.id || '';
+   var msg = '';
+   if(id == ''){
+       msg = '该文章不存在'
+       res.json(msg);
+   }else{
+       Content.findOne({_id:id}).then(function (content) {
+           if(!content){
+               msg = '该文章不存在';
+               res.json(msg);
+           }else{
+               Content.remove({_id:id}).then(function (rs) {
+                   if(!rs){
+                       msg = '删除失败，请再次尝试';
+                       res.json(msg);
+                   }else{
+                       msg = '删除成功';
+                       res.json(msg);
+                   }
+               })
+           }
+       })
+   }
+});
+
+
+
+// var md5 = crypto.createHash('md5');
+//
+// md5.update(pass);
+//
+// var d = md5.digest('hex');
+//
+// console.log(d)
+
+// var token = 'sam';
+//
+// var buf = crypto.randomBytes(16);
+//
+// token = buf.toString('hex');
+//
+// console.log(token);
+//
+// var key = token;
+//
+// var sha = crypto.createHmac('sha1', key);
+//
+// sha.update(pass);
+// var haha = sha.digest().toString('base64');
+//
+// console.log(haha)
+
+// var key = 'sam';
+//
+// var cipher = crypto.createCipher('aes192', key);
+//
+// var a = cipher.update(pass, 'utf8', 'hex');
+//
+// a += cipher.final('hex');
+//
+// console.log(a);
+//
+// var decipher = crypto.createDecipher('aes192', key);
+//
+// var b = decipher.update(a, 'hex', 'utf8');
+// b += decipher.final('utf8');
+// console.log(b)
+
+
+
 module.exports = router;

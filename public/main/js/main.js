@@ -13703,7 +13703,7 @@
 
 
 	// module
-	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n#content img{\n    width: 4rem;\n}\n.row div{\n    border: 1px solid #000;\n}\n.endInfo{\n    color: #ccc;\n    text-align: center;\n}\n", ""]);
+	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n#content img{\n    max-height: 20rem;\n}\n.row div{\n    border: 1px solid #000;\n}\n.endInfo{\n    color: #ccc;\n    text-align: center;\n}\n", ""]);
 
 	// exports
 
@@ -13712,11 +13712,6 @@
 /* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//
-	//
-	//
-	//
-	//
 	//
 	//
 	//
@@ -14052,34 +14047,31 @@
 	    staticClass: "content-padded grid-demo"
 	  }, _vm._l((_vm.datas), function(data) {
 	    return _c('router-link', {
-	      staticClass: "card",
+	      staticClass: "card demo-card-header-pic",
 	      attrs: {
 	        "to": '/concrete/' + data._id,
 	        "tag": "div"
 	      }
 	    }, [_c('div', {
-	      staticClass: "card-content"
-	    }, [_c('div', {
-	      staticClass: "list-block media-list"
-	    }, [_c('ul', [_c('li', {
-	      staticClass: "item-content"
-	    }, [_c('div', {
-	      staticClass: "item-media"
-	    }, [_c('img', {
+	      staticClass: "card-header color-white no-border no-padding",
 	      attrs: {
-	        "src": data.pic
+	        "valign": "bottom"
+	      }
+	    }, [_c('img', {
+	      staticClass: "card-cover",
+	      attrs: {
+	        "src": data.pic,
+	        "alt": ""
 	      }
 	    })]), _vm._v(" "), _c('div', {
-	      staticClass: "item-inner"
+	      staticClass: "card-content"
 	    }, [_c('div', {
-	      staticClass: "item-title-row"
-	    }, [_c('div', {
-	      staticClass: "item-title"
-	    }, [_vm._v(_vm._s(data.title))])]), _vm._v(" "), _c('div', {
-	      staticClass: "item-subtitle"
-	    }, [_vm._v(_vm._s(data.description))])])])])])]), _vm._v(" "), _c('div', {
+	      staticClass: "card-content-inner"
+	    }, [_c('p', [_vm._v("文章标题：" + _vm._s(data.title))]), _vm._v(" "), _c('p', [_vm._v("文章简介：" + _vm._s(data.description))]), _vm._v(" "), _c('p', {
+	      staticClass: "color-gray"
+	    }, [_vm._v(_vm._s(_vm._f("time")(data.addTime)))])])]), _vm._v(" "), _c('div', {
 	      staticClass: "card-footer"
-	    }, [_c('span', [_vm._v(_vm._s(_vm._f("time")(data.addTime)))]), _vm._v(" "), _c('span', [_vm._v("阅读  " + _vm._s(data.views))])])])
+	    }, [_c('span', [_vm._v("作者：" + _vm._s(data.user.username))]), _vm._v(" "), _c('span', [_vm._v("阅读  " + _vm._s(data.views))])])])
 	  })), _vm._v(" "), _c('loading', {
 	    directives: [{
 	      name: "show",

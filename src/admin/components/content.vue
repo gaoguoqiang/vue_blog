@@ -1,26 +1,24 @@
 <template>
     <div id="content" class="content">
         <div class="content-padded grid-demo" v-scroll="scrollLoad">
-            <router-link v-for="data in datas" class="card demo-card-header-pic" :to="'/concrete/'+data._id" tag="div">
+            <div v-for="data in datas" class="card demo-card-header-pic">
                 <div valign="bottom" class="card-header color-white no-border no-padding">
                     <img class='card-cover' :src="data.pic" alt="">
                 </div>
-                <div class="card-content">
 
-                    <div class="card-content">
-                        <div class="card-content-inner">
-                            <p class="color-gray">发表于 {{data.addTime | time}}</p>
-                            <p>文章标题：{{data.title}}</p>
-                            <p>所属分类：{{data.category.name}}</p>
-                            <p>阅读  {{data.views}}</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span>删除</span>
-                        <router-link :to="{name:'editContent',params: {id:data._id}}" tag="span">修改</router-link>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <p class="color-gray">发表于 {{data.addTime | time}}</p>
+                        <p>文章标题：{{data.title}}</p>
+                        <p>所属分类：{{data.category.name}}</p>
+                        <p>阅读  {{data.views}}</p>
                     </div>
                 </div>
-            </router-link>
+                <div class="card-footer">
+                    <span @click="clickDel(data._id)" class="button button-fill button-danger">删除</span>
+                    <router-link class="button button-fill button-success" :to="{name:'editContent',params: {id:data._id}}" tag="span">修改</router-link>
+                </div>
+            </div>
         </div>
         <router-link class="addContentBtn" to="/addContent" tag="span">+</router-link>
         <loading v-show="show"></loading>
@@ -87,6 +85,27 @@
                     success:function (data) {
                         _this.datas = data.contents;
                         _this.pages = data.pages;
+                    }
+                })
+            },
+            clickDel (id) {
+                let _this = this;
+                $.confirm('您确定要删除该文章？',
+                    function () {
+                        _this.del(id)
+                    }
+                );
+            },
+            del (id) {
+                let _this = this;
+                $.ajax({
+                    type: 'get',
+                    url: '/api/admin/delContent?id='+id,
+                    success (data) {
+                        $.toast(data);
+                        if(data == '删除成功'){
+                            _this.getData();
+                        }
                     }
                 })
             },

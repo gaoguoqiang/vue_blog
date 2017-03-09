@@ -13859,7 +13859,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n#content img{\n    max-height: 20rem;\n}\n.row div{\n    border: 1px solid #000;\n}\n.endInfo{\n    color: #ccc;\n    text-align: center;\n}\n.addContentBtn{\n    display: block;\n    width: 3rem;\n    height: 3rem;\n    text-align: center;\n    line-height: 3rem;\n    color: #2b92d4;\n    font-size: 3rem;\n    position: fixed;\n    bottom: 4rem;\n    right: 0;\n}\n", "", {"version":3,"sources":["/./src/admin/components/content.vue?4c6cd0ef"],"names":[],"mappings":";AA8BA;IACA,mBAAA;CACA;AACA;IACA,kBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,YAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;IACA,YAAA;IACA,aAAA;IACA,mBAAA;IACA,kBAAA;IACA,eAAA;IACA,gBAAA;IACA,gBAAA;IACA,aAAA;IACA,SAAA;CACA","file":"content.vue","sourcesContent":["<template>\n    <div id=\"content\" class=\"content\">\n        <div class=\"content-padded grid-demo\" v-scroll=\"scrollLoad\">\n            <router-link v-for=\"data in datas\" class=\"card demo-card-header-pic\" :to=\"'/concrete/'+data._id\" tag=\"div\">\n                <div valign=\"bottom\" class=\"card-header color-white no-border no-padding\">\n                    <img class='card-cover' :src=\"data.pic\" alt=\"\">\n                </div>\n                <div class=\"card-content\">\n\n                    <div class=\"card-content\">\n                        <div class=\"card-content-inner\">\n                            <p class=\"color-gray\">发表于 {{data.addTime | time}}</p>\n                            <p>文章标题：{{data.title}}</p>\n                            <p>所属分类：{{data.category.name}}</p>\n                            <p>阅读  {{data.views}}</p>\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <span>删除</span>\n                        <router-link :to=\"{name:'editContent',params: {id:data._id}}\" tag=\"span\">修改</router-link>\n                    </div>\n                </div>\n            </router-link>\n        </div>\n        <router-link class=\"addContentBtn\" to=\"/addContent\" tag=\"span\">+</router-link>\n        <loading v-show=\"show\"></loading>\n        <p v-show=\"endShow\" class=\"endInfo\">歇息一会儿吧！后边什么都没有了！</p>\n    </div>\n</template>\n<style>\n    #content{\n        margin-top: 2.3rem;\n    }\n    #content img{\n        max-height: 20rem;\n    }\n    .row div{\n        border: 1px solid #000;\n    }\n    .endInfo{\n        color: #ccc;\n        text-align: center;\n    }\n    .addContentBtn{\n        display: block;\n        width: 3rem;\n        height: 3rem;\n        text-align: center;\n        line-height: 3rem;\n        color: #2b92d4;\n        font-size: 3rem;\n        position: fixed;\n        bottom: 4rem;\n        right: 0;\n    }\n</style>\n<script>\n    //加载过滤器\n    import filter from '../filter.js';\n    //加载指令\n    import directive from'../directives.js';\n    //加载等待组件\n    import loading from'./loading.vue';\n    //加载Bus实例\n    import Bus from'../bus.js';\n    export default {\n        data (){\n            return{\n                datas:{},\n                pages:null,\n                page: 1,\n                show: false,\n                endShow: false,\n            }\n        },\n        components: {\n            //注册loading组件\n            loading:loading\n        },\n        methods: {\n            getData () {\n                let _this = this;\n                $.ajax({\n                    type: 'post',\n                    url: 'api/main/contents',\n                    data: {id: _this.id},\n                    success:function (data) {\n                        _this.datas = data.contents;\n                        _this.pages = data.pages;\n                    }\n                })\n            },\n            scrollLoad (fn) {\n                let _this = this;\n                //显示loading界面\n                _this.show = true;\n                _this.page++;\n                //当前页等于总页数时，停止执行ajax\n                if(_this.page <= _this.pages){\n                    $.ajax({\n                        type: 'post',\n                        url: 'api/main/contents?page='+_this.page,\n//                        data: {id: _this.id},\n                        success (data) {\n                            //把新获取到的数据插入到之前的数组中\n                            for(let i = 0; i < data.contents.length; i++){\n                                _this.datas.push(data.contents[i])\n                            }\n                            //关闭loading界面\n                            _this.show = false;\n                            //回调函数\n                            fn();\n                        }\n                    })\n                }else{\n                    //关闭loading界面\n                    _this.show = false;\n                    //显示没有数据的提示语\n                    _this.endShow = true;\n                    fn();\n                }\n            }\n        },\n        filters:{\n            //时间格式过滤器\n            time: filter.time\n        },\n        directives:{\n            //无限加载指令\n            scroll: directive.scroll\n        },\n        created () {\n            //数据初始化\n            this.getData();\n        },\n        watch: {\n            //监听路由变化，刷新组件数据\n            '$route' () {\n                this.id = this.$route.params.id;\n                this.getData();\n                //重置当前页\n                this.page = 1;\n                //关闭没有数据的提示语\n                this.endShow = false;\n                //重置内容滚动条位置\n                $('#content').scrollTop(0);\n            }\n        }\n    }\n\n</script>\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n#content{\n    margin-top: 2.3rem;\n}\n#content img{\n    max-height: 20rem;\n}\n.row div{\n    border: 1px solid #000;\n}\n.endInfo{\n    color: #ccc;\n    text-align: center;\n}\n.addContentBtn{\n    display: block;\n    width: 3rem;\n    height: 3rem;\n    text-align: center;\n    line-height: 3rem;\n    color: #2b92d4;\n    font-size: 3rem;\n    position: fixed;\n    bottom: 4rem;\n    right: 0;\n}\n", "", {"version":3,"sources":["/./src/admin/components/content.vue?c850f68a"],"names":[],"mappings":";AA4BA;IACA,mBAAA;CACA;AACA;IACA,kBAAA;CACA;AACA;IACA,uBAAA;CACA;AACA;IACA,YAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;IACA,YAAA;IACA,aAAA;IACA,mBAAA;IACA,kBAAA;IACA,eAAA;IACA,gBAAA;IACA,gBAAA;IACA,aAAA;IACA,SAAA;CACA","file":"content.vue","sourcesContent":["<template>\n    <div id=\"content\" class=\"content\">\n        <div class=\"content-padded grid-demo\" v-scroll=\"scrollLoad\">\n            <div v-for=\"data in datas\" class=\"card demo-card-header-pic\">\n                <div valign=\"bottom\" class=\"card-header color-white no-border no-padding\">\n                    <img class='card-cover' :src=\"data.pic\" alt=\"\">\n                </div>\n\n                <div class=\"card-content\">\n                    <div class=\"card-content-inner\">\n                        <p class=\"color-gray\">发表于 {{data.addTime | time}}</p>\n                        <p>文章标题：{{data.title}}</p>\n                        <p>所属分类：{{data.category.name}}</p>\n                        <p>阅读  {{data.views}}</p>\n                    </div>\n                </div>\n                <div class=\"card-footer\">\n                    <span @click=\"clickDel(data._id)\" class=\"button button-fill button-danger\">删除</span>\n                    <router-link class=\"button button-fill button-success\" :to=\"{name:'editContent',params: {id:data._id}}\" tag=\"span\">修改</router-link>\n                </div>\n            </div>\n        </div>\n        <router-link class=\"addContentBtn\" to=\"/addContent\" tag=\"span\">+</router-link>\n        <loading v-show=\"show\"></loading>\n        <p v-show=\"endShow\" class=\"endInfo\">歇息一会儿吧！后边什么都没有了！</p>\n    </div>\n</template>\n<style>\n    #content{\n        margin-top: 2.3rem;\n    }\n    #content img{\n        max-height: 20rem;\n    }\n    .row div{\n        border: 1px solid #000;\n    }\n    .endInfo{\n        color: #ccc;\n        text-align: center;\n    }\n    .addContentBtn{\n        display: block;\n        width: 3rem;\n        height: 3rem;\n        text-align: center;\n        line-height: 3rem;\n        color: #2b92d4;\n        font-size: 3rem;\n        position: fixed;\n        bottom: 4rem;\n        right: 0;\n    }\n</style>\n<script>\n    //加载过滤器\n    import filter from '../filter.js';\n    //加载指令\n    import directive from'../directives.js';\n    //加载等待组件\n    import loading from'./loading.vue';\n    //加载Bus实例\n    import Bus from'../bus.js';\n    export default {\n        data (){\n            return{\n                datas:{},\n                pages:null,\n                page: 1,\n                show: false,\n                endShow: false,\n            }\n        },\n        components: {\n            //注册loading组件\n            loading:loading\n        },\n        methods: {\n            getData () {\n                let _this = this;\n                $.ajax({\n                    type: 'post',\n                    url: 'api/main/contents',\n                    data: {id: _this.id},\n                    success:function (data) {\n                        _this.datas = data.contents;\n                        _this.pages = data.pages;\n                    }\n                })\n            },\n            clickDel (id) {\n                let _this = this;\n                $.confirm('您确定要删除该文章？',\n                    function () {\n                        _this.del(id)\n                    }\n                );\n            },\n            del (id) {\n                let _this = this;\n                $.ajax({\n                    type: 'get',\n                    url: '/api/admin/delContent?id='+id,\n                    success (data) {\n                        $.toast(data);\n                        if(data == '删除成功'){\n                            _this.getData();\n                        }\n                    }\n                })\n            },\n            scrollLoad (fn) {\n                let _this = this;\n                //显示loading界面\n                _this.show = true;\n                _this.page++;\n                //当前页等于总页数时，停止执行ajax\n                if(_this.page <= _this.pages){\n                    $.ajax({\n                        type: 'post',\n                        url: 'api/main/contents?page='+_this.page,\n//                        data: {id: _this.id},\n                        success (data) {\n                            //把新获取到的数据插入到之前的数组中\n                            for(let i = 0; i < data.contents.length; i++){\n                                _this.datas.push(data.contents[i])\n                            }\n                            //关闭loading界面\n                            _this.show = false;\n                            //回调函数\n                            fn();\n                        }\n                    })\n                }else{\n                    //关闭loading界面\n                    _this.show = false;\n                    //显示没有数据的提示语\n                    _this.endShow = true;\n                    fn();\n                }\n            }\n        },\n        filters:{\n            //时间格式过滤器\n            time: filter.time\n        },\n        directives:{\n            //无限加载指令\n            scroll: directive.scroll\n        },\n        created () {\n            //数据初始化\n            this.getData();\n        },\n        watch: {\n            //监听路由变化，刷新组件数据\n            '$route' () {\n                this.id = this.$route.params.id;\n                this.getData();\n                //重置当前页\n                this.page = 1;\n                //关闭没有数据的提示语\n                this.endShow = false;\n                //重置内容滚动条位置\n                $('#content').scrollTop(0);\n            }\n        }\n    }\n\n</script>\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13947,8 +13947,6 @@
 	//
 	//
 	//
-	//
-	//
 	
 	//加载过滤器
 	exports.default = {
@@ -13976,6 +13974,25 @@
 	                success: function success(data) {
 	                    _this.datas = data.contents;
 	                    _this.pages = data.pages;
+	                }
+	            });
+	        },
+	        clickDel: function clickDel(id) {
+	            var _this = this;
+	            $.confirm('您确定要删除该文章？', function () {
+	                _this.del(id);
+	            });
+	        },
+	        del: function del(id) {
+	            var _this = this;
+	            $.ajax({
+	                type: 'get',
+	                url: '/api/admin/delContent?id=' + id,
+	                success: function success(data) {
+	                    $.toast(data);
+	                    if (data == '删除成功') {
+	                        _this.getData();
+	                    }
 	                }
 	            });
 	        },
@@ -14251,12 +14268,8 @@
 	    }],
 	    staticClass: "content-padded grid-demo"
 	  }, _vm._l((_vm.datas), function(data) {
-	    return _c('router-link', {
-	      staticClass: "card demo-card-header-pic",
-	      attrs: {
-	        "to": '/concrete/' + data._id,
-	        "tag": "div"
-	      }
+	    return _c('div', {
+	      staticClass: "card demo-card-header-pic"
 	    }, [_c('div', {
 	      staticClass: "card-header color-white no-border no-padding",
 	      attrs: {
@@ -14271,14 +14284,20 @@
 	    })]), _vm._v(" "), _c('div', {
 	      staticClass: "card-content"
 	    }, [_c('div', {
-	      staticClass: "card-content"
-	    }, [_c('div', {
 	      staticClass: "card-content-inner"
 	    }, [_c('p', {
 	      staticClass: "color-gray"
 	    }, [_vm._v("发表于 " + _vm._s(_vm._f("time")(data.addTime)))]), _vm._v(" "), _c('p', [_vm._v("文章标题：" + _vm._s(data.title))]), _vm._v(" "), _c('p', [_vm._v("所属分类：" + _vm._s(data.category.name))]), _vm._v(" "), _c('p', [_vm._v("阅读  " + _vm._s(data.views))])])]), _vm._v(" "), _c('div', {
 	      staticClass: "card-footer"
-	    }, [_c('span', [_vm._v("删除")]), _vm._v(" "), _c('router-link', {
+	    }, [_c('span', {
+	      staticClass: "button button-fill button-danger",
+	      on: {
+	        "click": function($event) {
+	          _vm.clickDel(data._id)
+	        }
+	      }
+	    }, [_vm._v("删除")]), _vm._v(" "), _c('router-link', {
+	      staticClass: "button button-fill button-success",
 	      attrs: {
 	        "to": {
 	          name: 'editContent',
@@ -14288,7 +14307,7 @@
 	        },
 	        "tag": "span"
 	      }
-	    }, [_vm._v("修改")])], 1)])])
+	    }, [_vm._v("修改")])], 1)])
 	  })), _vm._v(" "), _c('router-link', {
 	    staticClass: "addContentBtn",
 	    attrs: {
