@@ -26,6 +26,33 @@
     #concrete .discuss{
         margin-top: 8rem;
     }
+    /*
+    代码块背景样式
+    */
+    pre{
+        background: #f6f8fa;
+        border-radius: .5rem;
+        padding: .5rem;
+    }
+    pre code {
+        background: none;
+    }
+    code{
+        background: #f6f8fa;
+        border-radius: .2rem;
+        color: #24292e;
+        padding: .1rem;
+    }
+    /*
+    引用样式
+    */
+    blockquote{
+        /*background: #dfe2e5;;*/
+        margin: 0;
+        padding-left: .5rem;
+        color: #6a737d;
+        border-left: solid .2rem #dfe2e5;
+    }
 </style>
 <script>
     var discuss = require('./discuss.vue');
@@ -61,6 +88,12 @@
            this.id = this.$route.params.id;
            //初始化数据
            this.getData();
+       },
+       mounted: function () {
+           // markdown-js会用<code><pre></pre></code>将代码包起来
+           // 不过无法为其添加prettyprint class属性
+           // 这里采用jquery手动添加
+
        },
        watch:{
            //监听路由变化，刷新数据

@@ -8,11 +8,28 @@ var User = require('../models/user');
 var Category = require('../models/category');
 var Content = require('../models/Content');
 var Markdown = require('markdown').markdown;
+var marked = require('marked');
+var highlight = require('highlight.js');
 var iconv = require('iconv-lite');
 var qiniu = require('qiniu');
 var moment = require('moment');
 var crypto = require('crypto');
 
+
+//初始化marked
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false,
+    highlight: function (code) {
+        return highlight.highlightAuto(code).value;
+    }
+});
 //设置秘钥
 
 var my_key = 'sam';
@@ -266,7 +283,8 @@ router.post('/main/particular', function (req, res) {
     Content.findOne({_id: id}).populate(['user']).then(function (content) {
         content.views++;
         content.save();
-        var markdownContent = Markdown.toHTML(content.content);
+        // var markdownContent = Markdown.toHTML(content.content);
+        var markdownContent = marked(content.content);
         res.json({
             content: content,
             markdownContent: markdownContent
