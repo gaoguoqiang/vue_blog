@@ -7,12 +7,13 @@ var router = express.Router();
 var User = require('../models/user');
 var Category = require('../models/category');
 var Content = require('../models/Content');
-var Markdown = require('markdown').markdown;
+// var Markdown = require('markdown').markdown;
 var marked = require('marked');
 var highlight = require('highlight.js');
 var iconv = require('iconv-lite');
 var qiniu = require('qiniu');
 var moment = require('moment');
+//加密模块
 var crypto = require('crypto');
 
 

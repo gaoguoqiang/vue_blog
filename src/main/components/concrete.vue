@@ -89,12 +89,6 @@
            //初始化数据
            this.getData();
        },
-       mounted: function () {
-           // markdown-js会用<code><pre></pre></code>将代码包起来
-           // 不过无法为其添加prettyprint class属性
-           // 这里采用jquery手动添加
-
-       },
        watch:{
            //监听路由变化，刷新数据
            '$route': function () {

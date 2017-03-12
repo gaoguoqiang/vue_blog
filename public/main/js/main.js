@@ -14316,6 +14316,9 @@
 	  }, [_c('div', {
 	    staticClass: "go"
 	  }, [_c('a', {
+	    staticStyle: {
+	      "text-decoration": "underline"
+	    },
 	    attrs: {
 	      "href": "javascript:;"
 	    },
@@ -14329,6 +14332,9 @@
 	  }, [_c('div', {
 	    staticClass: "go"
 	  }, [_c('a', {
+	    staticStyle: {
+	      "text-decoration": "underline"
+	    },
 	    attrs: {
 	      "href": "javascript:;"
 	    },
@@ -14517,12 +14523,6 @@
 	        this.id = this.$route.params.id;
 	        //初始化数据
 	        this.getData();
-	    },
-	    mounted: function () {
-	        // markdown-js会用<code><pre></pre></code>将代码包起来
-	        // 不过无法为其添加prettyprint class属性
-	        // 这里采用jquery手动添加
-
 	    },
 	    watch: {
 	        //监听路由变化，刷新数据
@@ -14750,7 +14750,7 @@
 
 
 	// module
-	exports.push([module.id, "\n#discussSave{\n    padding: .3rem;\n}\n#discussSave textarea {\n    width: 100%;\n    border-radius: .2rem;\n    border: 1px solid #ccc;\n    box-shadow: .1rem .1rem .1rem #ccc;\n    -webkit-appearance: none;\n}\n#discussSave p{\n    text-align: center;\n    color: red;\n}\n#discussSave button{\n    width: 100%;\n    height: 2rem;\n    margin: .3rem 0;\n}\n", ""]);
+	exports.push([module.id, "\n#discussSave{\n    padding: .3rem;\n}\n#discussSave textarea {\n    width: 100%;\n    border-radius: .2rem;\n    border: 1px solid #ccc;\n    box-shadow: .1rem .1rem .1rem #ccc;\n    -webkit-appearance: none;\n}\n#discussSave p{\n    text-align: center;\n    color: red;\n}\n#discussSave button{\n    width: 100%;\n    height: 2rem;\n    margin: .3rem 0;\n}\n.pleaseLoging{\n    display: block;\n    text-align: center;\n    padding: .2rem 0;\n    text-decoration: underline;\n}\n", ""]);
 
 	// exports
 
@@ -14759,6 +14759,12 @@
 /* 73 */
 /***/ function(module, exports) {
 
+	//
+	//
+	//
+	//
+	//
+	//
 	//
 	//
 	//
@@ -14865,7 +14871,12 @@
 	    on: {
 	      "click": _vm.save
 	    }
-	  }, [_vm._v("提交")]) : _c('p', [_vm._v("请先登录！！！")])])
+	  }, [_vm._v("提交")]) : _c('router-link', {
+	    staticClass: "pleaseLoging",
+	    attrs: {
+	      "to": "/user"
+	    }
+	  }, [_vm._v("请先登录！！！")])], 1)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {

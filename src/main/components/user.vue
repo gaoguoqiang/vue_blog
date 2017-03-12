@@ -7,12 +7,12 @@
         <div v-else>
             <reg v-if="showReg" v-on:regSuccess="tab()">
                 <div class="go">
-                    <a @click="tab" href="javascript:;">已有账号？赶快去登录吧！</a>
+                    <a style="text-decoration: underline" @click="tab" href="javascript:;">已有账号？赶快去登录吧！</a>
                 </div>
             </reg>
             <login v-else v-on:showUserinfo="login">
                 <div class="go">
-                    <a @click="tab" href="javascript:;">还没有账号？赶快去注册吧！</a>
+                    <a style="text-decoration: underline" @click="tab" href="javascript:;">还没有账号？赶快去注册吧！</a>
                 </div>
             </login>
         </div>

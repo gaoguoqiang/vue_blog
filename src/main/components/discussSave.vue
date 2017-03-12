@@ -2,7 +2,7 @@
     <div id="discussSave">
         <textarea placeholder="说点什么吧……" v-model="text"></textarea>
         <button v-if="isUser" class="button button-fill button-success" @click="save">提交</button>
-        <p v-else>请先登录！！！</p>
+        <router-link class="pleaseLoging" to="/user" v-else>请先登录！！！</router-link>
     </div>
 </template>
 <style>
@@ -24,6 +24,12 @@
         width: 100%;
         height: 2rem;
         margin: .3rem 0;
+    }
+    .pleaseLoging{
+        display: block;
+        text-align: center;
+        padding: .2rem 0;
+        text-decoration: underline;
     }
 </style>
 <script>

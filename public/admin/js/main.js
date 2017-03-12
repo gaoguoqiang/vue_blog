@@ -14412,7 +14412,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.addContent {\n  margin-top: 3rem;\n}\n.uploadImg {\n  /*position: absolute;*/\n  /*top: 50%;*/\n  /*left: 50%;*/\n  /*margin-top: -1.2rem;*/\n  display: inline-block;\n  width: 80%;\n  text-align: center;\n  font-size: 1.5rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/addContent.vue"],"names":[],"mappings":";AAAA;EACE,iBAAiB;CAClB;AACD;EACE,uBAAuB;EACvB,aAAa;EACb,cAAc;EACd,wBAAwB;EACxB,sBAAsB;EACtB,WAAW;EACX,mBAAmB;EACnB,kBAAkB;CACnB","file":"addContent.vue","sourcesContent":[".addContent {\n  margin-top: 3rem;\n}\n.uploadImg {\n  /*position: absolute;*/\n  /*top: 50%;*/\n  /*left: 50%;*/\n  /*margin-top: -1.2rem;*/\n  display: inline-block;\n  width: 80%;\n  text-align: center;\n  font-size: 1.5rem;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.addContent {\n  margin-top: 3rem;\n}\n.addContent .col-50 {\n  border: none;\n}\n.uploadImg {\n  /*position: absolute;*/\n  /*top: 50%;*/\n  /*left: 50%;*/\n  /*margin-top: -1.2rem;*/\n  display: inline-block;\n  width: 80%;\n  text-align: center;\n  font-size: 1.5rem;\n}\n", "", {"version":3,"sources":["/./src/admin/components/addContent.vue"],"names":[],"mappings":";AAAA;EACE,iBAAiB;CAClB;AACD;EACE,aAAa;CACd;AACD;EACE,uBAAuB;EACvB,aAAa;EACb,cAAc;EACd,wBAAwB;EACxB,sBAAsB;EACtB,WAAW;EACX,mBAAmB;EACnB,kBAAkB;CACnB","file":"addContent.vue","sourcesContent":[".addContent {\n  margin-top: 3rem;\n}\n.addContent .col-50 {\n  border: none;\n}\n.uploadImg {\n  /*position: absolute;*/\n  /*top: 50%;*/\n  /*left: 50%;*/\n  /*margin-top: -1.2rem;*/\n  display: inline-block;\n  width: 80%;\n  text-align: center;\n  font-size: 1.5rem;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -14426,6 +14426,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	//
+	//
+	//
 	//
 	//
 	//
@@ -14827,6 +14830,9 @@
 	      value: (_vm.content),
 	      expression: "content"
 	    }],
+	    staticStyle: {
+	      "height": "10rem"
+	    },
 	    domProps: {
 	      "value": (_vm.content)
 	    },
@@ -15422,6 +15428,9 @@
 	      value: (_vm.content),
 	      expression: "content"
 	    }],
+	    staticStyle: {
+	      "height": "10rem"
+	    },
 	    domProps: {
 	      "value": (_vm.content)
 	    },
