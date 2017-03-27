@@ -30,7 +30,7 @@
     代码块背景样式
     */
     pre{
-        background: #f6f8fa;
+        background: #e0e0e0;
         border-radius: .5rem;
         padding: .5rem;
     }

@@ -14,6 +14,8 @@ var bodyParser = require('body-parser');
 var Cookies = require('cookies');
 //加载用户表
 var User = require('./models/user');
+//加载配置文件
+var CONFIG = require('./config');
 //创建app应用 ==> NodeJS  Http.createServer();
 var app = express();
 //设置静态文件托管
@@ -28,15 +30,15 @@ app.set('views', './views');
 //注册所使用的模板引擎，第一个参数必须是view engine，第二个参数和app.engine方法中定义的模板引擎的名称必须是一致的
 app.set('view engine', 'html');
 //在开发过程中，需要取消模板缓冲-----开发完成后可以启动模板缓冲，以提高性能
-swig.setDefaults({cache:false});
+swig.setDefaults({ cache: false });
 //bodyParser设置
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 //cookies设置
 app.use(function (req, res, next) {
     req.cookies = new Cookies(req, res);
     req.userInfo = {};
-    if(req.cookies.get('userInfo')){
-        try{
+    if (req.cookies.get('userInfo')) {
+        try {
             req.userInfo = JSON.parse(req.cookies.get('userInfo'));
 
             User.findById(req.userInfo.id).then(function (userInfo) {
@@ -44,10 +46,10 @@ app.use(function (req, res, next) {
                 next();
             })
 
-        }catch(e){
+        } catch (e) {
             next();
         }
-    }else{
+    } else {
         next();
     }
 
@@ -75,11 +77,11 @@ app.use('/', require('./routers/main'));
 });*/
 //
 // 监听http请求
-mongoose.connect('mongodb://sam:sr19941015..@123.207.141.239:27017/blog', function (err) {
-    if(err){
+mongoose.connect(CONFIG.MONGODB_PATH, function (err) {
+    if (err) {
         console.log('数据库连接失败');
         console.log(err);
-    }else{
+    } else {
         console.log('数据库连接成功');
         app.listen(process.env.PORT || 5000);
     }

@@ -124,13 +124,18 @@
             //获取分类列表
             getCategories () {
                 let _this = this;
-                $.ajax({
+                // 返回一个promise对象，当获取分类列表成功时，调用resolve
+                return new Promise(function(resolve){
+                    $.ajax({
                     type: 'post',
                     url: '/api/category/categoryList',
                     success (data) {
                         _this.categories = data.categories;
+                        resolve();
                     }
                 })
+                })
+                
             },
             uploadQiniu () {
                 let _this = this;
@@ -292,9 +297,11 @@
             }
         },
         created () {
+            let _this = this;
             //初始化分类列表
-            this.getCategories();
-            this.getData()
+            this.getCategories().then(function(){
+                _this.getData();
+            });
         },
         mounted () {
             //初始化七牛上传方法

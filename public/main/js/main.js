@@ -14424,7 +14424,7 @@
 
 
 	// module
-	exports.push([module.id, "\n#concrete{\n    margin-top: 2.3rem;\n}\n#concrete .discuss{\n    margin-top: 8rem;\n}\n/*\n代码块背景样式\n*/\npre{\n    background: #f6f8fa;\n    border-radius: .5rem;\n    padding: .5rem;\n}\npre code {\n    background: none;\n}\ncode{\n    background: #f6f8fa;\n    border-radius: .2rem;\n    color: #24292e;\n    padding: .1rem;\n}\n/*\n引用样式\n*/\nblockquote{\n    /*background: #dfe2e5;;*/\n    margin: 0;\n    padding-left: .5rem;\n    color: #6a737d;\n    border-left: solid .2rem #dfe2e5;\n}\n", ""]);
+	exports.push([module.id, "\n#concrete{\n    margin-top: 2.3rem;\n}\n#concrete .discuss{\n    margin-top: 8rem;\n}\n/*\n代码块背景样式\n*/\npre{\n    background: #e0e0e0;\n    border-radius: .5rem;\n    padding: .5rem;\n}\npre code {\n    background: none;\n}\ncode{\n    background: #f6f8fa;\n    border-radius: .2rem;\n    color: #24292e;\n    padding: .1rem;\n}\n/*\n引用样式\n*/\nblockquote{\n    /*background: #dfe2e5;;*/\n    margin: 0;\n    padding-left: .5rem;\n    color: #6a737d;\n    border-left: solid .2rem #dfe2e5;\n}\n", ""]);
 
 	// exports
 

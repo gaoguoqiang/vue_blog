@@ -15,6 +15,8 @@ var qiniu = require('qiniu');
 var moment = require('moment');
 //加密模块
 var crypto = require('crypto');
+//加载配置文件
+var CONFIG = require('../config');
 
 
 //初始化marked
@@ -33,10 +35,10 @@ marked.setOptions({
 });
 //设置秘钥
 
-var my_key = 'sam';
+var my_key = CONFIG.MY_KEY;
 //初始化七牛秘钥
-qiniu.conf.ACCESS_KEY = 'sTREiBQlF-juGQB0p6c_B2Er21obHQiBxFEAQmUW';
-qiniu.conf.SECRET_KEY = 'gBGVWWF1Hv2d8vsmCUhIt1wf8JK06C3qb-6ktIEN';
+qiniu.conf.ACCESS_KEY = CONFIG.ACCESS_KEY;
+qiniu.conf.SECRET_KEY = CONFIG.SECRET_KEY;
 
 //要上传的空间
 var bucket = 'sam-ggq';
@@ -549,50 +551,5 @@ router.get('/admin/delContent', function (req, res) {
        })
    }
 });
-
-
-
-// var md5 = crypto.createHash('md5');
-//
-// md5.update(pass);
-//
-// var d = md5.digest('hex');
-//
-// console.log(d)
-
-// var token = 'sam';
-//
-// var buf = crypto.randomBytes(16);
-//
-// token = buf.toString('hex');
-//
-// console.log(token);
-//
-// var key = token;
-//
-// var sha = crypto.createHmac('sha1', key);
-//
-// sha.update(pass);
-// var haha = sha.digest().toString('base64');
-//
-// console.log(haha)
-
-// var key = 'sam';
-//
-// var cipher = crypto.createCipher('aes192', key);
-//
-// var a = cipher.update(pass, 'utf8', 'hex');
-//
-// a += cipher.final('hex');
-//
-// console.log(a);
-//
-// var decipher = crypto.createDecipher('aes192', key);
-//
-// var b = decipher.update(a, 'hex', 'utf8');
-// b += decipher.final('utf8');
-// console.log(b)
-
-
 
 module.exports = router;
