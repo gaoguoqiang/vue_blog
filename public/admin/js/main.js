@@ -10942,14 +10942,16 @@
 	
 	var _editContent2 = _interopRequireDefault(_editContent);
 	
+	var _markdown = __webpack_require__(143);
+	
+	var _markdown2 = _interopRequireDefault(_markdown);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	//注册vue-router
-	/**
-	 * Created by Administrator on 2017/1/13 0013.
-	 */
-	_vue2.default.use(_vueRouter2.default);
-	
+	_vue2.default.use(_vueRouter2.default); /**
+	                                         * Created by Administrator on 2017/1/13 0013.
+	                                         */
 	exports.default = new _vueRouter2.default({
 	    routes: [{
 	        path: '/',
@@ -10970,6 +10972,9 @@
 	        path: '/editContent/:id',
 	        name: 'editContent',
 	        component: _editContent2.default
+	    }, {
+	        path: '/markdown',
+	        component: _markdown2.default
 	    }]
 	});
 
@@ -14823,26 +14828,21 @@
 	    staticClass: "item-title label"
 	  }, [_vm._v("正文")]), _vm._v(" "), _c('div', {
 	    staticClass: "item-input"
-	  }, [_c('textarea', {
-	    directives: [{
-	      name: "model",
-	      rawName: "v-model",
-	      value: (_vm.content),
-	      expression: "content"
-	    }],
+	  }, [_c('router-link', {
 	    staticStyle: {
 	      "height": "10rem"
 	    },
-	    domProps: {
-	      "value": (_vm.content)
+	    attrs: {
+	      "to": "/markdown",
+	      "tag": "textarea"
 	    },
-	    on: {
-	      "input": function($event) {
-	        if ($event.target.composing) { return; }
-	        _vm.content = $event.target.value
+	    model: {
+	      value: (_vm.content),
+	      callback: function($$v) {
+	        _vm.content = $$v
 	      }
 	    }
-	  })])])])])])]), _vm._v(" "), _c('div', {
+	  })], 1)])])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "content-block"
 	  }, [_c('div', {
 	    staticClass: "row"
@@ -16982,6 +16982,186 @@
 	  module.hot.accept()
 	  if (module.hot.data) {
 	     require("vue-hot-reload-api").rerender("data-v-3bba9557", module.exports)
+	  }
+	}
+
+/***/ },
+/* 143 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(144)
+	
+	var Component = __webpack_require__(10)(
+	  /* script */
+	  __webpack_require__(146),
+	  /* template */
+	  __webpack_require__(147),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "/home/sam/project/vue_blog/src/admin/components/markdown.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] markdown.vue: functional components are not supported with templates, they should use render functions.")}
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-04db4ad7", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-04db4ad7", Component.options)
+	  }
+	})()}
+	
+	module.exports = Component.exports
+
+
+/***/ },
+/* 144 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(145);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	if(content.locals) module.exports = content.locals;
+	// add the styles to the DOM
+	var update = __webpack_require__(8)("3c04856d", content, false);
+	// Hot Module Replacement
+	if(false) {
+	 // When the styles change, update the <style> tags
+	 if(!content.locals) {
+	   module.hot.accept("!!../../../node_modules/css-loader/index.js?sourceMap!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-04db4ad7!../../../node_modules/less-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./markdown.vue", function() {
+	     var newContent = require("!!../../../node_modules/css-loader/index.js?sourceMap!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-04db4ad7!../../../node_modules/less-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./markdown.vue");
+	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	     update(newContent);
+	   });
+	 }
+	 // When the module is disposed, remove the <style> tags
+	 module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 145 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(7)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n* {\n  -webkit-user-select: auto;\n}\n#markdown {\n  width: 90%;\n  margin: 2.5rem auto;\n  border: 1px solid #000;\n  border-radius: .5rem;\n  overflow: hidden;\n}\n#markdown ul {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n#markdown ul li {\n  float: left;\n  list-style: none;\n  padding: 0;\n}\n#markdown ul li p {\n  margin: 0;\n  padding: .2rem;\n  color: #fff;\n}\n#markdown ul li .sub {\n  background: #272727;\n  text-align: center;\n}\n#markdown ul li .m-text {\n  width: 100%;\n  background: #2D2D2D;\n  -webkit-user-select: text;\n}\n#markdown ul li:nth-child(1) {\n  width: 10%;\n}\n#markdown ul li:nth-child(2) {\n  width: 90%;\n}\n", "", {"version":3,"sources":["/./src/admin/components/markdown.vue"],"names":[],"mappings":";AAAA;EACE,0BAA0B;CAC3B;AACD;EACE,WAAW;EACX,oBAAoB;EACpB,uBAAuB;EACvB,qBAAqB;EACrB,iBAAiB;CAClB;AACD;EACE,YAAY;EACZ,UAAU;EACV,WAAW;CACZ;AACD;EACE,YAAY;EACZ,iBAAiB;EACjB,WAAW;CACZ;AACD;EACE,UAAU;EACV,eAAe;EACf,YAAY;CACb;AACD;EACE,oBAAoB;EACpB,mBAAmB;CACpB;AACD;EACE,YAAY;EACZ,oBAAoB;EACpB,0BAA0B;CAC3B;AACD;EACE,WAAW;CACZ;AACD;EACE,WAAW;CACZ","file":"markdown.vue","sourcesContent":["* {\n  -webkit-user-select: auto;\n}\n#markdown {\n  width: 90%;\n  margin: 2.5rem auto;\n  border: 1px solid #000;\n  border-radius: .5rem;\n  overflow: hidden;\n}\n#markdown ul {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n#markdown ul li {\n  float: left;\n  list-style: none;\n  padding: 0;\n}\n#markdown ul li p {\n  margin: 0;\n  padding: .2rem;\n  color: #fff;\n}\n#markdown ul li .sub {\n  background: #272727;\n  text-align: center;\n}\n#markdown ul li .m-text {\n  width: 100%;\n  background: #2D2D2D;\n  -webkit-user-select: text;\n}\n#markdown ul li:nth-child(1) {\n  width: 10%;\n}\n#markdown ul li:nth-child(2) {\n  width: 90%;\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 146 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	
+	exports.default = {
+	    data: function data() {
+	        return {
+	            text: 'hello my name is sam'
+	        };
+	    }
+	};
+
+/***/ },
+/* 147 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    attrs: {
+	      "id": "markdown"
+	    }
+	  }, [_c('ul', [_vm._m(0), _vm._v(" "), _c('li', [_c('p', {
+	    staticClass: "m-text",
+	    attrs: {
+	      "contenteditable": "true"
+	    }
+	  }, [_vm._v(_vm._s(_vm.text))])])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', [_c('p', {
+	    staticClass: "sub"
+	  }, [_vm._v("1")])])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-04db4ad7", module.exports)
 	  }
 	}
 

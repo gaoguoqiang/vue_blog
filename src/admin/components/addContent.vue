@@ -57,7 +57,7 @@
                         <div class="item-inner">
                             <div class="item-title label">正文</div>
                             <div class="item-input">
-                                <textarea v-model="content" style="height: 10rem;"></textarea>
+                                <router-link to='/markdown' v-model="content" style="height: 10rem;" tag="textarea"></router-link>
                             </div>
                         </div>
                     </div>

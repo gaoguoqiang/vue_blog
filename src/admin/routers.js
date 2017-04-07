@@ -10,6 +10,7 @@ import category from './components/category.vue';
 import content from './components/content.vue';
 import addContent from './components/addContent.vue';
 import editContent from './components/editContent.vue';
+import markdown from './components/markdown.vue';
 //注册vue-router
 Vue.use(VueRouter);
 
@@ -39,6 +40,10 @@ export default new VueRouter({
             path: '/editContent/:id',
             name: 'editContent',
             component: editContent
+        },
+        {
+            path: '/markdown',
+            component: markdown
         }
     ]
 })
