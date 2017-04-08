@@ -1,11 +1,11 @@
 <template>
     <div id="markdown">
-        <ul>
-            <li>
-                <p class="sub">1</p>
-            </li>
-            <li>
-                <p contenteditable="true" class="m-text">{{text}}</p>
+        <ul> 
+            <li v-for="num in lines">   
+                <p @keyup.enter="add" contenteditable="true" class="m-text">
+                    <span contenteditable="false" class="sub">{{num}}</span>
+                    123
+                </p>
             </li>
         </ul>
     </div>
@@ -28,6 +28,7 @@
                 float: left;
                 list-style: none;
                 padding: 0;
+                width: 100%;
 
                 p{
                     margin: 0;
@@ -37,19 +38,23 @@
                 .sub{
                     background: #272727;
                     text-align: center;
+                    width: 10%;
+                    display: block;
+                    position: absolute;
+                    height: 100%;
+                    padding-top: .2rem;
+                    line-height: inherit;
+                    left: 0;
+                    top: 0;
                 }
                 .m-text{
                     width: 100%;
+                    padding-left: 10%;
                     background: #2D2D2D;
                     -webkit-user-select: text;
+                    position: relative;
 
                 }
-            }
-            li:nth-child(1){
-                width: 10%;
-            }
-            li:nth-child(2){
-                width: 90%;
             }
         }
     }
@@ -58,8 +63,17 @@
     export default {
        data () {
            return {
-               text: 'hello my name is sam'
+               lines: 1,
+           }
+       },
+       methods: {
+           add (ev) {
+               ev.target.blur();
+               console.log(ev.target.innerText)
+               ev.target.innerHTML = ev.target.innerHTML.replace(/<br>/, '')
+               this.lines++;
            }
        }
+
     }
 </script>

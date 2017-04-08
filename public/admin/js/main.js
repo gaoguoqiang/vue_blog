@@ -17058,7 +17058,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n* {\n  -webkit-user-select: auto;\n}\n#markdown {\n  width: 90%;\n  margin: 2.5rem auto;\n  border: 1px solid #000;\n  border-radius: .5rem;\n  overflow: hidden;\n}\n#markdown ul {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n#markdown ul li {\n  float: left;\n  list-style: none;\n  padding: 0;\n}\n#markdown ul li p {\n  margin: 0;\n  padding: .2rem;\n  color: #fff;\n}\n#markdown ul li .sub {\n  background: #272727;\n  text-align: center;\n}\n#markdown ul li .m-text {\n  width: 100%;\n  background: #2D2D2D;\n  -webkit-user-select: text;\n}\n#markdown ul li:nth-child(1) {\n  width: 10%;\n}\n#markdown ul li:nth-child(2) {\n  width: 90%;\n}\n", "", {"version":3,"sources":["/./src/admin/components/markdown.vue"],"names":[],"mappings":";AAAA;EACE,0BAA0B;CAC3B;AACD;EACE,WAAW;EACX,oBAAoB;EACpB,uBAAuB;EACvB,qBAAqB;EACrB,iBAAiB;CAClB;AACD;EACE,YAAY;EACZ,UAAU;EACV,WAAW;CACZ;AACD;EACE,YAAY;EACZ,iBAAiB;EACjB,WAAW;CACZ;AACD;EACE,UAAU;EACV,eAAe;EACf,YAAY;CACb;AACD;EACE,oBAAoB;EACpB,mBAAmB;CACpB;AACD;EACE,YAAY;EACZ,oBAAoB;EACpB,0BAA0B;CAC3B;AACD;EACE,WAAW;CACZ;AACD;EACE,WAAW;CACZ","file":"markdown.vue","sourcesContent":["* {\n  -webkit-user-select: auto;\n}\n#markdown {\n  width: 90%;\n  margin: 2.5rem auto;\n  border: 1px solid #000;\n  border-radius: .5rem;\n  overflow: hidden;\n}\n#markdown ul {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n#markdown ul li {\n  float: left;\n  list-style: none;\n  padding: 0;\n}\n#markdown ul li p {\n  margin: 0;\n  padding: .2rem;\n  color: #fff;\n}\n#markdown ul li .sub {\n  background: #272727;\n  text-align: center;\n}\n#markdown ul li .m-text {\n  width: 100%;\n  background: #2D2D2D;\n  -webkit-user-select: text;\n}\n#markdown ul li:nth-child(1) {\n  width: 10%;\n}\n#markdown ul li:nth-child(2) {\n  width: 90%;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n* {\n  -webkit-user-select: auto;\n}\n#markdown {\n  width: 90%;\n  margin: 2.5rem auto;\n  border: 1px solid #000;\n  border-radius: .5rem;\n  overflow: hidden;\n}\n#markdown ul {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n#markdown ul li {\n  float: left;\n  list-style: none;\n  padding: 0;\n  width: 100%;\n}\n#markdown ul li p {\n  margin: 0;\n  padding: .2rem;\n  color: #fff;\n}\n#markdown ul li .sub {\n  background: #272727;\n  text-align: center;\n  width: 10%;\n  display: block;\n  position: absolute;\n  height: 100%;\n  padding-top: .2rem;\n  line-height: inherit;\n  left: 0;\n  top: 0;\n}\n#markdown ul li .m-text {\n  width: 100%;\n  padding-left: 10%;\n  background: #2D2D2D;\n  -webkit-user-select: text;\n  position: relative;\n}\n", "", {"version":3,"sources":["/./src/admin/components/markdown.vue"],"names":[],"mappings":";AAAA;EACE,0BAA0B;CAC3B;AACD;EACE,WAAW;EACX,oBAAoB;EACpB,uBAAuB;EACvB,qBAAqB;EACrB,iBAAiB;CAClB;AACD;EACE,YAAY;EACZ,UAAU;EACV,WAAW;CACZ;AACD;EACE,YAAY;EACZ,iBAAiB;EACjB,WAAW;EACX,YAAY;CACb;AACD;EACE,UAAU;EACV,eAAe;EACf,YAAY;CACb;AACD;EACE,oBAAoB;EACpB,mBAAmB;EACnB,WAAW;EACX,eAAe;EACf,mBAAmB;EACnB,aAAa;EACb,mBAAmB;EACnB,qBAAqB;EACrB,QAAQ;EACR,OAAO;CACR;AACD;EACE,YAAY;EACZ,kBAAkB;EAClB,oBAAoB;EACpB,0BAA0B;EAC1B,mBAAmB;CACpB","file":"markdown.vue","sourcesContent":["* {\n  -webkit-user-select: auto;\n}\n#markdown {\n  width: 90%;\n  margin: 2.5rem auto;\n  border: 1px solid #000;\n  border-radius: .5rem;\n  overflow: hidden;\n}\n#markdown ul {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n}\n#markdown ul li {\n  float: left;\n  list-style: none;\n  padding: 0;\n  width: 100%;\n}\n#markdown ul li p {\n  margin: 0;\n  padding: .2rem;\n  color: #fff;\n}\n#markdown ul li .sub {\n  background: #272727;\n  text-align: center;\n  width: 10%;\n  display: block;\n  position: absolute;\n  height: 100%;\n  padding-top: .2rem;\n  line-height: inherit;\n  left: 0;\n  top: 0;\n}\n#markdown ul li .m-text {\n  width: 100%;\n  padding-left: 10%;\n  background: #2D2D2D;\n  -webkit-user-select: text;\n  position: relative;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -17128,13 +17128,28 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
 	
 	exports.default = {
 	    data: function data() {
 	        return {
-	            text: 'hello my name is sam'
+	            lines: 1
 	        };
+	    },
+	
+	    methods: {
+	        add: function add(ev) {
+	            ev.target.blur();
+	            console.log(ev.target.innerText);
+	            ev.target.innerHTML = ev.target.innerHTML.replace(/<br>/, '');
+	            this.lines++;
+	        }
 	    }
+	
 	};
 
 /***/ },
@@ -17146,17 +17161,26 @@
 	    attrs: {
 	      "id": "markdown"
 	    }
-	  }, [_c('ul', [_vm._m(0), _vm._v(" "), _c('li', [_c('p', {
-	    staticClass: "m-text",
-	    attrs: {
-	      "contenteditable": "true"
-	    }
-	  }, [_vm._v(_vm._s(_vm.text))])])])])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('li', [_c('p', {
-	    staticClass: "sub"
-	  }, [_vm._v("1")])])
-	}]}
+	  }, [_c('ul', _vm._l((_vm.lines), function(num) {
+	    return _c('li', [_c('p', {
+	      staticClass: "m-text",
+	      attrs: {
+	        "contenteditable": "true"
+	      },
+	      on: {
+	        "keyup": function($event) {
+	          if (_vm._k($event.keyCode, "enter", 13)) { return null; }
+	          _vm.add($event)
+	        }
+	      }
+	    }, [_c('span', {
+	      staticClass: "sub",
+	      attrs: {
+	        "contenteditable": "false"
+	      }
+	    }, [_vm._v(_vm._s(num))]), _vm._v("\n                123\n            ")])])
+	  }))])
+	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
