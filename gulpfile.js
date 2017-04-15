@@ -40,15 +40,15 @@ var browserSync = require('browser-sync');
 //             return path
 //         }))
 // });
-gulp.task('bundle', function () {
+gulp.task('bundle', function() {
     gulp.src('./src/admin/main.js')
         .pipe(named())
         .pipe(webpack({
             module: {
-                loaders:[
-                    {test:/\.vue$/, loader:'vue-loader'},
-                    {test: /\.less$/, loader: 'less-loader'},
-                    {test: /\.js$/, loader: 'babel', query: {presets: ['es2015']},exclude: /node_modules/}
+                loaders: [
+                    { test: /\.vue$/, loader: 'vue-loader' },
+                    { test: /\.less$/, loader: 'less-loader' },
+                    { test: /\.js$/, loader: 'babel', query: { presets: ['es2015'] }, exclude: /node_modules/ }
                 ]
             },
             //babel需要单独配置
@@ -65,12 +65,12 @@ gulp.task('bundle', function () {
         }))
         .pipe(gulp.dest('./public/admin/js'))
 });
-gulp.task('browserSync', function () {
+gulp.task('browserSync', function() {
     browserSync.init({
         proxy: "127.0.0.1:5000"
     })
 });
-gulp.task('default', ['browserSync', 'bundle'], function () {
-    gulp.watch(['./view/**/*', './src/**/*'],['bundle']);
-    gulp.watch('./public/**/*',browserSync.reload);
+gulp.task('default', ['browserSync', 'bundle'], function() {
+    gulp.watch(['view/**/*', 'src/**/*'], ['bundle']);
+    gulp.watch('public/**/*', browserSync.reload);
 })

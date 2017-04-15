@@ -7,8 +7,6 @@ import App from './App.vue';
 import router from './routers.js';
 
 const app = new Vue({
-    components: {
-        App:App
-    },
+    render: h => h(App),
     router: router
 }).$mount('#app');
