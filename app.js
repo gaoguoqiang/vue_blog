@@ -34,14 +34,14 @@ swig.setDefaults({ cache: false });
 //bodyParser设置
 app.use(bodyParser.urlencoded({ extended: true }));
 //cookies设置
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     req.cookies = new Cookies(req, res);
     req.userInfo = {};
     if (req.cookies.get('userInfo')) {
         try {
             req.userInfo = JSON.parse(req.cookies.get('userInfo'));
 
-            User.findById(req.userInfo.id).then(function (userInfo) {
+            User.findById(req.userInfo.id).then(function(userInfo) {
                 req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
                 next();
             })
@@ -55,17 +55,17 @@ app.use(function (req, res, next) {
 
 });
 /*
-* 根据不同的功能划分模块
-* */
+ * 根据不同的功能划分模块
+ * */
 app.use('/admin', require('./routers/admin'));
 app.use('/api', require('./routers/api'));
 app.use('/', require('./routers/main'));
 /*
-* 首页
-*   req-->requset对象
-*   res-->response对象
-*   next-->函数
-* */
+ * 首页
+ *   req-->requset对象
+ *   res-->response对象
+ *   next-->函数
+ * */
 /*app.get('/', function (req, res, next) {
     //res.send('<h1>欢迎光临我的博客</h1>');
    /!*
@@ -77,7 +77,7 @@ app.use('/', require('./routers/main'));
 });*/
 //
 // 监听http请求
-mongoose.connect(CONFIG.MONGODB_PATH, function (err) {
+mongoose.connect(CONFIG.MONGODB_PATH, function(err) {
     if (err) {
         console.log('数据库连接失败');
         console.log(err);
@@ -86,4 +86,3 @@ mongoose.connect(CONFIG.MONGODB_PATH, function (err) {
         app.listen(process.env.PORT || 5000);
     }
 });
-
