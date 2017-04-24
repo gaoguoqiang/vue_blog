@@ -54,7 +54,7 @@ export default {
             let se = window.getSelection(),
                 str = '';
             if(se.anchorNode.data){
-                str = se.anchorNode.data; 
+                str = se.anchorNode.data;
             };
             // 移除焦点
             ev.target.blur();
@@ -77,7 +77,7 @@ export default {
                 this.state = 'del';
             }
         },
-        focus(el) {
+        focus([el, loca=el.childNodes.length]) {
             let sel, range;
             // 获取要获得焦点的节点
             // let el = $(this.now).next().get(0);
@@ -92,9 +92,9 @@ export default {
                 // 设置range范围的开始位置和结束位置在同一位置
                 range.collapse(true);
                 // 设置结束点
-                range.setEnd(el, el.childNodes.length);
+                range.setEnd(el, loca);
                 // 设置开始点
-                range.setStart(el, el.childNodes.length);
+                range.setStart(el, loca);
                 // console.log(range)
                 // 获取selection对象
                 let sel = window.getSelection();
@@ -114,7 +114,7 @@ export default {
         }
     },
     updated() {
-        this.state === 'add' ? this.focus($(this.now).next().get(0)) : this.focus(this.now);
+        this.state === 'add' ? this.focus([$(this.now).next().get(0), 0]) : this.focus([this.now]);
     }
 }
 </script>
