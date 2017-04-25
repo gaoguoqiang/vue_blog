@@ -53,6 +53,8 @@ export default {
             // 获取焦点之后的文本
             let se = window.getSelection(),
                 str = '';
+            console.log(se.getRangeAt(0));
+            return
             if(se.anchorNode.data){
                 str = se.anchorNode.data;
             };

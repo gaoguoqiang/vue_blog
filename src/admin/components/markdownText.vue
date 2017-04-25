@@ -1,6 +1,5 @@
 <template>
-    <p @keyup.enter="add" @keyup.delete="del" contenteditable="true" class="m-text" :index="num">{{text}}</p>
-
+    <p @input="updateValue" @keyup.enter="add" @keyup.delete="del" contenteditable="true" class="m-text" :index="num" v-text="text"></p>
 </template>
 <style lang="less">
 </style>
@@ -17,6 +16,11 @@
            'msg'
         ],
        methods: {
+           updateValue (ev) {
+            //    console.log(ev.target)
+               this.text = ev.target.innerText;
+               console.log(this.text)
+           },
            add (ev) {
                //触发add事件
                this.$emit('add',ev)
@@ -27,6 +31,8 @@
                // 第二次监听到内容为空时，删除
                if(!ev.target.innerText){
                    this.counter += 1;
+               }else{
+                   this.counter = 0;
                };
                if(this.counter === 2){
                    this.$emit('del', [ev.target, this.num]);

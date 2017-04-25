@@ -16862,6 +16862,8 @@
 	            // 获取焦点之后的文本
 	            var se = window.getSelection(),
 	                str = '';
+	            console.log(se.getRangeAt(0));
+	            return;
 	            if (se.anchorNode.data) {
 	                str = se.anchorNode.data;
 	            };
@@ -17140,7 +17142,6 @@
 	//
 	//
 	//
-	//
 	
 	exports.default = {
 	    data: function data() {
@@ -17152,6 +17153,11 @@
 	
 	    props: ['num', 'msg'],
 	    methods: {
+	        updateValue: function updateValue(ev) {
+	            //    console.log(ev.target)
+	            this.text = ev.target.innerText;
+	            console.log(this.text);
+	        },
 	        add: function add(ev) {
 	            //触发add事件
 	            this.$emit('add', ev);
@@ -17162,6 +17168,8 @@
 	            // 第二次监听到内容为空时，删除
 	            if (!ev.target.innerText) {
 	                this.counter += 1;
+	            } else {
+	                this.counter = 0;
 	            };
 	            if (this.counter === 2) {
 	                this.$emit('del', [ev.target, this.num]);
@@ -17181,7 +17189,11 @@
 	      "contenteditable": "true",
 	      "index": _vm.num
 	    },
+	    domProps: {
+	      "textContent": _vm._s(_vm.text)
+	    },
 	    on: {
+	      "input": _vm.updateValue,
 	      "keyup": [function($event) {
 	        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
 	        _vm.add($event)
@@ -17190,7 +17202,7 @@
 	        _vm.del($event)
 	      }]
 	    }
-	  }, [_vm._v(_vm._s(_vm.text))])
+	  })
 	},staticRenderFns: []}
 
 /***/ },
