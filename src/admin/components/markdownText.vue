@@ -1,5 +1,5 @@
 <template>
-    <p @input="updateValue" @keyup.enter="add" @keyup.delete="del" contenteditable="true" class="m-text" :index="num" v-text="text"></p>
+    <p @keyup.enter="add" @keyup.delete="del" contenteditable="true" class="m-text" :index="num" v-text="text"></p>
 </template>
 <style lang="less">
 </style>
@@ -19,7 +19,7 @@
            updateValue (ev) {
             //    console.log(ev.target)
                this.text = ev.target.innerText;
-               console.log(this.text)
+            //    console.log(this.text)
            },
            add (ev) {
                //触发add事件

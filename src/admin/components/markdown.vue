@@ -52,10 +52,17 @@ export default {
         add(ev) {
             // 获取焦点之后的文本
             let se = window.getSelection(),
-                str = '';
-            console.log(se.getRangeAt(0));
-            return
-            if(se.anchorNode.data){
+                str = '',
+                // 获取当前组件在数组中的位置
+                num = Number($(ev.target).attr('index'));
+            // 如果焦点在文本最前端, 新添加的组件应该在当前组件的前面
+            if(ev.target.innerText.length-1 == se.anchorNode.length){
+                this.state = 'addUp';
+            }else{
+                this.state = 'addDown';
+                num += 1;
+            }
+            if(se.anchorNode.data && ev.target.innerText.length-1 != se.anchorNode.length){
                 str = se.anchorNode.data;
             };
             // 移除焦点
@@ -64,12 +71,10 @@ export default {
             ev.target.innerHTML = ev.target.innerHTML.replace(/<br>/, '');
             // 拥有contenteditable属性的标签在换行时会新增一个DOM节点,所以需要移除
             $(ev.target).children().remove();
-            // 获取当前组件在数组中的位置
-            const num = Number($(ev.target).attr('index'));
+
             this.index += 1;
-            this.items.splice(num + 1, 0, {'sub': this.index, 'content': str});
+            this.items.splice(num, 0, {'sub': this.index, 'content': str});
             this.now = ev.target;
-            this.state = 'add';
         },
         del ([el, val]) {
             // 参数的获取使用了ES6的解构赋值
@@ -116,7 +121,18 @@ export default {
         }
     },
     updated() {
-        this.state === 'add' ? this.focus([$(this.now).next().get(0), 0]) : this.focus([this.now]);
+        switch (this.state) {
+            case 'addUp':
+                this.focus([this.now, 0]);
+                console.log('up')
+                break;
+            case 'addDown':
+                this.focus([$(this.now).next().get(0), 0]);
+                console.log('down');
+                break;
+            default:
+                this.focus([this.now])
+        }
     }
 }
 </script>
